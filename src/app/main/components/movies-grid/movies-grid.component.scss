@@ -7,13 +7,14 @@
     }
 
     .subtitle {
+        display: block;
         font-size: 20px;
     }
 }
 
 .cover:hover {
     .subtitle {
-        color: #979797;
+        color: #ffc107;
     }
 
     .img-fluid {
