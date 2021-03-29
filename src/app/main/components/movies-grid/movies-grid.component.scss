@@ -1,0 +1,23 @@
+.cover {
+    text-align: center;
+    cursor: pointer;
+    .img-fluid {
+        height: 400px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+}
+
+.cover:hover {
+    .subtitle {
+        color: #979797;
+    }
+
+    .img-fluid {
+        transition: all 0.3s;
+        transform: scale(1.02);
+    }
+}
