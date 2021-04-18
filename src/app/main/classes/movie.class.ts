@@ -3,4 +3,5 @@ export class Movie {
     public title: string;
     public director: string;
     public poster: string;
+    public overview: string;
 }
