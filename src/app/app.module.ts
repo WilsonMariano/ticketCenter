@@ -1,3 +1,4 @@
+import { FooterModule } from './main/components/footer/footer.module';
 import { DatabaseModule } from './main/database/database.module';
 import { NavbarModule } from './main/components/navbar/navbar.module';
 import { PagesModule } from './main/pages/pages.module';
@@ -19,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     DatabaseModule,
     PagesModule,
-    NavbarModule
+    NavbarModule,
+    FooterModule
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent]
