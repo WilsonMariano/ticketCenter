@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
 import { MovieDetailModule } from './movie-detail/movie-detail.module';
 import { MoviesComponent } from './movies/movies.component';
+import { CinemasComponent } from './cinemas/cinemas.component';
 
 
 
 @NgModule({
-  declarations: [MoviesComponent],
+  declarations: [MoviesComponent, CinemasComponent],
   imports: [
     CommonModule,
     HomeModule,
