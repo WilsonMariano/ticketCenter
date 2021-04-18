@@ -1,30 +1,33 @@
-<div class="movie-backdrop" [ngStyle]="{ 'background-image': 'url(' + 'https://m.media-amazon.com/images/M/MV5BMTk3OTI0NDQ4OF5BMl5BanBnXkFtZTgwNTYwMDg1NjM@._V1_.jpg' + ')' }"></div>
-<div class="container">
-    <div class="movie-data row">
-        <div class="col-md-4">
-            <div class="movie-poster">
-                <img src="https://m.media-amazon.com/images/M/MV5BMjQ2NDMwMTY3MF5BMl5BanBnXkFtZTgwNDg5OTc1NjM@._V1_SX300.jpg" alt="" class="img-fluid">
-            </div>
-        </div>
-        <div class="col-md-8">
-            <h2 class="movie-title">Escape Room</h2>
-            <div class="movie-info">
-                <p class="movie-overview">Six strangers, all from wildly different walks of life, are invited to try out a brand-new escape room challenge and the chance to win a million dollars. But the hidden organisers have more planned than a puzzle… Escape Room is the latest horror from Insidious: Hidden Key director Adam Robitel, and stars Deborah Ann Woll, Taylor Russell, and Logan Miller.</p>
-                <div class="movie-meta">
-                  <span class="movie">
-                    <dt>Director:</dt>
-                    <dd>Adam Robitel</dd>
-                  </span>
-                  <span class="movie-meta-cast">
-                    <dt>Protagonistas:</dt>
-                    <dd>Deborah Ann Woll</dd>
-                  </span>
-                  <span class="movie-meta-runtime">
-                    <dt>Duración:</dt>
-                    <dd>99 minutos</dd>
-                  </span>
-                </div>
-            </div>
-        </div>
-    </div>
+<div *ngIf="movie">
+  <div class="movie-backdrop" [ngStyle]="{ 'background-image': 'url(' + movie.backdrop + ')' }"></div>
+  <div class="container">
+      <div class="movie-data row">
+          <div class="col-md-4">
+              <div class="movie-poster">
+                  <img [src]="movie.poster" [alt]="movie.title" class="img-fluid">
+              </div>
+          </div>
+          <div class="col-md-8">
+              <h2 class="movie-title">{{ movie.title }}</h2>
+              <div class="movie-info">
+                  <p class="movie-overview">{{ movie.overview }}</p>
+                  <div class="movie-meta">
+                    <span class="movie">
+                      <dt>Director:</dt>
+                      <dd>{{ movie.director }}</dd>
+                    </span>
+                    <span class="movie-meta-cast">
+                      <dt>Protagonistas:</dt>
+                      <dd>{{ movie.cast | join: ", " }}</dd>
+                    </span>
+                    <span class="movie-meta-runtime">
+                      <dt>Duración:</dt>
+                      <dd>{{ movie.runtime | minute}}</dd>
+                    </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <app-spinner></app-spinner>
 </div>

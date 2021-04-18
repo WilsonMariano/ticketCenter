@@ -8,7 +8,7 @@ import { CinemasComponent } from './main/pages/cinemas/cinemas.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'movie/:{id}', component: MovieDetailComponent },
+  { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'cinemas', component: CinemasComponent },
 ];
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

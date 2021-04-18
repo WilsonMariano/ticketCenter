@@ -12,7 +12,9 @@ export class MoviesComponent implements OnInit {
   
   public movies: Movie[];
 
-  constructor(private moviesService: MoviesService, private spinner: NgxSpinnerService) { }
+  constructor(
+    private moviesService: MoviesService, 
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getMovies();
@@ -23,7 +25,7 @@ export class MoviesComponent implements OnInit {
     this.moviesService.getAll().subscribe(
       res => {
         this.movies = res;
-        setTimeout(() => this.spinner.hide(), 2000);
+        setTimeout(() => this.spinner.hide(), 1000);
       });
   }
 }

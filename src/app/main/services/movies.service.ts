@@ -18,6 +18,11 @@ export class MoviesService {
     return this.moviesRef.valueChanges();
   }
 
+  public getOne(id: number): any {
+    return this.db.collection('movies', ref => ref.where('id', '==', id).limit(1))
+      .valueChanges();
+  }
+
   public create(movie: Movie): any {
     return this.moviesRef.add({...movie});
   }

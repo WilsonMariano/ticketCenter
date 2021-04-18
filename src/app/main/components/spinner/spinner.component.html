@@ -1,11 +1,11 @@
 <ngx-spinner 
-    bdColor = "rgba(0,0,0,0.4)" 
-    size = "default" 
-    color = "#e1d44f" 
-    type = "line-spin-clockwise-fade" 
-    [fullScreen] = "true" 
-    [template] = "gif">
-    <p style="color: white; margin-top: '50px';"  > Cargando... </p>
+    [bdColor] = "options.bdColor" 
+    [size] = "options.size" 
+    [color] = "options.color" 
+    [type] = "options.type" 
+    [fullScreen] = "options.fullScreen" 
+    [template] = "options.template">
+    <p class="spinner-p"> {{options.text}} </p>
 </ngx-spinner>
 
 

@@ -4,9 +4,10 @@
         <hr>
     </div>
     <div class="col-md-3 col-sm-6 mb-5" *ngFor="let m of movies">
-        <div class="cover">
+        <div class="cover" (click)="navigateToDetail(m.id)">
             <img [src]="m.poster" class="img-fluid">
             <span class="subtitle">{{m.title}}</span>
         </div>
     </div>
 </div>
+<app-spinner></app-spinner>
