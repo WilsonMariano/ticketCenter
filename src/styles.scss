@@ -3,3 +3,16 @@ body {
     background: linear-gradient(to bottom,#191919 0,#000 100%) no-repeat #000;
     color: rgba(255, 255, 255, 0.75);
 }
+
+a {
+    color: #777;
+    transition: all 0.4s;
+    text-decoration: none;
+
+    &:hover {
+        color: #fff;   
+    }
+}
+
+
+
