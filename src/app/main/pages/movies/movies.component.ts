@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Movie } from '../../classes/movie.class';
 import { MoviesService } from '../../services/movies.service';
 
@@ -11,15 +12,18 @@ export class MoviesComponent implements OnInit {
   
   public movies: Movie[];
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getMovies();
   }
 
   private async getMovies() {
+    this.spinner.show();
     this.moviesService.getAll().subscribe(
-      res => this.movies = res);
+      res => {
+        this.movies = res;
+        setTimeout(() => this.spinner.hide(), 2000);
+      });
   }
-
 }

@@ -9,7 +9,7 @@ import { MoviesService } from './main/services/movies.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     DatabaseModule,
     PagesModule,
     NavbarModule,
-    FooterModule
+    FooterModule,
+    BrowserAnimationsModule
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent]

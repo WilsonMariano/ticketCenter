@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
 import { MovieDetailModule } from './movie-detail/movie-detail.module';
-import { MoviesComponent } from './movies/movies.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
+import { SpinnerModule } from '../components/spinner/spinner.module';
+import { MoviesModule } from './movies/movies.module';
 
 
 
 @NgModule({
-  declarations: [MoviesComponent, CinemasComponent],
+  declarations: [],
   imports: [
     CommonModule,
     HomeModule,
-    MovieDetailModule
+    MovieDetailModule,
+    MoviesModule
   ]
 })
 export class PagesModule { }
