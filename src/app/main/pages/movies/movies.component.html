@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2>Películas en cartelera</h2>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row" *ngFor="let m of movies">
+        <div class="col-md-3 col-sm-6 mb-3" >
+            <div class="cover">
+                <img [src]="m.poster" class="img-fluid">
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <span class="subtitle">{{m.title}}</span>
+            <p class="mt-4">{{m.overview}}</p>
+            <a href="movie/{m.id}">Ver detalles y funciones</a>
+        </div>
+        <hr>
+    </div>
+</div>
+
