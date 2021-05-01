@@ -1,4 +1,4 @@
-import { PipesModule } from './main/pipes/pipes.module';
+
 import { FooterModule } from './main/components/footer/footer.module';
 import { DatabaseModule } from './main/database/database.module';
 import { NavbarModule } from './main/components/navbar/navbar.module';
@@ -7,12 +7,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MoviesService } from './main/services/movies.service';
+import { CinemasService } from './main/services/cinemas.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JoinPipe } from './main/pipes/join.pipe';
-import { MinutePipe } from './main/pipes/minute.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,10 @@ import { MinutePipe } from './main/pipes/minute.pipe';
     NavbarModule,
     FooterModule
   ],
-  providers: [MoviesService],
+  providers: [
+    MoviesService,
+    CinemasService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
