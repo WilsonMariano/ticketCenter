@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <div class="row" *ngFor="let m of movies">
+    <div class="row" *ngFor="let c of cinemas">
         <div class="col-md-3 col-sm-6 mb-3" >
             <div class="cover">
                 <img [src]="m.poster" class="img-fluid">
@@ -14,9 +14,8 @@
         </div>
 
         <div class="col mb-3">
-            <span class="subtitle">{{m.title}}</span>
-            <p class="mt-4">{{m.overview}}</p>
-            <a href="movie/{{m.id}}">Ver detalles y funciones</a>
+            <span class="subtitle">{{c.name}}</span>
+            <p class="mt-4">{{m.address}}</p>
         </div>
         <hr>
     </div>

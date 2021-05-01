@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cinemas',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CinemasComponent implements OnInit {
 
-  constructor() { }
+  public movies: Cinema[];
 
-  ngOnInit(): void {
+  constructor(
+    private cinemasService:  CinemasService,
+    private spinner: NgxSpinnerService) { }
+
+  ngOnInit() {
+    this.getCinemas();
   }
+
+  private async getCinemas() {
+    this.spinner.show();
+    this.cinemasService.getAll().subscribe(
+      res => {
+        this.movies = res;
+        setTimeout(() => this.spinner.hide(), 1000);
+      });
+  }
+
 
 }
