@@ -10,9 +10,20 @@ a {
     text-decoration: none;
 
     &:hover {
-        color: #fff;   
-        text-decoration: underline;
+        color: #ffc107 !important;   
     }
+}
+
+.navbar-nav .nav-link.active {
+   color: #ffc107 !important;
+}
+
+select.form-select {
+    background-color: #131313;
+    color: #fff;
+    border-radius: 0;
+    border-color: #ffc107;
+    cursor: pointer;
 }
 
 

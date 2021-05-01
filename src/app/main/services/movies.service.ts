@@ -19,7 +19,12 @@ export class MoviesService {
   }
 
   public getOne(id: number): any {
-    return this.db.collection('movies', ref => ref.where('id', '==', id).limit(1))
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', id).limit(1))
+      .valueChanges();
+  }
+
+  public getAllByCinema(idCinema: number): any {
+    return this.db.collection(this.dbpath, ref => ref.where('cinemas', 'array-contains', Number.parseInt(idCinema.toString())))
       .valueChanges();
   }
 
