@@ -1,5 +1,5 @@
 export class Movie {
-    public id: string;
+    public id: number;
     public title: string;
     public director: string;
     public poster: string;

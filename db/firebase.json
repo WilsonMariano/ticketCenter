@@ -1,0 +1,218 @@
+// CINEMAS
+[{
+	"id": 1,
+	"name": "Ticket Center Adrogué",
+	"address": "Av. Hipólito Yrigoyen 13298, Adrogué",
+	"lat": "-34.80794016345619",
+	"lng": "58.40057142328",
+	"schedule": "10:00 a 23:00 hs"
+},
+{
+	"id": 2,
+	"name": "Ticket Center Palermo",
+	"address": "Beruti 3399, Palermo",
+	"lat": "-34.58635325846326",
+	"lng": "-58.41011557227096",
+	"schedule": "10:00 a 23:00 hs"
+},
+{
+	"id": 3,
+	"name": "Ticket Center Puerto Madero",
+	"address": "Av. Alicia Moreau de Justo 1920, P. Madero",
+	"lat": "-34.621180986873426",
+	"lng": "-58.36479500295192",
+	"schedule": "10:00 a 23:00 hs"
+}];
+
+// MOVIES
+[
+        {
+          "id": 1,
+          "imdbId": "tt2386490",
+          "imdbRating": 8.1,
+          "title": "Godzilla vs Kong",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Banners/GODZILLA.jpg",
+          "backdrop": "https://culturageek.com.ar/wp-content/uploads/2021/01/Godzilla-vs.-Kong-5-www.culturageek.com_.ar_.jpg",
+          "trailer": "https://www.youtube.com/watch?v=OFeI5ohUVSA",
+          "overview": "El gigantesco Kong se encuentra con el imparable Godzilla. El mundo mira para ver cuál se convierte en el rey de todos los monstruos.",
+          "director": "Dean DeBlois",
+          "cast": [
+            "Jay Baruchel",
+            "Cate Blanchett",
+            "Kristen Wiig",
+            "Gerard Butler",
+            "Jonah Hill"
+          ],
+          "release_date": "02/01/2019",
+          "start_date": "02/01/2019",
+          "end_date": "04/01/2019",
+          "runtime": 104,
+          "mpaa": "PG",
+          "cinemas": [
+          	1, 2
+          ]
+        },
+        {
+          "id": 2,
+          "imdbId": "tt0437086",
+          "imdbRating": 6,
+          "title": "Los Intrusos",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Banners/los+intrusos.jpeg",
+          "backdrop": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Destacados/03-18+Mujer+Maravilla+WEBHN.jpg",
+          "trailer": "https://www.youtube.com/watch?v=w7pYhpJaJW8",
+          "overview":
+            "Un grupo de amigos piensa que encuentra una puntuación fácil en una casa vacía con una caja fuerte llena de dinero en efectivo. Pero cuando los propietarios, una pareja de ancianos, llegan temprano a casa, las tornas cambian de repente.",
+          "director": "Robert Rodriguez",
+          "cast": ["Eiza González", "Jennifer Connelly", "Jackie Earle Haley"],
+          "release_date": "02/05/2019",
+          "start_date": "02/05/2019",
+          "end_date": "04/05/2019",
+          "runtime": 132,
+          "mpaa": "PG-13",
+          "cinemas": [
+          	1,
+          ]
+        },
+        {
+          "id": 3,
+          "imdbId": "tt6823368",
+          "imdbRating": 7.3,
+          "title": "Tom y Jerry",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Banners/tom+y+jerry.jpeg",
+          "backdrop": "https://atlasservidor.s3-sa-east-1.amazonaws.com/RAYA-DESTACADO.png",
+          "trailer": "https://www.youtube.com/watch?v=95ghQs5AmNk",
+          "overview":
+            "Se produce una batalla caótica entre Jerry Mouse, que se ha refugiado en el hotel Royal Gate, y Tom Cat, que es contratado para ahuyentarlo antes de que llegue el día de una gran boda.",
+          "director": "M. Night Shyamalan",
+          "cast": [
+            "Samuel L. Jackson",
+            "Anya Taylor-Joy",
+            "Bruce Willis",
+            "Gerard Butler",
+            "James McAvoy"
+          ],
+          "release_date": "01/18/2019",
+          "start_date": "01/18/2019",
+          "end_date": "03/18/2019",
+          "runtime": 129,
+          "mpaa": "PG-13",
+          "cinemas": [
+          	2, 3
+          ]
+        },
+        {
+          "id": 4,
+          "imdbId": "tt1477834",
+          "imdbRating": 7.5,
+          "title": "Raya y El Último Dragón",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Banners/RAYA2.jpg",
+          "backdrop": "https://m.media-amazon.com/images/M/MV5BMTg1MjMyOTQ2MV5BMl5BanBnXkFtZTgwNDA5NDcxNzM@._V1_.jpg",
+          "trailer": "https://www.youtube.com/watch?v=WDkg3h8PCVU",
+          "overview":
+            "En un reino conocido como Kumandra, una Tierra reimaginada habitada por una civilización antigua, un guerrero llamado Raya está decidido a encontrar al último dragón.",
+          "director": "James Wan",
+          "cast": [
+            "Jason Momoa",
+            "Amber Heard",
+            "Nicole Kidman",
+            "Patrick Wilson",
+            "Willem Dafoe"
+          ],
+          "release_date": "12/21/2018",
+          "start_date": "12/21/2018",
+          "end_date": "03/12/2019",
+          "runtime": 143,
+          "mpaa": "PG-13",
+          "cinemas": [
+          	1, 2, 3
+          ]
+        },
+        {
+          "id": 5,
+          "imdbId": "tt5028340",
+          "imdbRating": 7.2,
+          "title": "La Leyenda de la Viuda",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Banners/leyenda+viuda.jpg",
+          "backdrop": "https://m.media-amazon.com/images/M/MV5BMTA4MTEyMDQ4MzdeQTJeQWpwZ15BbWU4MDIxNzA0MDcz._V1_SX1500_CR0,0,1500,999_AL_.jpg",
+          "trailer": "https://www.youtube.com/watch?v=PzcaR1N0pTI",
+          "overview":
+            "En una zona densamente boscosa al norte de San Petersburgo, la gente ha estado desaparecida durante tres décadas y los pocos cadáveres encontrados estaban desnudos. El 14 de octubre de 2017, un equipo de voluntarios salió al bosque en busca de un adolescente desaparecido. Pronto, se perdió toda comunicación con ellos. Los lugareños creen que fueron capturados por el mismo espíritu oscuro que se llevó a los demás. Lo llaman la viuda cojera.",
+          "cast": [
+            "Emily Blunt",
+            "Meryl Streep",
+            "Dick Van Dyke",
+            "Ben Whishaw",
+            "Emily Mortimer"
+          ],
+          "release_date": "12/21/2018",
+          "start_date": "12/21/2018",
+          "end_date": "03/12/2019",
+          "runtime": 130,
+          "mpaa": "PG",
+          "cinemas": [
+          	2
+          ]
+        },
+        {
+          "id": 6,
+          "imdbId": "tt6966692",
+          "imdbRating": 8.3,
+          "title": "Calles en guerra",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Banners/calles+en+guerra.png",
+          "backdrop": "https://m.media-amazon.com/images/M/MV5BMmE2OGVkNjktZGFhMS00YTZkLTg5Y2ItYmExZDgyMzA4YmU1XkEyXkFqcGdeQXVyNTc5OTMwOTQ@._V1_.jpg",
+          "trailer": "https://www.youtube.com/watch?v=QkZxoko_HC0",
+          "overview":
+            "Lucas, un niño de 14 años que se incorporó a la vida de las pandillas en Washington, D.C., está decidido a que su hermano de 10 años no siga el mismo camino. Cuando un veterano de la guerra de Afganistán llega al vecindario, surge una oportunidad.",
+          "director": "Peter Farrelly",
+          "cast": ["Mahershala Ali", "Viggo Mortensen", "Linda Cardellini"],
+          "release_date": "11/16/2018",
+          "start_date": "11/16/2018",
+          "end_date": "03/16/2019",
+          "runtime": 130,
+          "mpaa": "PG-13",
+          "cinemas": [
+          	1, 2, 3
+          ]
+        },
+        {
+          "id": 7,
+          "imdbId": "tt5848272",
+          "imdbRating": 7.3,
+          "title": "Mujer Maravilla",
+          "poster": "https://atlasservidor.s3-sa-east-1.amazonaws.com/artes_peliculas/Posters/mujer+maravilla.png",
+          "backdrop": "https://m.media-amazon.com/images/M/MV5BMTgxNTM2Njk3M15BMl5BanBnXkFtZTgwOTQyMjI5NDM@._V1_SX1777_CR0,0,1777,744_AL_.jpg",
+          "trailer": "https://www.youtube.com/watch?v=T73h5bmD8Dc",
+          "overview": "Diana debe lidiar con un colega de trabajo y hombre de negocios, cuyo deseo de riqueza extrema envía al mundo por un camino de destrucción, después de que un antiguo artefacto que concede deseos desaparece.",
+          "director": "Phil Johnston, Rich Moore",
+          "cast": ["Alan Tudyk", "John C. Reilly", "Sarah Silverman"],
+          "release_date": "11/21/2018",
+          "start_date": "11/21/2018",
+          "end_date": "02/21/2019",
+          "runtime": 112,
+          "mpaa": "PG",
+          "cinemas": [
+          	3
+          ]
+        },
+        {
+          "id": 8,
+          "imdbId": "tt5886046",
+          "imdbRating": 6.4,
+          "title": "Escape Room",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMjQ2NDMwMTY3MF5BMl5BanBnXkFtZTgwNDg5OTc1NjM@._V1_SX300.jpg",
+          "backdrop": "https://m.media-amazon.com/images/M/MV5BMTk3OTI0NDQ4OF5BMl5BanBnXkFtZTgwNTYwMDg1NjM@._V1_.jpg",
+          "trailer": "https://www.youtube.com/watch?v=6dSKUoV0SNI",
+          "overview":
+            "Seis desconocidos, todos de diferentes ámbitos de la vida, están invitados a probar un nuevo desafío de escape room y la oportunidad de ganar un millón de dólares. Pero los organizadores ocultos tienen más planeado que un rompecabezas ... Escape Room es el último horror del director de Insidious: Hidden Key, Adam Robitel, y está protagonizado por Deborah Ann Woll, Taylor Russell y Logan Miller.",
+          "director": "Adam Robitel",
+          "cast": ["Deborah Ann Woll", "Taylor Russel"],
+          "release_date": "01/04/2019",
+          "start_date": "01/04/2019",
+          "end_date": "04/01/2019",
+          "runtime": 99,
+          "mpaa": "PG-13",
+          "cinemas": [
+          	1, 2
+          ]
+        }
+      ]
