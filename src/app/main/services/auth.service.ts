@@ -15,9 +15,16 @@ export class AuthService {
 
   public login(email: string, password: string): Promise<firebase.auth.UserCredential> {
     return this.auth.signInWithEmailAndPassword(email, password);
+                    
   }
 
   public logout(): void {
     this.auth.signOut();
   }
+
+  public getUserToken(){ 
+    var user = firebase.auth().currentUser
+    return JSON.parse(JSON.stringify(user)).stsTokenManager.accessToken
+  }
+
 }
