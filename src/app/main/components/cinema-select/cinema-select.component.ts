@@ -1,7 +1,7 @@
 import { Cinema } from './../../classes/cinema.class';
 import { CinemasService } from './../../services/cinemas.service';
 import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CinemaSelectComponent implements OnInit {
 
   public cinemas: Cinema[];
-  public cinemaSelected: number = 0;
+  @Input() public cinemaSelected: number;
 
   constructor(
     private cinemasService: CinemasService,
@@ -21,6 +21,9 @@ export class CinemaSelectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(!this.cinemaSelected){
+      this.cinemaSelected = 0;
+    }
     this.getCinemas();
   }
 

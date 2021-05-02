@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Movie } from '../../classes/movie.class';
 import { MoviesService } from '../../services/movies.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -12,13 +13,16 @@ import { MoviesService } from '../../services/movies.service';
 export class MoviesComponent implements OnInit {
   
   public movies: Movie[];
+  public cinemaId: number;
 
   constructor(
+    private route: ActivatedRoute,
     private moviesService: MoviesService, 
     private dataService: DataService,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.cinemaId = parseInt(this.route.snapshot.paramMap.get('cinemaId'));
     this.dataService.cinemaSelected$.subscribe(
       res => {
         if(res == 0) {
