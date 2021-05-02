@@ -16,9 +16,7 @@ export class UsersService {
     this.usersRef = db.collection(this.dbpath);
   }
 
-  public create(user: User): any {
-    
-    delete user.password;
+  public create(user: User) {
     return this.usersRef.add({ ...user });
   }
 }
