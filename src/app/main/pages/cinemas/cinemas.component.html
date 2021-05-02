@@ -7,15 +7,16 @@
     </div>
 
     <div class="row" *ngFor="let c of cinemas">
-        <div class="col-md-3 col-sm-6 mb-3" >
-            <div class="cover">
-                <img [src]="m.poster" class="img-fluid">
-            </div>
+        <div class="col-md-6 mb-3" >
+            <div id="map_{{c.id}}"  class="map"></div>
         </div>
 
-        <div class="col mb-3">
+        <div class="col-md-6 mb-4">
             <span class="subtitle">{{c.name}}</span>
-            <p class="mt-4">{{m.address}}</p>
+            <p class="mt-4">{{c.address}}</p>
+            <p class="mt-3">Horario de atención: De {{c.schedule}}</p>
+            <p><a class="mt-3 " href="tel:4233-2088">Llamanos! <i class="fas fa-phone"></i> 4233-2088 </a></p>
+            <p><a href="movies/{{c.id}}">Ver cartelera de este complejo</a></p>
         </div>
         <hr>
     </div>
