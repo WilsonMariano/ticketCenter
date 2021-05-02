@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+$color-primary: #ffc107;
+
 body {
     background: linear-gradient(to bottom,#191919 0,#000 100%) no-repeat #000;
     color: rgba(255, 255, 255, 0.75);
@@ -8,9 +10,23 @@ a {
     color: #777;
     transition: all 0.4s;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
         color: #ffc107 !important;   
+    }
+}
+
+.btn {
+    border: 0 !important;
+    
+    &:active {
+        background: transparent;
+        outline: none;
+    }
+
+    &:hover {
+        border: 0;  
     }
 }
 
@@ -18,16 +34,42 @@ a {
    color: #ffc107 !important;
 }
 
+select.form-select, .form-control {
+    background-color: #131313 !important;
+    color: #fff !important; 
+    border-radius: 0 !important;
+    border-color: $color-primary !important;
+}
+
 select.form-select {
-    background-color: #131313;
-    color: #fff;
-    border-radius: 0;
-    border-color: #ffc107;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .subtitle {
     display: block;
     font-size: 25px;
 }
+
+.form-control, .btn {
+    border-radius: 0;    
+    border: 2px solid $color-primary;
+}
+
+.btn-primary {
+    background: $color-primary;
+    color: #000;
+
+    &:hover {
+        background: #9c7500
+    }
+}
+
+.color-primary {
+    color: $color-primary;
+}
+
+
+
+
+
 

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="offset-md-4 col-md-4">
+            <form (ngSubmit)="register()" [formGroup]="formGroup">
+            <div class="row">
+                <h3 class="color-primary mb-5">Registrate</h3>
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label color-primary">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="name">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido" class="form-label color-primary">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" formControlName="surname">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="email" class="form-label color-primary">Email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="contrasena" class="form-label color-primary">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" formControlName="password">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="confirmarContrasena" class="form-label color-primary">Confirmá tu contraseña</label>
+                        <input type="password" class="form-control" id="confirmarContrasena" formControlName="passwordRepeat">
+                    </div>
+                    <div class="col-md-12 mb-5">
+                        <label for="documento" class="form-label color-primary">Documento</label>
+                        <input type="number" class="form-control" id="documento" formControlName="document">
+                    </div>
+                    <div class="col-md-12 mb-3 text-center">
+                        <button type="submit" class="btn btn-primary">Registrarme</button>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <a class="color-primary">Ya tengo cuenta</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

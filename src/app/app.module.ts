@@ -1,3 +1,6 @@
+import { FxGlobalsService } from './main/services/fx-globals.service';
+import { AuthService } from './main/services/auth.service';
+import { UsersService } from './main/services/users.service';
 import { DataService } from './main/services/data.service';
 
 import { FooterModule } from './main/components/footer/footer.module';
@@ -30,7 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     MoviesService,
     CinemasService,
-    DataService
+    DataService,
+    UsersService,
+    AuthService,
+    FxGlobalsService
   ],
   bootstrap: [AppComponent]
 })

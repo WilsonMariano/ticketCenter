@@ -1,3 +1,4 @@
+import { RegisterModule } from './register/register.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
@@ -12,7 +13,8 @@ import { CinemasModule } from './cinemas/cinemas.module';
     HomeModule,
     MovieDetailModule,
     MoviesModule,
-    CinemasModule
+    CinemasModule,
+    RegisterModule
   ]
 })
 export class PagesModule { }

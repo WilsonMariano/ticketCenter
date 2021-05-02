@@ -20,8 +20,17 @@
         </ul>
         <ul class="navbar-nav mr-sm-2">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Ingresar</a></li>
+            <div class="btn-group">
+              <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Mi cuenta
+              </span>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Ingresar</a></li>
+                <li><a class="dropdown-item" routerLink="/register">Registrarme</a></li>
+              </ul>
+            </div>
         </ul>
       </div>
     </div>
   </nav>
+
