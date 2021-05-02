@@ -1,3 +1,4 @@
+import { CinemaSelectModule } from './../cinema-select/cinema-select.module';
 import { SpinnerModule } from './../spinner/spinner.module';
 import { MoviesGridComponent } from './movies-grid.component';
 import { NgModule } from '@angular/core';
@@ -10,8 +11,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [MoviesGridComponent],
   imports: [
     CommonModule,
-    FormsModule,
-    SpinnerModule
+    SpinnerModule,
+    CinemaSelectModule
   ],
   exports: [
     MoviesGridComponent

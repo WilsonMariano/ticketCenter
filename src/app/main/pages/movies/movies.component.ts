@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Movie } from '../../classes/movie.class';
@@ -14,16 +15,33 @@ export class MoviesComponent implements OnInit {
 
   constructor(
     private moviesService: MoviesService, 
+    private dataService: DataService,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.getMovies();
+    this.dataService.cinemaSelected$.subscribe(
+      res => {
+        if(res == 0) {
+          this.getAllMovies();
+        } else {
+          this.getAllByCinema(res);
+        }
+      });
   }
 
-  private async getMovies() {
+  private async getAllMovies() {
     this.spinner.show();
     this.moviesService.getAll().subscribe(
       res => {
+        this.movies = res;
+        setTimeout(() => this.spinner.hide(), 1000);
+      });
+  }
+
+  private async getAllByCinema(idCinema: number) {
+    this.spinner.show();
+    this.moviesService.getAllByCinema(idCinema).subscribe(
+      res => { 
         this.movies = res;
         setTimeout(() => this.spinner.hide(), 1000);
       });
