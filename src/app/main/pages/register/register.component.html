@@ -2,34 +2,74 @@
     <div class="row mt-5">
         <div class="offset-md-4 col-md-4">
             <form (ngSubmit)="register()" [formGroup]="formGroup">
-            <div class="row">
-                <h3 class="color-primary mb-5">Registrate</h3>
+                <div class="row">
+                    <h3 class="color-primary mb-5">Registrate</h3>
                     <div class="col-md-6 mb-3">
-                        <label for="nombre" class="form-label color-primary">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" formControlName="name">
+                        <label for="nombre" class="form-label ">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="name" autocomplete="off">
+                        <small class="color-primary" 
+                            *ngIf="formGroup.get('name').errors?.required &&
+                                   formGroup.get('name').touched">
+                            El nombre es requerido
+                        </small>
+                        <small class="color-primary"
+                        *ngIf="!formGroup.get('name').errors?.required &&
+                            formGroup.get('name').errors?.pattern">Deben ser solo letras</small>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="apellido" class="form-label color-primary">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" formControlName="surname">
+                        <label for="apellido" class="form-label ">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" formControlName="surname" autocomplete="off">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('surname').errors?.required &&
+                                   formGroup.get('surname').touched">El apellido es requerido</small>
+                        <small class="color-primary"
+                            *ngIf="!formGroup.get('surname').errors?.required &&
+                                formGroup.get('surname').errors?.pattern">Deben ser solo letras</small>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="email" class="form-label color-primary">Email</label>
-                        <input type="email" class="form-control" id="email" formControlName="email">
+                        <label for="email" class="form-label ">Email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email" autocomplete="off">
+                        <small class="color-primary" 
+                            *ngIf="formGroup.get('email').errors?.required &&
+                            formGroup.get('email').touched">El email es requerido</small>
+                        <small class="color-primary" 
+                            *ngIf="!formGroup.get('email').errors?.required &&
+                            formGroup.get('email').errors?.email">El formato de email es inválido</small>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="contrasena" class="form-label color-primary">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" formControlName="password">
+                        <label for="contrasena" class="form-label ">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" formControlName="password" autocomplete="off">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('password').errors?.required &&
+                            formGroup.get('password').touched">La contraseña es requerida</small>
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('password').errors?.pattern">De 6 a 14 caracteres</small>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="confirmarContrasena" class="form-label color-primary">Confirmá tu contraseña</label>
-                        <input type="password" class="form-control" id="confirmarContrasena" formControlName="passwordRepeat">
+                        <label for="confirmarContrasena" class="form-label ">Confirmá tu contraseña</label>
+                        <input type="password" class="form-control" id="confirmarContrasena" formControlName="passwordRepeat" autocomplete="off">
+                        <small class="color-primary" 
+                            *ngIf="formGroup.get('passwordRepeat').errors?.required &&
+                            formGroup.get('passwordRepeat').touched">La contraseña es requerida</small>
+                        <small class="color-primary" 
+                            *ngIf="formGroup.get('password').value !== formGroup.get('passwordRepeat').value &&
+                            !formGroup.get('passwordRepeat').errors?.required">Las contraseñas no coinciden</small>
                     </div>
                     <div class="col-md-12 mb-5">
-                        <label for="documento" class="form-label color-primary">Documento</label>
-                        <input type="number" class="form-control" id="documento" formControlName="document">
+                        <label for="documento" class="form-label">Documento</label>
+                        <input type="number" class="form-control" id="documento" formControlName="document" autocomplete="off">
+                        <small class="color-primary"
+                        *ngIf="formGroup.get('document').errors?.required &&
+                        formGroup.get('document').touched">El documento es requerido</small>
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('document').errors?.min">Debe contener 7 caracteres mínimo</small>
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('document').errors?.max">Debe contener 10 caracteres máximo</small>
                     </div>
                     <div class="col-md-12 mb-3 text-center">
-                        <button type="submit" class="btn btn-primary">Registrarme</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="formGroup.invalid || 
+                                formGroup.get('password').value !== formGroup.get('passwordRepeat').value">Registrarme</button>
                     </div>
                     <div class="col-md-12 text-center">
                         <a class="color-primary">Ya tengo cuenta</a>

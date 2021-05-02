@@ -3,7 +3,7 @@ import { User } from './../../classes/user.class';
 import { AuthService } from './../../services/auth.service';
 import { UsersService } from './../../services/users.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,12 +24,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      'name': ['', Validators.required],
-      'surname': ['', Validators.required],
+      'name': ['', [Validators.required, Validators.pattern('^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$')]],
+      'surname': ['', [Validators.required, Validators.pattern('^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$')]],
       'email': ['', [Validators.required, Validators.email]],
-      'password': ['', Validators.required],
-      'passwordRepeat': ['', Validators.required],
-      'document': ['', Validators.required]
+      'password': ['', [Validators.required, Validators.minLength(6), Validators.pattern('^.{6,14}$')]],
+      'passwordRepeat': ['', [Validators.required, Validators.minLength(6)]],
+      'document': ['', [Validators.required, Validators.min(1111111), Validators.max(9999999999)]]
     });
   }
 
@@ -59,9 +59,8 @@ export class RegisterComponent implements OnInit {
           errMsg = 'No se ha podido registrar al usuario';
           break;
       }
-      this.fxGlobalsService.showAlert('Registro erróneo', errMsg, 'warning');
+      this.fxGlobalsService.showAlert('Registro erróneo', errMsg, 'error');
     }
-     
   }
 
 }
