@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CinemaSelectComponent implements OnInit {
 
   public cinemas: Cinema[];
-  @Input() public cinemaSelected: number;
+  public cinemaSelected: number;
 
   constructor(
     private cinemasService: CinemasService,
@@ -21,10 +21,9 @@ export class CinemaSelectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(!this.cinemaSelected){
-      this.cinemaSelected = 0;
-    }
     this.getCinemas();
+    this.dataService.cinemaSelected$.subscribe(
+      res => this.cinemaSelected = res);
   }
 
   private async getCinemas() {

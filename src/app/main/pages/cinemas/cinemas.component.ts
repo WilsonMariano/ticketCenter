@@ -1,4 +1,6 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Cinema } from '../../classes/cinema.class';
 import { CinemasService } from '../../services/cinemas.service';
@@ -16,7 +18,9 @@ export class CinemasComponent implements OnInit {
 
   constructor(
     private cinemasService: CinemasService,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private dataService: DataService) { }
 
   ngOnInit() {
     this.getCinemas();
@@ -30,7 +34,7 @@ export class CinemasComponent implements OnInit {
         this.cinemas = res;
         setTimeout(() => {
           this.cinemas.forEach(c => {this.setCinemaMap(c)}),
-          setTimeout(() => {this.spinner.hide();}, 6000);
+          setTimeout(() => {this.spinner.hide();}, 1000);
         }, 100)
       });
   }
@@ -47,5 +51,10 @@ export class CinemasComponent implements OnInit {
       var marker = new mapboxgl.Marker()
         .setLngLat([cinema["lng"], cinema["lat"]])
         .addTo(this.map);
+  }
+
+  public navigateToBillboard(idCinema: number) {
+    this.dataService.cinemaSelected.next(idCinema);
+    this.router.navigate(['movies']);
   }
 }
