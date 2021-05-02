@@ -1,3 +1,4 @@
+import { RegisterComponent } from './main/pages/register/register.component';
 import { MovieDetailComponent } from './main/pages/movie-detail/movie-detail.component';
 import { HomeComponent } from './main/pages/home/home.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ import { CinemasComponent } from './main/pages/cinemas/cinemas.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'cinemas', component: CinemasComponent },
