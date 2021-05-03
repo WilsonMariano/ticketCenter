@@ -4,6 +4,7 @@
 	"name": "Ticket Center Adrogué",
 	"address": "Av. Hipólito Yrigoyen 13298, Adrogué",
   "location": "Adrogué",
+  "phone": "4294-0744",
 	"lat": "-34.808175707653014",
 	"lng": "-58.40135656061613",
 	"schedule": "10:00 a 23:00 hs"
@@ -13,14 +14,16 @@
 	"name": "Ticket Center Palermo",
 	"address": "Beruti 3399, Palermo",
   "location": "Palermo",  
+  "phone": "4395-0855", 
 	"lat": "-34.58635325846326",
 	"lng": "-58.41011557227096",
 	"schedule": "10:00 a 23:00 hs"
 },
-{
+{ 
 	"id": 3,
 	"name": "Ticket Center Puerto Madero",
   "location": "Puerto Madero",
+  "phone": "4525-1129",
 	"address": "Av. Alicia Moreau de Justo 1920, P. Madero",
 	"lat": "-34.621180986873426",
 	"lng": "-58.36479500295192",

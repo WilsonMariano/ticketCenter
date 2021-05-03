@@ -5,6 +5,7 @@ import { HomeModule } from './home/home.module';
 import { MovieDetailModule } from './movie-detail/movie-detail.module';
 import { MoviesModule } from './movies/movies.module';
 import { CinemasModule } from './cinemas/cinemas.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import { CinemasModule } from './cinemas/cinemas.module';
     MovieDetailModule,
     MoviesModule,
     CinemasModule,
-    RegisterModule
+    RegisterModule,
+    ProfileModule
   ]
 })
 export class PagesModule { }

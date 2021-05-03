@@ -7,4 +7,5 @@ export class Movie {
     public overview: string;
     public runtime: number;
     public cast: string[];
+    public trailer: string;
 }
