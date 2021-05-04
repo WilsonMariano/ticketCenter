@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MoviesComponent } from './main/pages/movies/movies.component';
 import { CinemasComponent } from './main/pages/cinemas/cinemas.component';
 import { ProfileComponent } from './main/pages/profile/profile.component';
+import { LoginComponent } from './main/pages/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,9 +15,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'movies', component: MoviesComponent },
-  { path: 'movies', component: MoviesComponent },
-  { path: 'cinemas', component: CinemasComponent }
-];  
+  { path: 'cinemas', component: CinemasComponent },
+  { path: 'login', component: LoginComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

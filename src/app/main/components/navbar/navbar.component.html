@@ -10,24 +10,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home" [routerLinkActive]="['active']">Inicio</a>
+          <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/movies" [routerLinkActive]="['active']">Películas</a>
+          <a class="nav-link" routerLink="/movies" routerLinkActive="active">Películas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cinemas" [routerLinkActive]="['active']">Complejos</a>
+          <a class="nav-link" routerLink="/cinemas" routerLinkActive="active">Complejos</a>
         </li>
       </ul>
       <ul class="navbar-nav mr-sm-2">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!userLogged">
+          <a class="nav-link" routerLink="/login"><i class="far fa-user-circle fa-2x"></i></a>
+        </li>
+        <li class="nav-item" *ngIf="userLogged">
           <div class="btn-group">
             <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               Mi cuenta
             </span>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Ingresar</a></li>
-              <li><a class="dropdown-item" routerLink="/register">Registrarme</a></li>
+              <li><a class="dropdown-item" routerLink="/profile">Mi cuenta</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
             </ul>
           </div>
         </li>

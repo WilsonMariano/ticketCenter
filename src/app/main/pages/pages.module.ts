@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
 import { MovieDetailModule } from './movie-detail/movie-detail.module';
 import { MoviesModule } from './movies/movies.module';
+import { LoginModule } from './login/login.module';
 import { CinemasModule } from './cinemas/cinemas.module';
 import { ProfileModule } from './profile/profile.module';
 
@@ -16,7 +17,8 @@ import { ProfileModule } from './profile/profile.module';
     MoviesModule,
     CinemasModule,
     RegisterModule,
-    ProfileModule
+    ProfileModule,
+    LoginModule
   ]
 })
 export class PagesModule { }

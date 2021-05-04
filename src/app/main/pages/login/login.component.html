@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="offset-md-4 col-md-4">
+            <form (ngSubmit)="login()" [formGroup]="formGroup">
+                <div class="row">
+                    <h3 class="color-primary mb-5">Iniciar sesión</h3>
+                    <div class="col mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('email').errors?.required && formGroup.get('email').touched">
+                            El email es requerido</small>
+                        <small class="color-primary"
+                            *ngIf="!formGroup.get('email').errors?.required && formGroup.get('email').errors?.email">
+                            Deben ser un correo electrónico válido </small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" formControlName="password">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('password').errors?.required && formGroup.get('password').touched">
+                            La contraseña es requerida</small>
+                    </div>
+                    <div class="col-md-12 mb-3 text-center">
+                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <a class="color-primary" routerLink="/register">No tenés cuenta? Click aquí para crearla</a>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+</div>
