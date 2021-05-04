@@ -7,10 +7,16 @@
                     <div class="col-md-12 mb-3">
                         <label for="email" class="form-label color-primary">Email</label>
                         <input type="email" class="form-control" id="email" formControlName="email">
+                        <small class="color-primary" *ngIf="formGroup.get('email').errors?.required && formGroup.get('email').touched">
+                            El email es requerido</small>
+                        <small class="color-primary" *ngIf="!formGroup.get('email').errors?.required && formGroup.get('email').errors?.email">
+                            Deben ser un correo electrónico válido </small>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="contrasena" class="form-label color-primary">Contraseña</label>
                         <input type="password" class="form-control" id="contrasena" formControlName="password">
+                        <small class="color-primary" *ngIf="formGroup.get('password').errors?.required && formGroup.get('password').touched">
+                            La contraseña es requerida</small>
                     </div>
                     <div class="col-md-12 mb-3 text-center">
                         <button type="submit" class="btn btn-primary">Iniciar sesión</button>

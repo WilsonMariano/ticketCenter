@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
       const res = await this.authService.login(user.email, user.password);
       user.uid = res.user.uid;
       localStorage.setItem('accessToken', this.authService.getUserToken());
+      localStorage.setItem('userLogged', "true");
       delete user.password;
       this.formGroup.reset();
       this.router.navigate(['home']);
-
     } catch(e) {
       console.log("error: ", e);
       
@@ -59,3 +59,4 @@ export class LoginComponent implements OnInit {
   
 
 }
+

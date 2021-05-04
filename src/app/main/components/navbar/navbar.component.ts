@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  public userLogged: Boolean;
+
+
   constructor() { }
 
   ngOnInit(): void {
+    this.userLogged = localStorage.getItem("userLogged") == "true";
   }
 
 }
