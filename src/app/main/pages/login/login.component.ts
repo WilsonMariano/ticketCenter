@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 import { FxGlobalsService } from '../../services/fx-globals.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private fxGlobalsService: FxGlobalsService
+    private fxGlobalsService: FxGlobalsService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
       user.uid = res.user.uid;
       localStorage.setItem('accessToken', this.authService.getUserToken());
       localStorage.setItem('userLogged', "true");
+      this.dataService.userLogged.next(true);
       delete user.password;
       this.formGroup.reset();
       this.router.navigate(['home']);
