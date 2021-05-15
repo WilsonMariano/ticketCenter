@@ -19,12 +19,13 @@ export class AuthService {
 
   public login(email: string, password: string): Promise<firebase.auth.UserCredential> {
     return this.auth.signInWithEmailAndPassword(email, password);
-                    
   }
 
   public logout(): void {
     this.auth.signOut().then(() => {
-      this.dataService.userLogged.next(false);
+      this.dataService.currentUser.next(null);
+      this.dataService.isLogged.next(false);
+      localStorage.clear();
     }).catch((error) => {
       // An error happened.
     });

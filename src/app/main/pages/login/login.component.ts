@@ -33,27 +33,24 @@ export class LoginComponent implements OnInit {
 
   public async login(): Promise<void> {
     const user = this.formGroup.getRawValue();
-
     try {
       await this.authService.login(user.email, user.password);
 
       this.userService.getOneByEmail(user.email).subscribe(
-        data => this.authService.setUserData(data[0])
+        data => {
+          this.authService.setUserData(data[0]);
+          this.dataService.currentUser.next(data[0]);
+        }
       );
-
+  
+      this.dataService.isLogged.next(true);
       localStorage.setItem('accessToken', this.authService.getUserToken());
-      localStorage.setItem('userLogged', "true");
-
-      this.dataService.userLogged.next(true);
-
       this.formGroup.reset();
       this.router.navigate(['home']);
 
     } catch(e) {
       console.log("error: ", e);
-      
       let errMsg: string;
-
       switch(e.code) {
         case 'auth/wrong-password':
           errMsg = 'Contraseña incorrecta'
@@ -64,10 +61,6 @@ export class LoginComponent implements OnInit {
       }
       this.fxGlobalsService.showAlert('No se pudo iniciar sesión', errMsg, 'warning');
     }
-     
   }
-
-  
-
 }
 

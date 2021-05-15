@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Cinema } from '../classes/cinema.class';
+import { User } from '../classes/user.class';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +10,21 @@ export class DataService {
 
     public cinemaSelected: BehaviorSubject<number>;
     public cinemaSelected$: Observable<number>;
-    
-    public userLogged: BehaviorSubject<Boolean>;
-    public userLogged$: Observable<Boolean>;
+       
+    public currentUser: BehaviorSubject<User>;
+    public currentUser$: Observable<User>;
+
+    public isLogged: BehaviorSubject<Boolean>;
+    public isLogged$: Observable<Boolean>;
 
     constructor() {
         this.cinemaSelected = new BehaviorSubject<number>(0);
         this.cinemaSelected$ = this.cinemaSelected.asObservable();
-        this.userLogged = new BehaviorSubject<Boolean>(false);
-        this.userLogged$ = this.userLogged.asObservable();
+
+        this.currentUser = new BehaviorSubject<User>(null);
+        this.currentUser$ = this.currentUser.asObservable();
+
+        this.isLogged = new BehaviorSubject<Boolean>(false);
+        this.isLogged$ = this.isLogged.asObservable();
     }
 }

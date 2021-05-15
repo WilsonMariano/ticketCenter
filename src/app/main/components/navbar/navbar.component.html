@@ -20,16 +20,16 @@
         </li>
       </ul>
       <ul class="navbar-nav mr-sm-2">
-        <li class="nav-item" *ngIf="!userLogged">
+        <li class="nav-item" *ngIf="!isLogged">
           <a class="nav-link" routerLink="/login"><i class="far fa-user-circle fa-2x"></i></a>
         </li>
-        <li class="nav-item" *ngIf="userLogged">
+        <li class="nav-item" *ngIf="isLogged">
           <div class="btn-group">
             <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Mi cuenta
+              {{currentUser?.email}}
             </span>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/profile">Mi cuenta</a></li>
+              <li><a class="dropdown-item" routerLink="/profile">Perfil del usuario</a></li>
               <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
             </ul>
           </div>

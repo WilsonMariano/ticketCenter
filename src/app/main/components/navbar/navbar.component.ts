@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { User } from '../../classes/user.class';
 import { AuthService } from '../../services/auth.service';
 import { DataService } from '../../services/data.service';
 
@@ -7,22 +9,25 @@ import { DataService } from '../../services/data.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
 export class NavbarComponent implements OnInit {
 
-  public userLogged: Boolean;
-
+  public currentUser: User;
+  public isLogged: Boolean;
 
   constructor(
     private dataService: DataService,
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.dataService.userLogged$.subscribe(
-      res => this.userLogged = res);
+    this.dataService.currentUser$.subscribe(
+        res => this.currentUser = res);    
+
+    this.dataService.isLogged$.subscribe(
+       res => this.isLogged = res);
   }
 
   public logout(){
     this.authService.logout();
   }
-
 }
