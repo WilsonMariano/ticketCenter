@@ -26,7 +26,7 @@
         <li class="nav-item" *ngIf="userLogged">
           <div class="btn-group">
             <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Mi cuenta
+              {{authService.getUserData().email}}
             </span>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/profile">Mi cuenta</a></li>
