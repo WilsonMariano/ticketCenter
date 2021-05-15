@@ -1,3 +1,4 @@
+import { UsersService } from './../../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private fxGlobalsService: FxGlobalsService,
-    private dataService: DataService
+    private dataService: DataService,
+    private userService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -33,14 +35,20 @@ export class LoginComponent implements OnInit {
     const user = this.formGroup.getRawValue();
 
     try {
-      const res = await this.authService.login(user.email, user.password);
-      user.uid = res.user.uid;
+      await this.authService.login(user.email, user.password);
+
+      this.userService.getOneByEmail(user.email).subscribe(
+        data => this.authService.setUserData(data[0])
+      );
+
       localStorage.setItem('accessToken', this.authService.getUserToken());
       localStorage.setItem('userLogged', "true");
+
       this.dataService.userLogged.next(true);
-      delete user.password;
+
       this.formGroup.reset();
       this.router.navigate(['home']);
+
     } catch(e) {
       console.log("error: ", e);
       

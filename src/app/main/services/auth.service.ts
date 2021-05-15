@@ -1,3 +1,4 @@
+import { User } from './../classes/user.class';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
@@ -30,8 +31,17 @@ export class AuthService {
   }
 
   public getUserToken(){ 
-    var user = firebase.auth().currentUser
-    return JSON.parse(JSON.stringify(user)).stsTokenManager.accessToken
+    const user = firebase.auth().currentUser;
+    return JSON.parse(JSON.stringify(user)).stsTokenManager.accessToken;
+  }
+
+  public setUserData(user: User): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public getUserData(): User {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user || null;
   }
 
 }
