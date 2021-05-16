@@ -1,5 +1,6 @@
 import { User } from './../classes/user.class';
 import { Injectable } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -20,6 +21,16 @@ export class UsersService {
 
   public create(user: User): any {
     return this.usersRef.add({ ...user });
+  }
+
+  public edit(user: User): any {
+    this.db.collection(this.dbpath, ref => ref.where('email', '==', user.email).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.update({ ...user }));
+  });
   }
 
   public getOneByEmail(email: string): any {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal;
 
 @Injectable({
@@ -6,7 +7,7 @@ declare var swal;
 })
 export class FxGlobalsService {
 
-  constructor() { }
+  constructor(private spinnerService: NgxSpinnerService) { }
 
   public showAlert(title: string, text: string, icon: string, time?: number): void {
     
@@ -17,5 +18,13 @@ export class FxGlobalsService {
         icon
       });
     }, time || 0);
+  }
+
+  public showSpinner(): void {
+    this.spinnerService.show();
+  }
+
+  public hideSpinner(): void {
+    setTimeout(() => this.spinnerService.hide(), 100);
   }
 }

@@ -1,49 +1,56 @@
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h3 class="color-primary">Perfil</h3>
-            <hr class="color-primary">
-            <h5>Completá tu perfil</h5>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <span>NOMBRE</span>
-                </div>
-                <div class="col-md-9 mb-4">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-3 mb-4">
-                    <span>APELLIDO</span>
-                </div>
-                <div class="col-md-9 mb-4">
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-3 mb-4">
-                    <span>DNI</span>
-                </div>
-                <div class="col-md-9 mb-4">
-                    <input type="number" class="form-control">
-                </div>
+    <form [formGroup]="formGroup" (ngSubmit)="editUser()">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3 class="color-primary">Perfil</h3>
+                <hr class="color-primary">
+                <h5>Completá tu perfil</h5>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-3 mb-4">¿CUÁL ESTU CINE DE PREFERENCIA?</div>
-                <div class="col-md-9 mb-4">
-                    <select class="form-select"></select>
-                </div>
-                <div class="col-md-3 mb-4">EMAIL</div>
-                <div class="col-md-9 mb-4">
-                    <input type="number" class="form-control" value="mgw009@gmail.com" readonly>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <span>NOMBRE</span>
+                    </div>
+                    <div class="col-md-9 mb-4">
+                        <input type="text" class="form-control" formControlName="name">
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <span>APELLIDO</span>
+                    </div>
+                    <div class="col-md-9 mb-4">
+                        <input type="text" class="form-control" formControlName="surname">
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <span>DOCUMENTO</span>
+                    </div>
+                    <div class="col-md-9 mb-4">
+                        <input type="number" class="form-control" formControlName="document">
+                    </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3 mb-4">¿CUÁL ESTU CINE DE PREFERENCIA?</div>
+                    <div class="col-md-9 mb-4">
+                        <select class="form-select" formControlName="cinemaPreference">
+                            <option value="">Seleccione un cine</option>
+                            <option *ngFor="let c of cinemas" [value]="c.id">{{c.location}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-4">EMAIL</div>
+                    <div class="col-md-9 mb-4">
+                        <input type="email" class="form-control" formControlName="email">
+                    </div>
+                </div>
+            </div>
+            <hr class="color-primary mt-5">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button class="btn btn-primary">Guardar</button>
+            </div>
         </div>
-        <hr class="color-primary mt-5">
-        <div class="col-md-12 d-flex justify-content-end">
-            <button class="btn btn-primary">Guardar</button>
-        </div>
-    </div>
+    </form>
 </div>
+
+<app-spinner></app-spinner>
