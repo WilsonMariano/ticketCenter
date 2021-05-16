@@ -30,6 +30,7 @@ export class MovieDetailComponent implements OnInit {
       res => {
         if(res.length === 1) {
           this.movie = res[0];
+          console.log(this.movie);
         } 
         setTimeout(() => this.spinner.hide(), 1000);
       }

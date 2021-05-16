@@ -24,7 +24,23 @@
                       <dt>Duración:</dt>
                       <dd>{{ movie.runtime | minute}}</dd>
                     </span>
-                  </div>
+                    <span class="movie-meta-movieshows">
+                      <dt>Funciones:</dt>
+                    </span>
+
+                    <button type="button" class="btn btn-outline-warning m-2" autofocus="autofocus">Lunes 17/05</button>
+                    <button type="button" class="btn btn-outline-warning m-2" >Martes 18/05</button>
+                    <button type="button" class="btn btn-outline-warning m-2" >Miercoles 19/05</button>
+                    <button type="button" class="btn btn-outline-warning m-2" >Jueves 20/05</button>
+                    <button type="button" class="btn btn-outline-warning m-2" >Viernes 21/05</button>
+
+                    <div class="card card-body  mt-3">
+                      <div class="card-title">
+                        Funciones del dia 17/05
+                      </div>
+                      <a *ngFor="let ms of movie.movieShow">{{ms.time}} hs : {{ms.type}}</a>   
+                    </div>
+
               </div>
           </div>
       </div>
