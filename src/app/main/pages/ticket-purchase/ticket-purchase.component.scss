@@ -1,0 +1,62 @@
+.movie-backdrop {
+    height: 400px;
+    width: 100%;
+    background: center -100px transparent no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.movie-backdrop:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.8));
+}
+
+.movie-data {
+  margin-bottom: 60px;
+}
+
+.movie-poster {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: -100px;
+}
+
+.img {
+    box-shadow: 0 0 60px 1px rgba(100, 100, 100, .6);
+}
+
+.movie-title {
+    position: absolute;
+    top: 400px;
+}
+
+.movie-info {
+    padding-top: 20px;
+}
+
+@media (max-width: 767px) {
+    .movie-title {
+        position: relative;
+        top: 0;
+    }
+}
+
+.btn-amount {
+    padding: 5px;
+    outline: none;
+}
+
+.btn-amount:focus {
+    border: 0 !important;
+}
+
+.controles {
+    position: relative;
+    left: -95px;
+    z-index: 1000;
+}

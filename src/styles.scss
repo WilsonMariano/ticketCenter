@@ -33,6 +33,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     &:hover {
         border: 0;  
+        background: transparent;
     }
 }
 
@@ -74,12 +75,16 @@ select.form-select {
     }
 }
 
+.btn-outline-primary {
+    background: transparent; 
+    border: 1px solid $color-primary !important;
+    color: $color-primary;
+
+    &:hover {
+        border-color: $color-primary !important;
+    }
+}
+
 .color-primary {
     color: $color-primary;
 }
-
-
-
-
-
-
