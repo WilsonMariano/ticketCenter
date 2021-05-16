@@ -1,0 +1,70 @@
+<div *ngIf="movie">
+    <div class="movie-backdrop" [ngStyle]="{ 'background-image': 'url(' + movie.backdrop + ')' }"></div>
+    <div class="container">
+        <div class="movie-data row">
+            <div class="col-md-4">
+                <div class="movie-poster">
+                    <img [src]="movie.poster" [alt]="movie.title" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <h2 class="movie-title">{{ movie.title }}</h2>
+                <div class="movie-info">
+                    <p>CASTELLANO 2D</p>
+                    <div class="row mt-4">
+                        <div class="col-md-1">
+                            <i class="fas fa-map-marker-alt fa-4x"></i>
+                        </div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <b>Ticket Center Adrogué</b>
+                                </div>
+                                <div class="col-md-12">
+                                    Sala 2
+                                </div>
+                                <div class="col-md-12">
+                                    Av. General Chamizo, Gerli
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <p class="mt-4">
+                        <i class="far fa-calendar-alt me-2"></i>
+                        <b>Martes 06 Abril 22:50</b>
+                    </p>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ticketAmount + ' ENTRADA(S) - $' + getSubTotal()}}" readonly>
+                        <div class="controles">
+                            <button class="btn btn-outline-secondary btn-amount" type="button" (click)="subsTicket()"><i class="fas fa-minus-circle fa-2x"></i></button>
+                            <button class="btn btn-outline-secondary btn-amount" type="button" (click)="addTicket()"><i class="fas fa-plus-circle fa-2x"></i></button>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-9">
+                            <p>Subtotal</p>
+                            <p>Cargo por servicio</p>
+                            <p>Total</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>{{'$' + getSubTotal()}}</p>
+                            <p>{{'$' + serviceValue}}</p>
+                            <p>{{'$' + getTotal()}}</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <button class="btn btn-outline-primary">VOLVER</button>
+                            <button class="btn btn-primary ms-3">SIGUIENTE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-spinner></app-spinner>
+  </div>

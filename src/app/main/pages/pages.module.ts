@@ -1,3 +1,4 @@
+import { TicketPurchaseModule } from './ticket-purchase/ticket-purchase.module';
 import { RegisterModule } from './register/register.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,9 +8,10 @@ import { MoviesModule } from './movies/movies.module';
 import { LoginModule } from './login/login.module';
 import { CinemasModule } from './cinemas/cinemas.module';
 import { ProfileModule } from './profile/profile.module';
+import { TicketPurchaseComponent } from './ticket-purchase/ticket-purchase.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [TicketPurchaseComponent],
   imports: [
     CommonModule,
     HomeModule,
@@ -18,7 +20,8 @@ import { ProfileModule } from './profile/profile.module';
     CinemasModule,
     RegisterModule,
     ProfileModule,
-    LoginModule
+    LoginModule,
+    TicketPurchaseModule
   ]
 })
 export class PagesModule { }
