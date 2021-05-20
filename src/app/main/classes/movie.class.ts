@@ -1,3 +1,4 @@
+import { MovieShow } from './movieShow.class';
 export class Movie {
     public id: number;
     public title: string;
@@ -8,5 +9,5 @@ export class Movie {
     public runtime: number;
     public cast: string[];
     public trailer: string;
-    public movieShow: any;
+    public movieShow: MovieShow[];
 }

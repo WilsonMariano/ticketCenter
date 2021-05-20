@@ -34,18 +34,20 @@ export class FxGlobalsService {
    * @param inCapital Opcional, indica si la primer letra será devuelta en mayúscula. Default: true
    * @returns String
    */
-  public getDayName(d: Date, inCapital = true): String{
+  public getDayName(d: Date, inCapital = true): string{
     let dayName = d.toLocaleDateString("es-Es", { weekday: 'long' })
     return inCapital ? this.firstToCapital(dayName) : dayName;
   }
 
-  public getDateDDMM(d : Date): String{
-     let day = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
-    let month = d.getMonth() < 10 ? "0" + d.getMonth() : d.getMonth();
+  public getDateDDMM(d : Date): string {
+    const currentMonth = d.getMonth() + 1;
+
+    let day = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+    let month = currentMonth < 10 ? "0" + currentMonth : currentMonth;
     return  day.toString() + "/" + month.toString(); 
   }
 
-  public firstToCapital(w: String): String{
+  public firstToCapital(w: string): string{
     return w.charAt(0).toUpperCase() + w.slice(1);
   }
 
