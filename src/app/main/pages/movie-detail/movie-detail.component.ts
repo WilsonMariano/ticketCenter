@@ -86,11 +86,12 @@ export class MovieDetailComponent implements OnInit {
     this.selectedDate = value.substring(value.length -5) ;
   }
 
-
+  // Devuelve las funciones de la fecha seleccionada
   public getMovieShowsByDate(): MovieShow[]  {
-    const arrSelectedDate = this.selectedDate.split('/');
-    const selectedDate = moment(`2021/${arrSelectedDate[1]}/${arrSelectedDate[0]}`);
     const today = moment();
+    const arrSelectedDate = this.selectedDate.split('/');
+    const selectedDate = moment(`${today.year()}/${arrSelectedDate[1]}/${arrSelectedDate[0]}`);
+
 
     return this.movie.movieShow.filter(show => {
       const showDate = moment(`${show.date} ${show.time}`);
