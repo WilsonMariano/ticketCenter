@@ -1,4 +1,3 @@
-import { CinemaSelectModule } from './../../components/cinema-select/cinema-select.module';
 import { PipesModule } from './../../pipes/pipes.module';
 import { SpinnerModule } from './../../components/spinner/spinner.module';
 import { NgModule } from '@angular/core';
@@ -12,8 +11,7 @@ import { MovieDetailComponent } from './movie-detail.component';
   imports: [
     CommonModule,
     SpinnerModule,
-    PipesModule,
-    CinemaSelectModule
+    PipesModule
   ]
 })
 export class MovieDetailModule { }
