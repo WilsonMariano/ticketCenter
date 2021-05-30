@@ -10,5 +10,6 @@ export class Movie {
     public runtime: number;
     public cast: string[];
     public trailer: string;
+    public endDate: string;
     public movieShows: MovieShow[];
 }

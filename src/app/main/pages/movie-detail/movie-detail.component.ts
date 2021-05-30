@@ -6,6 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FxGlobalsService } from '../../services/fx-globals.service';
 import * as moment from 'moment';
+import 'moment/min/locales';
+import { transpileModule } from 'typescript';
+const movieShowDateFormat = "dddd DD/MM";
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,7 +21,7 @@ export class MovieDetailComponent implements OnInit {
   public selectedDate: string;
   public initialDay: string;
   public nextMovieShowsDays: string[] = [];
-  private nextDaysQuantity: number = 5;
+  private nextDaysQuantity: number = 4;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,8 +30,8 @@ export class MovieDetailComponent implements OnInit {
     private gFx: FxGlobalsService) { }
 
   ngOnInit(): void {
+    moment.updateLocale('es', { weekdays : 'Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado'.split('_') });
     const idMovie = parseInt(this.route.snapshot.paramMap.get('id'));
-
     this.getMovie(idMovie);
     this.setNextMovieShowsDays();
   }
@@ -46,12 +49,11 @@ export class MovieDetailComponent implements OnInit {
   }
 
   private setNextMovieShowsDays(){
-    const today = new Date();
-    const tomorrow = new Date();
-
+    this.nextMovieShowsDays.push(moment().locale("Es").format(movieShowDateFormat));
+    let tomorrow = moment();
     for(let i=0;i < this.nextDaysQuantity; i++){
-      tomorrow.setDate(today.getDate() + i);
-      this.nextMovieShowsDays.push(this.gFx.getDayName(tomorrow) + " " + this.gFx.getDateDDMM(tomorrow));
+      tomorrow.add(1, 'days').calendar();    
+      this.nextMovieShowsDays.push(tomorrow.locale("Es").format(movieShowDateFormat));
     }
     
     // Seteo el dia de hoy por defecto
@@ -61,23 +63,27 @@ export class MovieDetailComponent implements OnInit {
   public setSelectedDate(value: string){
     this.selectedDate = value.substring(value.length -5) ;
   }
-
-  // Devuelve las funciones de la fecha seleccionada
-  public getMovieShowsByDate(): MovieShow[]  {
-    const today = moment();
+  
+  /**
+   * Filtra las funciones disponibles según el día seleccionado y la fecha fin de proyección de la película
+   * @returns array de funciones de cine
+   */
+  public getMovieShowsByDate(): MovieShow[]{
+    const now = moment();
     const arrSelectedDate = this.selectedDate.split('/');
-    const selectedDate = moment(`${today.year()}/${arrSelectedDate[1]}/${arrSelectedDate[0]}`);
+    const selectedDate = moment(`${now.year()}/${arrSelectedDate[1]}/${arrSelectedDate[0]}`);
+    const movieEndDate = moment(this.movie.endDate);
 
-    return this.movie.movieShows.filter(show => {
-      const showDate = moment(`${show.date} ${show.time}`);
-      
-      // Si la fecha elegida es igual a la de la funcion
-      // Y además la hora actual es menor a la de la función
-      if (selectedDate.isSame(showDate, 'day') &&
-          today < showDate) {
-          return show;
-       }
-    });
-
+    if(movieEndDate >= selectedDate){
+      return this.movie.movieShows.filter(show => {
+        const showTime = moment();
+        const [hs, min] = show.time.split(':');
+        showTime.set({ hours:parseInt(hs), minutes: parseInt(min) });
+  
+        if (selectedDate.day() == show.day) {
+          return show.day == now.day() ? now < showTime : true;
+        }
+      });
+    }
   } 
 }

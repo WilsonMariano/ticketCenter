@@ -1,5 +1,5 @@
 export class MovieShow {
-    public date: string;
+    public day: number;
     public idSaloon: number;
     public time: string;
     public type: string;
