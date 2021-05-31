@@ -22,6 +22,7 @@ export class MovieDetailComponent implements OnInit {
   public initialDay: string;
   public nextMovieShowsDays: string[] = [];
   private nextDaysQuantity: number = 4;
+  public showTicketSelection: boolean;
 
   constructor(
     private route: ActivatedRoute,

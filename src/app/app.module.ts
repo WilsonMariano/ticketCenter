@@ -11,8 +11,6 @@ import { PagesModule } from './main/pages/pages.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MoviesService } from './main/services/movies.service';
-import { CinemasService } from './main/services/cinemas.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

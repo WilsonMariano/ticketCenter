@@ -1,4 +1,3 @@
-import { TicketPurchaseComponent } from './main/pages/ticket-purchase/ticket-purchase.component';
 import { RegisterComponent } from './main/pages/register/register.component';
 import { MovieDetailComponent } from './main/pages/movie-detail/movie-detail.component';
 import { HomeComponent } from './main/pages/home/home.component';
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'cinemas', component: CinemasComponent },
-  { path: 'purchase', component: TicketPurchaseComponent },
   { path: 'seat-selection/:movieShowId', component: SeatSelectionComponent }
 ];
 

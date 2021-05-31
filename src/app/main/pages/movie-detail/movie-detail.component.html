@@ -9,7 +9,7 @@
       </div>
       <div class="col-md-8">
         <h2 class="movie-title">{{ movie.title }}</h2>
-        <div class="movie-info">
+        <div class="movie-info" *ngIf="!showTicketSelection">
           <p class="movie-overview">{{ movie.overview }}</p>
           <div class="movie-meta">
             <span class="movie">
@@ -31,11 +31,13 @@
             <div class="card card-body  mt-3">
               <div class="card-title">Funciones del día {{selectedDate}}</div>
               <!-- TODO: Ver como le enviamos el id de la funcion al selector de asientos -->
-              <a href="seat-selection/{{s.day}}" *ngFor="let s of getMovieShowsByDate()">{{s.time + ' hs - ' + s.type }}</a>
+              <a *ngFor="let s of getMovieShowsByDate()" (click)="showTicketSelection = true">{{s.time + ' hs - ' + s.type }}</a>
             </div>
           </div>
         </div>
+        <app-ticket-select *ngIf="showTicketSelection" (cancel)="showTicketSelection = false"></app-ticket-select>
       </div>
     </div>
     <app-spinner></app-spinner>
   </div>
+  
