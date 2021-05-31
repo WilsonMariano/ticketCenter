@@ -8,6 +8,7 @@ import { MoviesComponent } from './main/pages/movies/movies.component';
 import { CinemasComponent } from './main/pages/cinemas/cinemas.component';
 import { ProfileComponent } from './main/pages/profile/profile.component';
 import { LoginComponent } from './main/pages/login/login.component';
+import { SeatSelectionComponent } from './main/pages/seat-selection/seat-selection.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'cinemas', component: CinemasComponent },
-  { path: 'purchase', component: TicketPurchaseComponent }
+  { path: 'purchase', component: TicketPurchaseComponent },
+  { path: 'seat-selection/:movieShowId', component: SeatSelectionComponent }
 ];
 
 @NgModule({

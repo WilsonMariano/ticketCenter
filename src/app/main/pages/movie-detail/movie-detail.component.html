@@ -30,7 +30,8 @@
             <button type="button" class="btn btn-outline-warning m-2" (click)="setSelectedDate($event.target.value)" *ngFor="let day of nextMovieShowsDays" value="{{day}}">{{day}}</button>
             <div class="card card-body  mt-3">
               <div class="card-title">Funciones del día {{selectedDate}}</div>
-              <a *ngFor="let s of getMovieShowsByDate()">{{s.time + ' hs - ' + s.type }}</a>
+              <!-- TODO: Ver como le enviamos el id de la funcion al selector de asientos -->
+              <a href="seat-selection/{{s.day}}" *ngFor="let s of getMovieShowsByDate()">{{s.time + ' hs - ' + s.type }}</a>
             </div>
           </div>
         </div>

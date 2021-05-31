@@ -9,6 +9,8 @@ import { LoginModule } from './login/login.module';
 import { CinemasModule } from './cinemas/cinemas.module';
 import { ProfileModule } from './profile/profile.module';
 import { TicketPurchaseComponent } from './ticket-purchase/ticket-purchase.component';
+import { SeatSelectionModule } from './seat-selection/seat-selection.module';
+
 
 @NgModule({
   declarations: [TicketPurchaseComponent],
@@ -21,7 +23,8 @@ import { TicketPurchaseComponent } from './ticket-purchase/ticket-purchase.compo
     RegisterModule,
     ProfileModule,
     LoginModule,
-    TicketPurchaseModule
+    TicketPurchaseModule,
+    SeatSelectionModule
   ]
 })
 export class PagesModule { }
