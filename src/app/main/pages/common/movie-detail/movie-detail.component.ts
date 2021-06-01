@@ -1,10 +1,10 @@
-import { MovieShow } from './../../classes/movieShow.class';
-import { Movie } from './../../classes/movie.class';
-import { MoviesService } from './../../services/movies.service';
+import { MovieShow } from '../../../classes/movieShow.class';
+import { Movie } from '../../../classes/movie.class';
+import { MoviesService } from '../../../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { FxGlobalsService } from '../../services/fx-globals.service';
+import { FxGlobalsService } from '../../../services/fx-globals.service';
 import * as moment from 'moment';
 import 'moment/min/locales';
 import { transpileModule } from 'typescript';

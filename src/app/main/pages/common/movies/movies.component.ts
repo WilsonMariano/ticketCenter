@@ -1,8 +1,8 @@
-import { DataService } from './../../services/data.service';
+import { DataService } from '../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Movie } from '../../classes/movie.class';
-import { MoviesService } from '../../services/movies.service';
+import { Movie } from '../../../classes/movie.class';
+import { MoviesService } from '../../../services/movies.service';
 
 @Component({
   selector: 'app-movies',

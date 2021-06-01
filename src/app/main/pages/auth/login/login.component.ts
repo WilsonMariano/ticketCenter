@@ -1,10 +1,10 @@
-import { UsersService } from './../../services/users.service';
+import { UsersService } from '../../../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { DataService } from '../../services/data.service';
-import { FxGlobalsService } from '../../services/fx-globals.service';
+import { AuthService } from '../../../services/auth.service';
+import { DataService } from '../../../services/data.service';
+import { FxGlobalsService } from '../../../services/fx-globals.service';
 
 @Component({
   selector: 'app-login',

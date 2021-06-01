@@ -1,9 +1,9 @@
-import { DataService } from './../../services/data.service';
+import { DataService } from '../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Cinema } from '../../classes/cinema.class';
-import { CinemasService } from '../../services/cinemas.service';
+import { Cinema } from '../../../classes/cinema.class';
+import { CinemasService } from '../../../services/cinemas.service';
 declare var mapboxgl;
 
 @Component({

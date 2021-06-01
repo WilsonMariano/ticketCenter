@@ -1,10 +1,10 @@
-import { FxGlobalsService } from './../../services/fx-globals.service';
-import { UsersService } from './../../services/users.service';
-import { CinemasService } from './../../services/cinemas.service';
-import { Cinema } from './../../classes/cinema.class';
+import { FxGlobalsService } from '../../../services/fx-globals.service';
+import { UsersService } from '../../../services/users.service';
+import { CinemasService } from '../../../services/cinemas.service';
+import { Cinema } from '../../../classes/cinema.class';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from './../../services/auth.service';
-import { User } from './../../classes/user.class';
+import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../classes/user.class';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 
