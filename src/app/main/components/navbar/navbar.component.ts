@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../../classes/user.class';
 import { AuthService } from '../../services/auth.service';
@@ -17,7 +18,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.dataService.currentUser$.subscribe(

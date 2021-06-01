@@ -12,7 +12,7 @@ const commonRoutes: Routes = [
         path: '',
         component: CommonComponent,
         children: [
-            { path: '',                                 redirectTo: 'home',                 pathMatch: 'full'     },
+            { path: '',                                 redirectTo: 'home',                 pathMatch: 'full'                                   },
             { path: 'home',                             component: HomeComponent                                   },
             { path: 'profile',                          component: ProfileComponent                                },
             { path: 'movie/:id',                        component: MovieDetailComponent                            },
