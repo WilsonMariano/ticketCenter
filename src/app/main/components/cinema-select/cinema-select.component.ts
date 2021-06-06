@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CinemaSelectComponent implements OnInit {
 
   public cinemas: Cinema[];
-  public cinemaSelected: number;
+  public cinemaSelected: string;
 
   constructor(
     private cinemasService: CinemasService,

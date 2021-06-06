@@ -53,7 +53,7 @@ export class CinemasComponent implements OnInit {
         .addTo(this.map);
   }
 
-  public navigateToBillboard(idCinema: number) {
+  public navigateToBillboard(idCinema: string) {
     this.dataService.cinemaSelected.next(idCinema);
     this.router.navigate(['movies']);
   }

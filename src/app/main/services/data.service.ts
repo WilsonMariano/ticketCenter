@@ -8,8 +8,8 @@ import { User } from '../classes/user.class';
 })
 export class DataService {
 
-    public cinemaSelected: BehaviorSubject<number>;
-    public cinemaSelected$: Observable<number>;
+    public cinemaSelected: BehaviorSubject<string>;
+    public cinemaSelected$: Observable<string>;
        
     public currentUser: BehaviorSubject<User>;
     public currentUser$: Observable<User>;
@@ -18,7 +18,7 @@ export class DataService {
     public isLogged$: Observable<Boolean>;
 
     constructor() {
-        this.cinemaSelected = new BehaviorSubject<number>(0);
+        this.cinemaSelected = new BehaviorSubject<string>('0');
         this.cinemaSelected$ = this.cinemaSelected.asObservable();
 
         this.currentUser = new BehaviorSubject<User>(null);

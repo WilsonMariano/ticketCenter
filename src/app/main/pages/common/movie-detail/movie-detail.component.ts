@@ -1,3 +1,4 @@
+import { MoviesShowService } from './../../../services/movieShow.service';
 import { MovieShow } from '../../../classes/movieShow.class';
 import { Movie } from '../../../classes/movie.class';
 import { MoviesService } from '../../../services/movies.service';
@@ -7,7 +8,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FxGlobalsService } from '../../../services/fx-globals.service';
 import * as moment from 'moment';
 import 'moment/min/locales';
-import { transpileModule } from 'typescript';
 const movieShowDateFormat = "dddd DD/MM";
 
 @Component({
@@ -18,6 +18,7 @@ const movieShowDateFormat = "dddd DD/MM";
 export class MovieDetailComponent implements OnInit {
 
   public movie: Movie;
+  public movieShows: MovieShow[] = [];
   public selectedDate: string;
   public initialDay: string;
   public nextMovieShowsDays: string[] = [];
@@ -27,24 +28,37 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private moviesService: MoviesService,
-    private spinner: NgxSpinnerService,
-    private gFx: FxGlobalsService) { }
+    private movieShowService: MoviesShowService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     moment.updateLocale('es', { weekdays : 'Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado'.split('_') });
-    const idMovie = parseInt(this.route.snapshot.paramMap.get('id'));
+    const idMovie = this.route.snapshot.paramMap.get('id');
     this.getMovie(idMovie);
     this.setNextMovieShowsDays();
+
+   
   }
 
-  private getMovie(idMovie: number): void {
+  private getMovie(idMovie: string): void {
     this.spinner.show();
     this.moviesService.getOne(idMovie).subscribe(
       res => {
+        console.log(res);
         if(res.length === 1) {
           this.movie = res[0];
+          this.getMovieShows('', this.movie.id);
         } 
         setTimeout(() => this.spinner.hide(), 1000);
+      }
+    );
+  }
+
+  private getMovieShows(idCinema, idMovie): void {
+    this.movieShowService.getByMovieAndCinema('1623011804458', idMovie).subscribe(
+      res => {
+        console.log("Funciones: ", res);
+        this.movieShows = res;
       }
     );
   }
@@ -52,7 +66,7 @@ export class MovieDetailComponent implements OnInit {
   private setNextMovieShowsDays(){
     this.nextMovieShowsDays.push(moment().locale("Es").format(movieShowDateFormat));
     let tomorrow = moment();
-    for(let i=0;i < this.nextDaysQuantity; i++){
+    for(let i=0; i < this.nextDaysQuantity; i++){
       tomorrow.add(1, 'days').calendar();    
       this.nextMovieShowsDays.push(tomorrow.locale("Es").format(movieShowDateFormat));
     }
@@ -76,7 +90,7 @@ export class MovieDetailComponent implements OnInit {
     const movieEndDate = moment(this.movie.endDate);
 
     if(movieEndDate >= selectedDate){
-      return this.movie.movieShows.filter(show => {
+      return this.movieShows.filter(show => {
         const showTime = moment();
         const [hs, min] = show.time.split(':');
         showTime.set({ hours:parseInt(hs), minutes: parseInt(min) });

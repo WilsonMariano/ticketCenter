@@ -21,10 +21,10 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
     this.dataService.cinemaSelected$.subscribe(
       res => {
-        if(res == 0) {
+        if(res === '0') {
           this.getAllMovies();
         } else {
-          this.getAllByCinema(res);
+          this.getAllByCinema(res.toString());
         }
       });
   }
@@ -38,7 +38,7 @@ export class MoviesComponent implements OnInit {
       });
   }
 
-  private async getAllByCinema(idCinema: number) {
+  private async getAllByCinema(idCinema: string) {
     this.spinner.show();
     this.moviesService.getAllByCinema(idCinema).subscribe(
       res => { 

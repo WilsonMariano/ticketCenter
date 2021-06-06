@@ -18,13 +18,13 @@ export class MoviesService {
     return this.moviesRef.valueChanges();
   }
 
-  public getOne(id: number): any {
+  public getOne(id: string): any {
     return this.db.collection(this.dbpath, ref => ref.where('id', '==', id).limit(1))
       .valueChanges();
   }
 
-  public getAllByCinema(idCinema: number): any {
-    return this.db.collection(this.dbpath, ref => ref.where('cinemas', 'array-contains', Number.parseInt(idCinema.toString())))
+  public getAllByCinema(idCinema: string): any {
+    return this.db.collection(this.dbpath, ref => ref.where('cinemas', 'array-contains', idCinema))
       .valueChanges();
   }
 
