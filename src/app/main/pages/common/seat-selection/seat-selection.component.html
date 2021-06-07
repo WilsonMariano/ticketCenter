@@ -29,7 +29,7 @@
         <div class="col-md-6 summary-bar">
             <div class="col selected-seats mt-5">
                 <h5>Seleccionadas : {{ cart?.selectedSeats?.length }}</h5>
-                <h5>Monto total :&nbsp;&nbsp; $ {{cart.totalamount}}</h5>
+                <!-- <h5>Monto total :&nbsp;&nbsp; $ {{cart.totalamount}}</h5> -->
                 <h5>Butacas seleccionadas :</h5>
                 <span *ngFor="let seatLabel of cart.selectedSeats" class="badge badge-primary">{{seatLabel}}</span>
             </div>
@@ -39,4 +39,5 @@
                 mdbWavesEffect>Continuar</button>
         </div>
     </div>
+    <app-spinner></app-spinner>
 </div>

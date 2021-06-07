@@ -18,7 +18,7 @@ export class CinemasService {
     return this.cinemasRef.valueChanges();
   }
 
-  public getOne(id: number): any {
+  public getOne(id: string): any {
     return this.db.collection(this.dbpath, ref => ref.where('id', '==', id).limit(1))
       .valueChanges();
   }
