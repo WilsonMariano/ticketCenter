@@ -6,4 +6,5 @@ export class MovieShow {
     public time: string;
     public type: string;
     public bookedSeats: string[];
+    public remainingSeats: number;
 }

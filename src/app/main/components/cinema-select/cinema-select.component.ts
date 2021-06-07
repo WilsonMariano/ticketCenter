@@ -1,7 +1,7 @@
 import { Cinema } from './../../classes/cinema.class';
 import { CinemasService } from './../../services/cinemas.service';
 import { DataService } from './../../services/data.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -10,6 +10,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./cinema-select.component.scss']
 })
 export class CinemaSelectComponent implements OnInit {
+  @Input() defaultOption = 'Todos los complejos';
+  @Output() cinemaChange = new EventEmitter();
 
   public cinemas: Cinema[];
   public cinemaSelected: string;
@@ -36,7 +38,9 @@ export class CinemaSelectComponent implements OnInit {
   }
 
   public selectCinema(): void {
+    console.log(this.cinemaSelected);
     this.dataService.cinemaSelected.next(this.cinemaSelected);
+    this.cinemaChange.emit(this.cinemaSelected);
   }
 
 }

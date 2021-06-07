@@ -1,6 +1,6 @@
+import { Reservation } from './../classes/reservation';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Cinema } from '../classes/cinema.class';
 import { User } from '../classes/user.class';
 
 @Injectable({
@@ -16,6 +16,8 @@ export class DataService {
 
     public isLogged: BehaviorSubject<Boolean>;
     public isLogged$: Observable<Boolean>;
+
+    public reservation: Reservation;
 
     constructor() {
         this.cinemaSelected = new BehaviorSubject<string>('0');

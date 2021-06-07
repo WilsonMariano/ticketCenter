@@ -1,31 +1,31 @@
 <div class="movie-info">
-    <p>CASTELLANO 2D</p>
+    <p class="capitalize">{{reservation.type}}</p>
     <div class="row mt-4">
         <div class="col-md-1">
             <i class="fas fa-map-marker-alt fa-4x"></i>
         </div>
-        <div class="col-md-11">
+        <div class="col-md-11" *ngIf="cinema">
             <div class="row">
                 <div class="col-md-12">
-                    <b>Ticket Center Adrogué</b>
+                    <b>{{cinema.name}}</b>
                 </div>
                 <div class="col-md-12">
-                    Sala 2
+                    Sala {{reservation.saloonNumber}}
                 </div>
                 <div class="col-md-12">
-                    Av. General Chamizo, Gerli
+                    {{cinema.address}}
                 </div>
             </div>
         </div>
     </div>
 
-    <p class="mt-4">
+    <p class="mt-4" style="font-weight: bold">
         <i class="far fa-calendar-alt me-2"></i>
-        <b>Martes 06 Abril 22:50</b>
+        {{getDateDescription()}}
     </p>
 
     <div class="input-group">
-        <input type="text" class="form-control" value="{{ticketAmount + ' ENTRADA(S) - $' + getSubTotal()}}" readonly>
+        <input type="text" class="form-control" value="{{ticketQuantity + ' ENTRADA(S) - $' + getSubTotal()}}" readonly>
         <div class="controles">
             <button class="btn btn-outline-secondary btn-amount" type="button" (click)="subsTicket()"><i
                     class="fas fa-minus-circle fa-2x"></i></button>

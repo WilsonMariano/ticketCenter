@@ -24,15 +24,19 @@
               <dt>Duración:</dt>
               <dd>{{ movie.runtime | minute}}</dd>
             </span>
-            <span class="movie-meta-movieshows">
+            <span class="movie-meta-movieshows mb-3">
               <dt>Funciones:</dt>
             </span>
-            <button type="button" class="btn btn-outline-warning m-2" (click)="setSelectedDate($event.target.value)" *ngFor="let day of nextMovieShowsDays" value="{{day}}">{{day}}</button>
-            <div class="card card-body  mt-3" *ngIf="movieShows.length != 0">
-              <div class="card-title">Funciones del día {{selectedDate}}</div>
-              <!-- TODO: Ver como le enviamos el id de la funcion al selector de asientos -->
-              <a *ngFor="let s of getMovieShowsByDate()" (click)="showTicketSelection = true">{{s.time + ' hs - ' + s.type }}</a>
-            </div>
+            <app-cinema-select defaultOption="Seleccione un complejo" (cinemaChange)="cinemaChange($event)"></app-cinema-select>
+            <ng-container *ngIf="movieShows.length !== 0">
+              <button type="button" class="btn btn-outline-warning mt-4" (click)="setSelectedDate($event.target.value)" *ngFor="let day of nextMovieShowsDays" value="{{day}}">{{day}}</button>
+              <div class="card card-body  mt-3">
+                <div class="card-title">Funciones del día {{selectedDate}}</div>
+                <!-- TODO: Ver como le enviamos el id de la funcion al selector de asientos -->
+                <a *ngFor="let s of getMovieShowsByDate()" (click)="selectMovieShow(s)">{{s.time + ' hs - ' + s.type }}</a>
+              </div>
+            </ng-container>
+            <span class="mt-3" *ngIf="movieShows.length === 0">No hay funciones disponibles</span>
           </div>
         </div>
         <app-ticket-select *ngIf="showTicketSelection" (cancel)="showTicketSelection = false"></app-ticket-select>
