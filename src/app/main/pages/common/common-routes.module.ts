@@ -1,3 +1,5 @@
+import { CardDataComponent } from './card-data/card-data.component';
+import { PayMethodComponent } from './pay-method/pay-method.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonComponent } from './common.component';
 import { SeatSelectionComponent } from './seat-selection/seat-selection.component';
@@ -19,6 +21,8 @@ const commonRoutes: Routes = [
             { path: 'movies',                           component: MoviesComponent                                 },
             { path: 'cinemas',                          component: CinemasComponent                                },
             { path: 'seat-selection/:movieShowId',      component: SeatSelectionComponent                          },
+            { path: 'pay-method',                       component: PayMethodComponent                              },
+            { path: 'card-data',                        component: CardDataComponent                               },
             { path: '**', component: HomeComponent },
         ]
     }

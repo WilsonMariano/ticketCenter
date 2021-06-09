@@ -1,3 +1,5 @@
+import { CardDataComponent } from './card-data/card-data.component';
+import { PayMethodComponent } from './pay-method/pay-method.component';
 import { NgModule } from '@angular/core';
 import { CommonComponent } from './common.component';
 import { CommonModule } from '@angular/common';
@@ -30,7 +32,9 @@ import { COMMON_ROUTES } from './common-routes.module';
     MovieDetailComponent,
     SeatSelectionComponent,
     ProfileComponent,
-    CommonComponent
+    CommonComponent,
+    PayMethodComponent,
+    CardDataComponent
   ],
   imports: [
     CommonModule,
