@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Cinema } from '../classes/cinema.class';
 import { User } from '../classes/user.class';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +16,13 @@ export class DataService {
     public isLogged$: Observable<Boolean>;
     public trxCountDown: BehaviorSubject<string>;
     public trxCountDown$: Observable<string>;
+    private timerDuration = environment.timerDuration; 
 
     constructor() {
         this.cinemaSelected = new BehaviorSubject<string>('0');
         this.cinemaSelected$ = this.cinemaSelected.asObservable();
 
-        this.trxCountDown = new BehaviorSubject<string>('5:00');
+        this.trxCountDown = new BehaviorSubject<string>(this.timerDuration);
         this.trxCountDown$ = this.trxCountDown.asObservable();
 
         this.currentUser = new BehaviorSubject<User>(null);
