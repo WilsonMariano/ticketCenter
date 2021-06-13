@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cinema } from 'src/app/main/classes/cinema.class';
 import { MovieShow } from 'src/app/main/classes/movieShow.class';
 import { Saloon } from 'src/app/main/classes/saloon.class';
 import { CinemasService } from 'src/app/main/services/cinemas.service';
 import { FxGlobalsService } from 'src/app/main/services/fx-globals.service';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-seat-selection',
@@ -34,7 +33,7 @@ export class SeatSelectionComponent implements OnInit {
   title = "seat-chart-generator";
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private cinemasService: CinemasService,
     private fxGlobalService: FxGlobalsService
   ){
@@ -51,32 +50,10 @@ export class SeatSelectionComponent implements OnInit {
       type : "2D Subtitulada",
       bookedSeats : ["A_1", "B_2"]
     };
+    // TODO: Tomar el objeto movie desde localStorage
     // this.movieShow = JSON.parse(localStorage.getItem('movieShow'));
 
     this.getSaloonLayout(this.movieShow);
-    this.setTrxTimer();
-    console.log(this.countDown);
-  }
-
-  public setTrxTimer(){
-    let duration = moment.duration({
-      'minutes': 5,
-      'seconds': 0
-    });
-    
-    let timestamp = new Date(0, 0, 0, 2, 10, 30);
-    let interval = 1;
-    let timer = setInterval(function() {
-      timestamp = new Date(timestamp.getTime() + interval * 1000);
-      duration = moment.duration(duration.asSeconds() - interval, 'seconds');
-      let min = duration.minutes();
-      let sec = duration.seconds();
-
-      this.countDown = min + ':' + (sec < 10 ? "0" + sec : sec) ;
-      if (min == 0 && sec == 0)
-        clearInterval(timer);
-    
-    }.bind(this), 1000);
   }
 
   private getSaloonLayout(movieShow : MovieShow): void {
@@ -205,5 +182,10 @@ export class SeatSelectionComponent implements OnInit {
         this.cart.totalamount -= seatObject.price;
       }
     }
+  }
+
+  public submit(){
+    // TODO: Navegar hacia página de checkout
+    // this.router.navigate(['checkout']);
   }
 }
