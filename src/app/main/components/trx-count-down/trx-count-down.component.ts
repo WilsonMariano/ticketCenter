@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { FxGlobalsService } from '../../services/fx-globals.service';
 import { environment } from '../../../../environments/environment';
-declare var $: any;
 
 @Component({
   selector: 'app-trx-count-down',
@@ -53,7 +52,6 @@ export class TrxCountDownComponent implements OnInit {
 
     }.bind(this), 1000);
   }
-
   
   /**
    * Despliega un alert para advertir el tiempo restante de operación
