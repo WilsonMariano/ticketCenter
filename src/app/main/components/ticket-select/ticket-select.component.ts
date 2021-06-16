@@ -54,6 +54,9 @@ export class TicketSelectComponent implements OnInit {
   }
 
   public navigateToSeatSelection(): void {
+    this.dataService.reservation.price = this.ticketValue;
+    this.dataService.reservation.ticketQuantity = this.ticketQuantity;
+    this.dataService.reservation.totalAmount = this.ticketValue * this.ticketQuantity;
     this.router.navigate(['seat-selection/1', ]);
   }
 

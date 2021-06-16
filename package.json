@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/router": "~11.2.7",
     "bootstrap": "^4.6.0",
+    "creditcard.js": "^3.0.10",
     "express": "^4.17.1",
     "firebase": "^8.3.1",
     "jquery": "^3.6.0",

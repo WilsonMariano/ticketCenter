@@ -12,4 +12,6 @@ export class Reservation {
     public saloonNumber: number;
     public remainingSeats: number;
     public ticketQuantity: number;
+    public payMethod: string;
+    public totalAmount: number;
 }

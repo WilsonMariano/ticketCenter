@@ -25,9 +25,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 text-start mt-4">
+        <div class="col-md-12 text-center mt-4">
             <button class="btn btn-outline-primary" [routerLink]="'../seat-selection/1'">VOLVER</button>
-            <button class="btn btn-primary ms-3" (click)="acept()">SIGUIENTE</button>
+            <button class="btn btn-primary ms-3" (click)="acept()" [disabled]="!payMethod">SIGUIENTE</button>
         </div>
     </div>
 </div>

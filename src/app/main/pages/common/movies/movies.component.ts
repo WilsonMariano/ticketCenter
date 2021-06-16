@@ -21,7 +21,7 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
     this.dataService.cinemaSelected$.subscribe(
       res => {
-        if(res === null) {
+        if(res === '0') {
           this.getAllMovies();
         } else {
           this.getAllByCinema(res.toString());

@@ -1,3 +1,4 @@
+import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,15 +9,18 @@ import { Router } from '@angular/router';
 })
 export class PayMethodComponent implements OnInit {
 
-  public payMethod: string;
+  public payMethod: string = null;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private dataService: DataService
+    ) { }
 
   ngOnInit(): void {
   }
 
   public acept(): void {
-    console.log(this.payMethod);
+    this.dataService.reservation.payMethod = this.payMethod;
     this.router.navigate(['card-data']);
   }
 
