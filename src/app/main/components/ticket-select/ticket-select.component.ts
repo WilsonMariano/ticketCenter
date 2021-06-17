@@ -15,7 +15,7 @@ export class TicketSelectComponent implements OnInit {
 
   @Output('cancel') cancel = new EventEmitter();
 
-  public reservation: Reservation;
+  // public reservation: Reservation;
   public ticketQuantity = 1;
   public ticketValue = 0;
   public serviceValue = 40;
@@ -24,17 +24,18 @@ export class TicketSelectComponent implements OnInit {
   constructor(
     private router: Router,
     private cinemaService: CinemasService,
-    private dataService: DataService) { }
+    public dataService: DataService) { }
 
   ngOnInit(): void {
-    this.reservation = this.dataService.reservation;
-    console.log(this.reservation);
+    // this.reservation = this.dataService.reservation;
+ 
+    // console.log({reservation: this.reservation});
     this.getDateDescription();
     this.getCinema(this.dataService.cinemaSelected.value);
   }
 
   public addTicket(): void {
-    if(this.reservation.remainingSeats > this.ticketQuantity) {
+    if(this.dataService.reservation.movieShow.remainingSeats > this.ticketQuantity) {
       this.ticketQuantity += 1;
     }
   }
@@ -61,23 +62,29 @@ export class TicketSelectComponent implements OnInit {
   }
 
   public getDateDescription(): string {
-    const date = this.reservation.date.split('/');
+    const date = this.dataService.reservation.movieShow.date.split('/');
     const description = moment(`${date[2]}/${date[1]}/${date[0]}`).locale("Es").format('dddd DD MMMM');
-    return `${description} ${this.reservation.time}`;
+    return `${description} ${this.dataService.reservation.movieShow.time}`;
   }
 
   public getCinema(idCinema): void {
     this.cinemaService.getOne(idCinema).subscribe(
       data => {
+        console.log({cinema: data});
         this.cinema = data[0];
 
         // Obtengo el precio del tipo de entrada de la función elegida
-        const type = this.reservation.type.split(' ');
+        const type = this.dataService.reservation.movieShow.type.split(' ');
         this.ticketValue = this.cinema.prices[type[0]];
 
         // Obtengo el numero de la sala
-        const saloon = this.cinema.saloons.filter(s => s.id === this.reservation.idSaloon)[0];
-        this.reservation.saloonNumber = saloon.number;
+        const saloon = this.cinema.saloons.filter(s => s.id === this.dataService.reservation.movieShow.idSaloon)[0];
+        this.dataService.reservation.saloonNumber = saloon.number;
+
+        // Guardo datos del cine en la reserva
+        this.dataService.reservation.cinema.address = this.cinema.address;
+        this.dataService.reservation.cinema.id = this.cinema.id;
+        this.dataService.reservation.cinema.name = this.cinema.name;
       }
     );
   }

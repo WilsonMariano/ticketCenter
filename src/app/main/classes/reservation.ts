@@ -1,17 +1,22 @@
+import { Cinema } from './cinema.class';
+import { MovieShow } from './movieShow.class';
 export class Reservation {
+   
     public id: string;
-    public idMovieShow: string;
-    public date: string;
-    public time: string;
-    public type: string;
-    public saloon: number;
-    public cinemaAddress: string;
-    public price: number;
-    public seat: string;
-    public idSaloon: string;
+    public user: string;
+    public movieShow: MovieShow;
+    public cinema: Cinema;
+    public title: string;
     public saloonNumber: number;
-    public remainingSeats: number;
+    public price: number;
     public ticketQuantity: number;
-    public payMethod: string;
     public totalAmount: number;
+    public payMethod: string;
+    public seats: string[];
+
+    constructor(){
+        this.movieShow = new MovieShow();
+        this.cinema = new Cinema();
+    }
+
 }

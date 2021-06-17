@@ -17,7 +17,7 @@
                         <small class="color-primary"
                             *ngIf="formGroup.get('name').errors?.required && formGroup.get('name').touched">
                             El nombre y apellido es requerido</small>
-                        <input class="form-control" placeholder="MM/YY" type="tel" name="expiry" formControlName="expiry">
+                        <input class="form-control" placeholder="MM/YYYY" type="tel" name="expiry" formControlName="expiry">
                         <small class="color-primary"
                             *ngIf="formGroup.get('expiry').errors?.required && formGroup.get('expiry').touched">
                             La fecha de expiración es requerida</small>

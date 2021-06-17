@@ -5,7 +5,7 @@ import { MovieShow } from '../../../classes/movieShow.class';
 import { Movie } from '../../../classes/movie.class';
 import { MoviesService } from '../../../services/movies.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 import 'moment/min/locales';
@@ -31,7 +31,8 @@ export class MovieDetailComponent implements OnInit {
     private moviesService: MoviesService,
     private movieShowService: MoviesShowService,
     private dataService: DataService,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private router: Router) { }
 
   ngOnInit(): void {
     moment.updateLocale('es', { weekdays : 'Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado'.split('_') });
@@ -66,7 +67,6 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public cinemaChange(idCinema: string): void {
-    console.log("Holaaa: ", idCinema);
     if(idCinema !== '0') {
       this.getMovieShows(idCinema, this.movie.id);
     } else {
@@ -114,16 +114,25 @@ export class MovieDetailComponent implements OnInit {
   } 
   // public selectedDate: any;
 
-  public selectMovieShow(show: MovieShow) {
-    const reservation = new Reservation();
-    reservation.date = this.selectedDate +'/'+ moment().year();
-    reservation.time = show.time;
-    reservation.type = show.type;
-    reservation.idSaloon = show.idSaloon;
-    reservation.remainingSeats = show.remainingSeats;
-    
+  public selectMovieShow(movieShow: MovieShow) {
 
-    this.dataService.reservation = reservation;
-    this.showTicketSelection = true;
+    if(this.dataService.isLogged.value) {
+      const reservation = new Reservation();
+      reservation.movieShow.id = movieShow.id;
+      reservation.movieShow.idSaloon = movieShow.idSaloon;
+      reservation.movieShow.time = movieShow.time;
+      reservation.movieShow.type = movieShow.type;
+      reservation.movieShow.remainingSeats = movieShow.remainingSeats;
+      reservation.movieShow.date = this.selectedDate +'/'+ moment().year();
+      reservation.title = this.movie.title;
+      
+      this.dataService.reservation = reservation;
+      this.showTicketSelection = true;
+
+    } else {
+      this.router.navigate(['auth/login']);
+
+    }
+
   }
 }

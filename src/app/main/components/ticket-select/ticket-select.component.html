@@ -1,5 +1,5 @@
 <div class="movie-info">
-    <p class="capitalize">{{reservation.type}}</p>
+    <p class="capitalize">{{dataService.reservation.movieShow.type}}</p>
     <div class="row mt-4">
         <div class="col-md-1">
             <i class="fas fa-map-marker-alt fa-4x"></i>
@@ -10,7 +10,7 @@
                     <b>{{cinema.name}}</b>
                 </div>
                 <div class="col-md-12">
-                    Sala {{reservation.saloonNumber}}
+                    Sala {{dataService.reservation.saloonNumber}}
                 </div>
                 <div class="col-md-12">
                     {{cinema.address}}

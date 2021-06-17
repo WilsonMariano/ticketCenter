@@ -1,12 +1,14 @@
+import { TransactionService } from './../../../services/transactions.service';
+import { AuthService } from './../../../services/auth.service';
 import { DataService } from './../../../services/data.service';
-import { FxGlobalsService } from './../../../services/fx-globals.service';
+import { EIcon, FxGlobalsService } from './../../../services/fx-globals.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { 
   isValid, 
-  isExpirationDateValid, 
-  isSecurityCodeValid, 
+  isExpirationDateValid 
 } from 'creditcard.js';
+import { Router } from '@angular/router';
 declare const Card;
 @Component({
   selector: 'app-card-data',
@@ -20,15 +22,18 @@ export class CardDataComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private fx: FxGlobalsService,
-    public dataService: DataService
+    public dataService: DataService,
+    public authService: AuthService,
+    private transactionService: TransactionService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      number: ['', [Validators.required, this.cardNumberValidator]],
-      name: ['', [Validators.required]],
-      expiry: ['', [Validators.required]],
-      cvc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]]
+      number: ['377790039424552', [Validators.required, this.cardNumberValidator]],
+      name: ['Mariano Wilson', [Validators.required]],
+      expiry: ['12/2021', [Validators.required, this.expirationDateValidator]],
+      cvc: ['123', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]]
     });
 
     this.initCreditCard();
@@ -41,8 +46,23 @@ export class CardDataComponent implements OnInit {
   });
   }
 
-  public finalizePurchase(): void {
-    this.fx.showAlert("Excelente!", "La compra ha resultado satisfactoria, en tu perfil encontrarás la entrada para acceder a la función", "success");
+  public async finalizePurchase(): Promise<void> {
+    delete this.dataService.reservation.movieShow.remainingSeats;
+    this.dataService.reservation.user = this.authService.getUserData().email;
+    this.dataService.reservation.id = this.fx.getRandomId();
+
+    console.log({reservation: this.dataService.reservation});
+    
+    try {
+      await this.transactionService.create(this.dataService.reservation);
+      this.fx.showAlert("Excelente!", "La compra ha resultado satisfactoria, en tu perfil encontrarás la entrada para acceder a la función", EIcon.success);
+      this.router.navigate(['profile']);
+ 
+    } catch(e) {
+      console.log("Se produjo un error: ", e);
+      this.fx.showAlert("Ups!", "Hubo un problema con la compra, intenta nuevamente en unos minutos", EIcon.error);
+    }
+      
   }
 
   private cardNumberValidator(control: AbstractControl): object | null {
@@ -57,14 +77,13 @@ export class CardDataComponent implements OnInit {
   }
 
   private expirationDateValidator(control: AbstractControl): object | null {
-    const number = control.value as string;
-    const arrDate = number.split('/');
-    const month = arrDate[0].toString().replace(' ', '');
-    const year = arrDate[1].toString().replace(' ', '');
+    const date = control.value as string;
+    const arrDate = date.replaceAll(' ', '').split('/');
+    const [month, year] = arrDate;
 
-    console.log({month, year});
-    // console.log(arrDate);
-    if(isExpirationDateValid(arrDate[0], arrDate[1])) {
+    console.log(isExpirationDateValid(month, year));
+
+    if(isExpirationDateValid(month, year)) {
       return null;
     } else {
       return {
