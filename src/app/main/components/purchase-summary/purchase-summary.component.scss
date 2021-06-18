@@ -1,6 +1,6 @@
 // Variables
-$background-color: Thistle;
-$width: 400;
+$background-color: #191919 ;
+$width: 280;
 $circle-size: 50;
 
 body {
@@ -10,17 +10,18 @@ body {
 }
 
 img {
-	max-width: 100%;
+	max-width: 90%;
 	height: auto;
 }
 
 .ticket {
 	width: $width + px;
-	height: 775px;
+	height: 680px;
 	background-color: white;
 	margin: 25px auto;
 	position: relative;
     // padding: 50px 25px 10px;
+	color: black;
 }
 
 .holes-top {
@@ -52,7 +53,7 @@ img {
 
 .holes-lower {
 	position: relative;
-	margin:25px;
+	margin:15px;
 	border:1px dashed #aaa;
 	&:before,
 	&:after {
@@ -74,19 +75,18 @@ img {
 	}
 }
 
-.cinema {
-	color: #aaa;
-	font-size: 22px;
+.QR{
+	width: 100px;
+	height: auto;
 }
 
 .movie-title {
-	font-size: 50px;
-    color: black;
+	font-size: 35px;
 }
 
 .info {
 	padding: 15px 25px;
-    color: black;
+    // color: black;
 }
 
 table {
@@ -98,7 +98,7 @@ table {
 	}
 	
 	th {
-		text-align: left;
+		// text-align: left;
 		&:nth-of-type(1) {
 			width: 38%;
 		}
@@ -111,8 +111,8 @@ table {
 	}
 	
 	td {
-		width: 33%;
-		font-size: 32px;
+		// width: 33%;
+		font-size: 20px;
 	}
 }
 
@@ -121,7 +121,7 @@ table {
 }
 
 .serial {
-    color: black;
+    // color: black;
     background-color: white;
 	// padding: 25px;
 	table {

@@ -11,7 +11,7 @@ export class PurchaseSummaryComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    alert(window.innerWidth);
     var code = '11010010000100111011001011101111011010001110101110011001101110010010111101110111001011001001000011011000111010110001001110111101101001011010111000101101'
     ​
     var table = document.getElementById("table");
