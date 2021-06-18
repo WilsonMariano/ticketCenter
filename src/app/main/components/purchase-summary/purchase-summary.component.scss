@@ -1,0 +1,142 @@
+// Variables
+$background-color: Thistle;
+$width: 400;
+$circle-size: 50;
+
+body {
+	background-color: $background-color;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: 600;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.ticket {
+	width: $width + px;
+	height: 775px;
+	background-color: white;
+	margin: 25px auto;
+	position: relative;
+    // padding: 50px 25px 10px;
+}
+
+.holes-top {
+	height: $circle-size + px;
+	width: $circle-size + px;
+	background-color: $background-color;
+	border-radius: 50%;
+	position: absolute;
+	left:50%;
+	margin-left: ($circle-size / -2) + px;
+	top: ($circle-size / -2) + px;
+	
+	&:before,
+	&:after {
+		content: '';
+		height: $circle-size + px;
+		width: $circle-size + px;
+		background-color: $background-color;
+		position: absolute;
+		border-radius: 50%;
+	}
+	&:before {
+		left: ($width / -2) + px;
+	}
+	&:after {
+		left: ($width / 2) + px;
+	}
+}
+
+.holes-lower {
+	position: relative;
+	margin:25px;
+	border:1px dashed #aaa;
+	&:before,
+	&:after {
+		content: '';
+		height: $circle-size + px;
+		width: $circle-size + px;
+		background-color: $background-color;
+		position: absolute;
+		border-radius: 50%;
+	}
+	
+	&:before {
+		top: -25px;
+		left: ($circle-size / -1) + px;
+	}
+	&:after {
+		top: -25px;
+		left: ($width - $circle-size) + px;
+	}
+}
+
+.cinema {
+	color: #aaa;
+	font-size: 22px;
+}
+
+.movie-title {
+	font-size: 50px;
+    color: black;
+}
+
+.info {
+	padding: 15px 25px;
+    color: black;
+}
+
+table {
+	width: 100%;
+	font-size: 18px;
+	margin-bottom: 15px;
+	tr {
+		margin-bottom: 10px;
+	}
+	
+	th {
+		text-align: left;
+		&:nth-of-type(1) {
+			width: 38%;
+		}
+		&:nth-of-type(2) {
+			width: 40%;
+		}
+		&:nth-of-type(3) {
+			width: 15%;
+		}
+	}
+	
+	td {
+		width: 33%;
+		font-size: 32px;
+	}
+}
+
+.bigger {
+	font-size: 48px;
+}
+
+.serial {
+    color: black;
+    background-color: white;
+	// padding: 25px;
+	table {
+		border-collapse: collapse;
+		margin: 0 auto;
+	}
+	td {
+		width: 3px;
+		height: 50px;
+	}
+}
+
+.numbers {
+	td {
+		font-size: 16px;
+		text-align: center;
+	}
+}

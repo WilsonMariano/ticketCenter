@@ -20,6 +20,7 @@ import { FooterModule } from './../../components/footer/footer.module';
 import { NavbarModule } from './../../components/navbar/navbar.module';
 import { COMMON_ROUTES } from './common-routes.module';
 import { TrxCountDownModule } from '../../components/trx-count-down/trx-count-down.module';
+import { PurchaseSummaryModule } from '../../components/purchase-summary/purchase-summary.module';
 
 
 
@@ -46,6 +47,7 @@ import { TrxCountDownModule } from '../../components/trx-count-down/trx-count-do
     PipesModule,
     CinemaSelectModule,
     TrxCountDownModule,
+    PurchaseSummaryModule,
     COMMON_ROUTES
   ]
 })
