@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { DataService } from '../../../services/data.service';
-import { FxGlobalsService } from '../../../services/fx-globals.service';
+import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
 
 @Component({
   selector: 'app-login',
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
           errMsg = 'Ocurrió un error al intentar iniciar sesión, reintente luego';
           break;
       }
-      this.fxGlobalsService.showAlert('No se pudo iniciar sesión', errMsg, 'warning');
+      this.fxGlobalsService.showAlert('No se pudo iniciar sesión', errMsg, EIcon.warning);
     }
   }
 }

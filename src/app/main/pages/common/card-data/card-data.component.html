@@ -1,0 +1,52 @@
+<div class="container text-center">
+    <h2 class="mt-4">Ingrese los datos de su tarjeta    </h2>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="demo-container">
+                <div class="card-wrapper"></div>
+                <div class="form-container active">
+                    <form [formGroup]="formGroup">
+                        <input class="form-control" placeholder="Número de tarjeta" type="tel" name="number" formControlName="number">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('number').errors?.required && formGroup.get('number').touched">
+                            El número de tarjeta es requerido</small>
+                        <small class="color-primary"
+                        *ngIf="!formGroup.get('number').errors?.required && formGroup.get('number').errors?.invalidCard">
+                            La tarjeta es inválida</small>
+                        <input class="form-control" placeholder="Nombre y Apellido" type="text" name="name" formControlName="name">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('name').errors?.required && formGroup.get('name').touched">
+                            El nombre y apellido es requerido</small>
+                        <input class="form-control" placeholder="MM/YYYY" type="tel" name="expiry" formControlName="expiry">
+                        <small class="color-primary"
+                            *ngIf="formGroup.get('expiry').errors?.required && formGroup.get('expiry').touched">
+                            La fecha de expiración es requerida</small>
+                        <small class="color-primary"
+                            *ngIf="!formGroup.get('expiry').errors?.required && formGroup.get('expiry').errors?.invalidExpiry">
+                            La fecha de expiración es inválida</small>
+                        <input class="form-control" placeholder="CVC" type="password" name="cvc" formControlName="cvc" (keypress)="keyPressCvc($event)">
+                        <small class="color-primary"
+                        *ngIf="formGroup.get('cvc').errors?.required && formGroup.get('cvc').touched">
+                            El cvc es requerido</small>
+                        <small class="color-primary"
+                        *ngIf="formGroup.get('cvc').errors?.minlength || formGroup.get('cvc').errors?.maxlength">
+                            El cvc es inválido</small>
+                        <select class="form-control" *ngIf="dataService.reservation.payMethod === 'CC'">
+                            <option value="">Seleccione cuotas</option>
+                            <option>1 x ${{dataService.reservation.totalAmount}}</option>
+                            <option>3 x ${{dataService.reservation.totalAmount / 3}}</option>
+                            <option>6 x ${{dataService.reservation.totalAmount / 6}}</option>
+                            <option>9 x ${{dataService.reservation.totalAmount / 9}}</option>
+                            <option>12 x ${{dataService.reservation.totalAmount / 12}}</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mt-4">
+            <button class="btn btn-outline-primary" [routerLink]="'../pay-method'">VOLVER</button>
+            <!-- <button class="btn btn-primary ms-3" (click)="finalizePurchase()" [disabled]="formGroup.invalid">COMPRAR</button> -->
+            <button class="btn btn-primary ms-3" (click)="finalizePurchase()">COMPRAR</button>
+        </div>
+    </div>
+</div>

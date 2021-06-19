@@ -9,7 +9,7 @@ export class FxGlobalsService {
 
   constructor(private spinnerService: NgxSpinnerService) { }
 
-  public showAlert(title: string, text: string, icon: string, time?: number): void {
+  public showAlert(title: string, text: string, icon: EIcon, time?: number): void {
     
     setTimeout(() => {
       swal({
@@ -32,4 +32,16 @@ export class FxGlobalsService {
     return w.charAt(0).toUpperCase() + w.slice(1);
   }
 
+  public getRandomId(): string {
+    const key = Date.now()
+    return key.toString();
+  }
+
+}
+
+export enum EIcon {
+  warning = "warning",
+  error = "error",
+  success = "success",
+  info = "info"
 }

@@ -47,7 +47,7 @@
 
     <div class="row">
         <div class="col-12 book-area mt-4">
-            <button [disabled]="cart?.selectedSeats?.length == 0" type="button" class="btn btn-primary"
+            <button [disabled]="cart?.selectedSeats?.length == 0" type="button" class="btn btn-primary" [routerLink]="'/pay-method'"
                 mdbWavesEffect (click)="submit()">Continuar</button>
         </div>
     </div>

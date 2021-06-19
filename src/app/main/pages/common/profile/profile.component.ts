@@ -1,4 +1,6 @@
-import { FxGlobalsService } from '../../../services/fx-globals.service';
+import { Reservation } from './../../../classes/reservation';
+import { TransactionService } from './../../../services/transactions.service';
+import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
 import { UsersService } from '../../../services/users.service';
 import { CinemasService } from '../../../services/cinemas.service';
 import { Cinema } from '../../../classes/cinema.class';
@@ -17,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   private user: User;
   public cinemas: Cinema[];
+  public transactions: Reservation[];
   public formGroup: FormGroup;
 
   constructor(
@@ -24,6 +27,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private userService: UsersService,
     private cinemasService: CinemasService,
+    private transactionsService: TransactionService,
     private fxGlobalService: FxGlobalsService
   ) { }
 
@@ -37,6 +41,7 @@ export class ProfileComponent implements OnInit {
       'cinemaPreference': ['']
     });
     this.getCinemas();
+    this.getTransactions();
   }
 
   private getCinemas(): void {
@@ -52,8 +57,14 @@ export class ProfileComponent implements OnInit {
     this.fxGlobalService.showSpinner();
     this.userService.edit(this.formGroup.getRawValue());
     this.fxGlobalService.hideSpinner();
-    this.fxGlobalService.showAlert('Perfecto', 'Usuario editado con éxito', 'success');
+    this.fxGlobalService.showAlert('Perfecto', 'Usuario editado con éxito', EIcon.success);
   
+  }
+
+  public getTransactions(): void {
+    this.transactionsService.getAllByUser('mgw009@gmail.com').subscribe(
+      res => this.transactions = res
+    );
   }
 
 }

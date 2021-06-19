@@ -1,3 +1,4 @@
+import { TransactionService } from './transactions.service';
 import { FxGlobalsService } from './fx-globals.service';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
@@ -18,6 +19,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CinemasService,
     DataService,
     UsersService,
+    TransactionService,
     AuthService,
     FxGlobalsService
   ],

@@ -1,4 +1,4 @@
 <select class="form-select" [(ngModel)]="cinemaSelected" (change)="selectCinema()">
-    <option value="0">Todos los complejos</option>
+    <option value="0">{{defaultOption}}</option>
     <option *ngFor="let c of cinemas" [value]="c.id">{{c.location}}</option>
 </select>

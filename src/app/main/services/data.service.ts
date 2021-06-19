@@ -1,3 +1,4 @@
+import { Reservation } from './../classes/reservation';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../classes/user.class';
@@ -17,6 +18,8 @@ export class DataService {
     public trxCountDown: BehaviorSubject<string>;
     public trxCountDown$: Observable<string>;
     private timerDuration = environment.timerDuration; 
+
+    public reservation: Reservation;
 
     constructor() {
         this.cinemaSelected = new BehaviorSubject<string>('0');

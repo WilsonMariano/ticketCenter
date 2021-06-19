@@ -7,5 +7,6 @@ export class Cinema {
     public lat: string;
     public lng: string;
     public schedule: string;
+    public prices: number[];
     public saloons: Saloon[];
 }

@@ -88,3 +88,7 @@ select.form-select {
 .color-primary {
     color: $color-primary;
 }
+
+.capitalize {
+    text-transform: capitalize;
+}

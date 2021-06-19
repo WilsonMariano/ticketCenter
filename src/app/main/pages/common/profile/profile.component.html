@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <h3 class="color-primary">Perfil</h3>
                 <hr class="color-primary">
-                <h5>Completá tu perfil</h5>
+                <h5>Datos de usuario</h5>
             </div>
         </div>
         <div class="row mt-5">
@@ -45,12 +45,28 @@
                     </div>
                 </div>
             </div>
-            <hr class="color-primary mt-5">
+            <!-- <hr class="color-primary mt-5">
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-primary">Guardar</button>
-            </div>
+            </div> -->
         </div>
     </form>
-</div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3 class="color-primary">Tickets</h3>
+            <hr class="color-primary">
+        </div>
+        <div class="card card-ticket col-md-2 ms-2" *ngFor="let t of transactions">
+            <div class="card-body">
+              <h5 class="card-title">{{t.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{t.movieShow.type}}</h6>
+              <p class="card-text">{{t.movieShow.date +' '+ t.movieShow.time}}</p>
+              <p class="card-text">{{t.cinema.name}}</p>
+              <a href="#" class="card-link">Ver más</a>
+              <a href="#" class="card-link">Descargar QR</a>
+            </div>
+          </div>
+    </div>
+    </div>
 
-<app-spinner></app-spinner>
+    <app-spinner></app-spinner>

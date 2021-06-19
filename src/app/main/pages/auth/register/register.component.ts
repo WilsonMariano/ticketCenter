@@ -1,4 +1,4 @@
-import { FxGlobalsService } from '../../../services/fx-globals.service';
+import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
 import { User } from '../../../classes/user.class';
 import { AuthService } from '../../../services/auth.service';
 import { UsersService } from '../../../services/users.service';
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       delete user.passwordRepeat;
       this.usersService.create(user);
       this.formGroup.reset();
-      this.fxGlobalsService.showAlert('Registro exitoso', 'El usuario se ha creado con éxito!', 'success');
+      this.fxGlobalsService.showAlert('Registro exitoso', 'El usuario se ha creado con éxito!', EIcon.success);
       this.router.navigate['login'];
 
     } catch(e) {
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
           errMsg = 'No se ha podido registrar al usuario';
           break;
       }
-      this.fxGlobalsService.showAlert('Registro erróneo', errMsg, 'error');
+      this.fxGlobalsService.showAlert('Registro erróneo', errMsg, EIcon.error);
     }
   }
 

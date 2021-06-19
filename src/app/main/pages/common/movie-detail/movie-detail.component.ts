@@ -1,11 +1,12 @@
+import { Reservation } from './../../../classes/reservation';
+import { DataService } from './../../../services/data.service';
 import { MoviesShowService } from './../../../services/movieShow.service';
 import { MovieShow } from '../../../classes/movieShow.class';
 import { Movie } from '../../../classes/movie.class';
 import { MoviesService } from '../../../services/movies.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { FxGlobalsService } from '../../../services/fx-globals.service';
 import * as moment from 'moment';
 import 'moment/min/locales';
 const movieShowDateFormat = "dddd DD/MM";
@@ -29,7 +30,9 @@ export class MovieDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private moviesService: MoviesService,
     private movieShowService: MoviesShowService,
-    private spinner: NgxSpinnerService) { }
+    private dataService: DataService,
+    private spinner: NgxSpinnerService,
+    private router: Router) { }
 
   ngOnInit(): void {
     moment.updateLocale('es', { weekdays : 'Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado'.split('_') });
@@ -37,7 +40,10 @@ export class MovieDetailComponent implements OnInit {
     this.getMovie(idMovie);
     this.setNextMovieShowsDays();
 
-   
+    const idCinema: string = this.dataService.cinemaSelected.value;
+    if (idCinema !== '0') {
+      this.getMovieShows(idCinema, idMovie);
+    }
   }
 
   private getMovie(idMovie: string): void {
@@ -55,12 +61,17 @@ export class MovieDetailComponent implements OnInit {
   }
 
   private getMovieShows(idCinema, idMovie): void {
-    this.movieShowService.getByMovieAndCinema('1623011804458', idMovie).subscribe(
-      res => {
-        console.log("Funciones: ", res);
-        this.movieShows = res;
-      }
+    this.movieShowService.getByMovieAndCinema(idCinema, idMovie).subscribe(
+      res => this.movieShows = res
     );
+  }
+
+  public cinemaChange(idCinema: string): void {
+    if(idCinema !== '0') {
+      this.getMovieShows(idCinema, this.movie.id);
+    } else {
+      this.movieShows = [];
+    }
   }
 
   private setNextMovieShowsDays(){
@@ -101,4 +112,27 @@ export class MovieDetailComponent implements OnInit {
       });
     }
   } 
+  // public selectedDate: any;
+
+  public selectMovieShow(movieShow: MovieShow) {
+
+    if(this.dataService.isLogged.value) {
+      const reservation = new Reservation();
+      reservation.movieShow.id = movieShow.id;
+      reservation.movieShow.idSaloon = movieShow.idSaloon;
+      reservation.movieShow.time = movieShow.time;
+      reservation.movieShow.type = movieShow.type;
+      reservation.movieShow.remainingSeats = movieShow.remainingSeats;
+      reservation.movieShow.date = this.selectedDate +'/'+ moment().year();
+      reservation.title = this.movie.title;
+      
+      this.dataService.reservation = reservation;
+      this.showTicketSelection = true;
+
+    } else {
+      this.router.navigate(['auth/login']);
+
+    }
+
+  }
 }
