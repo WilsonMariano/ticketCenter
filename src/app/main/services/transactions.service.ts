@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Reservation } from './../classes/reservation';
+import { IState, Reservation } from './../classes/reservation';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -40,5 +40,15 @@ export class TransactionService {
   public getAllByUser(email: string): Observable<any> {
     return this.db.collection(this.dbpath, ref => ref.where('user', '==', email))
       .valueChanges();
+  }
+
+  public changeState(idTransaction: string, state: IState): void {
+    this.db.collection(this.dbpath, ref => ref.where('id', '==', idTransaction).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.set({ state }, {merge: true}));
+    });
   }
 }

@@ -15,11 +15,13 @@ export class Reservation {
     public totalAmount: number;
     public payMethod: string;
     public seats: Seat[];
+    public state: IState;
 
     constructor() {
         this.movieShow = new MovieShow();
         this.cinema = new Cinema();
         this.movie = new Movie();
+        this.state = IState.InProgress;
 
         //Mock
         this.seats = [
@@ -33,5 +35,10 @@ export class Reservation {
             }
         ];
     }
+}
 
+export enum IState {
+    InProgress = 'InProgress',
+    Paid = 'Paid',
+    Canceled = 'Canceled'
 }

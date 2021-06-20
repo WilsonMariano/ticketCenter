@@ -20,6 +20,16 @@ export class FxGlobalsService {
     }, time || 0);
   }
 
+  public async showAlertConfirm(title: string, text: string, icon: EIcon): Promise<boolean> {
+    return await swal({
+      title,
+      text,
+      icon,
+      buttons: true,
+      dangerMode: true,
+    });
+  }
+
   public showSpinner(): void {
     this.spinnerService.show();
   }

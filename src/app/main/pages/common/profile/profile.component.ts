@@ -1,5 +1,5 @@
 import { PdfService } from './../../../services/pdf.service';
-import { Reservation } from './../../../classes/reservation';
+import { IState, Reservation } from './../../../classes/reservation';
 import { TransactionService } from './../../../services/transactions.service';
 import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
 import { UsersService } from '../../../services/users.service';
@@ -102,8 +102,14 @@ export class ProfileComponent implements OnInit {
     return diff > 120;
   }
 
-  public orderRepayment(transaction: Reservation): void {
-
+  public async orderRepayment(transaction: Reservation): Promise<void> {
+    console.log({transaction});
+    const resp = await this.fxGlobalService.showAlertConfirm('Confirmar cancelación', '¿Está seguro de anular la operación?', EIcon.warning);
+    
+    if(resp) {
+      this.transactionsService.changeState(transaction.id, IState.Canceled);
+      this.fxGlobalService.showAlert('Perfecto!', 'La transacción ha sido cancelada. El dinero será reintegrado por el mismo medio que se realizó la compra.', EIcon.success);
+    }
   }
 
 }
