@@ -1,4 +1,18 @@
 .card-ticket {
     background: #0e0e0e;
     width: 18rem;
+    cursor: pointer;
+}
+
+// .card-ticket:hover {
+//     background: #ffc107;
+//     color: #000;
+// }
+
+p.card-text {
+    margin-bottom: 0;
+}
+
+#qr_code {
+    display: none;
 }

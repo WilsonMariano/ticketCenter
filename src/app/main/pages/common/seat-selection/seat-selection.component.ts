@@ -1,3 +1,4 @@
+import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cinema } from 'src/app/main/classes/cinema.class';
@@ -16,6 +17,7 @@ export class SeatSelectionComponent implements OnInit {
   public countDown: string;
   public cinema: Cinema;
   private movieShow : MovieShow;
+
   public seatConfig: any = null;
   public seatmap = [];
   public seatChartConfig = {

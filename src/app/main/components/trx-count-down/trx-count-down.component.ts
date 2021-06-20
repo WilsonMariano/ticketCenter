@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
-import { FxGlobalsService } from '../../services/fx-globals.service';
+import { EIcon, FxGlobalsService } from '../../services/fx-globals.service';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -81,7 +81,7 @@ export class TrxCountDownComponent implements OnInit {
     this.fxGlobalsService.showAlert(
       'Tiempo agotado', 
       'Se superó el tiempo permitido para operar, reinicie la transacción por favor.',
-      'warning');
+      EIcon.warning);
     this.router.navigate(['home']);
     this.dataService.trxCountDown.next(this.timerDuration);
   }

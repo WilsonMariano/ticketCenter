@@ -1,3 +1,4 @@
+import { MoviesShowService } from './../../../services/movieShow.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent  {
 
-  constructor() {}
+  constructor() {
+
+  }
+
+
 
 }

@@ -26,6 +26,12 @@ export class TransactionService {
       cinema: {
         ...reservation.cinema,
       },
+      seats: {
+        ...reservation.seats
+      },
+      movie: {
+        ...reservation.movie
+      }
     };
 
     return this.transactionRef.add({ ...jsObject });

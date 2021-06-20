@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "firebase": "^8.3.1",
     "jquery": "^3.6.0",
+    "jspdf": "^2.3.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "ngx-spinner": "^11.0.1",

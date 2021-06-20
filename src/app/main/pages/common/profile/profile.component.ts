@@ -1,3 +1,4 @@
+import { PdfService } from './../../../services/pdf.service';
 import { Reservation } from './../../../classes/reservation';
 import { TransactionService } from './../../../services/transactions.service';
 import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
@@ -8,8 +9,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../classes/user.class';
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-
+import * as moment from 'moment';
+declare const QRCode;
+declare const $;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -28,15 +30,16 @@ export class ProfileComponent implements OnInit {
     private userService: UsersService,
     private cinemasService: CinemasService,
     private transactionsService: TransactionService,
-    private fxGlobalService: FxGlobalsService
+    private fxGlobalService: FxGlobalsService,
+    private pdfService: PdfService
   ) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUserData();
     this.formGroup = this.fb.group({
-      'name': [this.user.name],
-      'surname': [this.user.surname],
-      'document': [this.user.document],
+      'name': [{value: this.user.name, disabled: true}],
+      'surname': [{value: this.user.surname, disabled: true}],
+      'document': [{value: this.user.document, disabled: true}],
       'email': [{value: this.user.email, disabled: true}],
       'cinemaPreference': ['']
     });
@@ -63,8 +66,44 @@ export class ProfileComponent implements OnInit {
 
   public getTransactions(): void {
     this.transactionsService.getAllByUser('mgw009@gmail.com').subscribe(
-      res => this.transactions = res
+      res => {this.transactions = res}
     );
+  }
+
+  public getSeatsLength(index: number): number {
+    return this.transactions[index].seats.length;
+  }
+
+  public downloadTickets(transaction: Reservation): void {
+    const qrcode = new QRCode("qr_code", {
+	    text: "###REPLACE MEEEE###",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	  });
+
+    setTimeout(() => {
+      const base64Image = $('#qr_code img').attr('src');
+      this.pdfService.generatePdf(transaction, base64Image);
+    
+    }, 200);
+  }
+
+  public isCancellable(transaction: Reservation): boolean {
+
+    const show = transaction.movieShow;
+    const date = this.fxGlobalService.dateInverter(show.date);
+    const dateTime = moment(`${date} ${show.time}`);
+
+    const diff = dateTime.diff(moment(), 'minutes');
+
+    return diff > 120;
+  }
+
+  public orderRepayment(transaction: Reservation): void {
+
   }
 
 }

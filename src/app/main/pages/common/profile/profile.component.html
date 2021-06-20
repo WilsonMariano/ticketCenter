@@ -22,22 +22,23 @@
                     <div class="col-md-9 mb-4">
                         <input type="text" class="form-control" formControlName="surname">
                     </div>
-                    <div class="col-md-3 mb-4">
-                        <span>DOCUMENTO</span>
-                    </div>
-                    <div class="col-md-9 mb-4">
-                        <input type="number" class="form-control" formControlName="document">
-                    </div>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-3 mb-4">¿CUÁL ESTU CINE DE PREFERENCIA?</div>
+                    <!-- <div class="col-md-3 mb-4">¿CUÁL ESTU CINE DE PREFERENCIA?</div>
                     <div class="col-md-9 mb-4">
                         <select class="form-select" formControlName="cinemaPreference">
                             <option value="">Seleccione un cine</option>
                             <option *ngFor="let c of cinemas" [value]="c.id">{{c.location}}</option>
                         </select>
+                    </div> -->
+                    <div class="col-md-3 mb-4">
+                        <span>DOCUMENTO</span>
+                    </div>
+                    <div class="col-md-9 mb-4">
+                        <input type="number" class="form-control" formControlName="document">
                     </div>
                     <div class="col-md-3 mb-4">EMAIL</div>
                     <div class="col-md-9 mb-4">
@@ -56,17 +57,21 @@
             <h3 class="color-primary">Tickets</h3>
             <hr class="color-primary">
         </div>
-        <div class="card card-ticket col-md-2 ms-2" *ngFor="let t of transactions">
+        <div class="card card-ticket col-md-2 ms-2" *ngFor="let t of transactions; let i = index">
             <div class="card-body">
-              <h5 class="card-title">{{t.title}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{t.movieShow.type}}</h6>
-              <p class="card-text">{{t.movieShow.date +' '+ t.movieShow.time}}</p>
-              <p class="card-text">{{t.cinema.name}}</p>
-              <a href="#" class="card-link">Ver más</a>
-              <a href="#" class="card-link">Descargar QR</a>
+                <h5 class="card-title">{{t.movie.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{t.movieShow.type}}</h6>
+                <p class="card-text mt-3"><i class="far fa-calendar-alt me-2"></i>{{t.movieShow.date +' '+
+                    t.movieShow.time}}</p>
+                <p class="card-text"><i class="fas fa-map-marker-alt me-2"></i>{{t.cinema.name}}</p>
+                <p class="card-text mb-4"><i class="fas fa-ticket-alt me-2"></i>{{getSeatsLength(i)}}</p>
+                <a class="card-link" (click)="downloadTickets(t)">Descargar QR</a>
+                <a class="card-link color-red" *ngIf="isCancellable(t)" (click)="orderRepayment()">Devolución</a>
             </div>
-          </div>
+        </div>
     </div>
-    </div>
+</div>
 
-    <app-spinner></app-spinner>
+<div id="qr_code"></div>
+
+<app-spinner></app-spinner>
