@@ -19,4 +19,14 @@ export class MoviesShowService {
         .where('idMovie', '==', idMovie))
     .valueChanges();
   }
+
+  public editRemainingSeats(idMovieShow: string, remainingSeats: number): void {
+    this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.set({ remainingSeats }, {merge: true}));
+    });
+  }
 }

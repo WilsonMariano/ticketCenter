@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Reservation } from './../../../classes/reservation';
 import { DataService } from './../../../services/data.service';
 import { MoviesShowService } from './../../../services/movieShow.service';
@@ -31,6 +32,7 @@ export class MovieDetailComponent implements OnInit {
     private moviesService: MoviesService,
     private movieShowService: MoviesShowService,
     private dataService: DataService,
+    private authService: AuthService,
     private spinner: NgxSpinnerService,
     private router: Router) { }
 
@@ -116,7 +118,7 @@ export class MovieDetailComponent implements OnInit {
 
   public selectMovieShow(movieShow: MovieShow) {
 
-    if(this.dataService.isLogged.value) {
+    if(this.authService.getUserData()) {
       const reservation = new Reservation();
       reservation.movieShow.id = movieShow.id;
       reservation.movieShow.idSaloon = movieShow.idSaloon;
@@ -124,7 +126,10 @@ export class MovieDetailComponent implements OnInit {
       reservation.movieShow.type = movieShow.type;
       reservation.movieShow.remainingSeats = movieShow.remainingSeats;
       reservation.movieShow.date = this.selectedDate +'/'+ moment().year();
-      reservation.title = this.movie.title;
+      reservation.movie.id = this.movie.id;
+      reservation.movie.title = this.movie.title;
+      reservation.movie.poster = this.movie.poster;
+      reservation.movie.runtime = this.movie.runtime;
       
       this.dataService.reservation = reservation;
       this.showTicketSelection = true;

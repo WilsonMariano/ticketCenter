@@ -1,3 +1,4 @@
+import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seat-selection.component.scss']
 })
 export class SeatSelectionComponent implements OnInit {
+
+  constructor(private dataService: DataService) {
+    console.log('transaction: ', dataService.reservation);
+  }
+
   public seatConfig: any = null;
   public seatmap = [];
   public seatChartConfig = {

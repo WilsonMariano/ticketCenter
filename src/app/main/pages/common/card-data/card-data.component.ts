@@ -9,6 +9,7 @@ import {
   isExpirationDateValid 
 } from 'creditcard.js';
 import { Router } from '@angular/router';
+import { MoviesShowService } from 'src/app/main/services/movieShow.service';
 declare const Card;
 @Component({
   selector: 'app-card-data',
@@ -25,6 +26,7 @@ export class CardDataComponent implements OnInit {
     public dataService: DataService,
     public authService: AuthService,
     private transactionService: TransactionService,
+    private movieShowService: MoviesShowService,
     private router: Router
   ) { }
 
@@ -47,13 +49,21 @@ export class CardDataComponent implements OnInit {
   }
 
   public async finalizePurchase(): Promise<void> {
-    delete this.dataService.reservation.movieShow.remainingSeats;
     this.dataService.reservation.user = this.authService.getUserData().email;
     this.dataService.reservation.id = this.fx.getRandomId();
 
+    // Calculo cantidad de butacas restantes
+    const remainingSeats = this.dataService.reservation.movieShow.remainingSeats - this.dataService.reservation.seats.length;
+    
+    // Actualizo la cantidad de butacas restantes de la función
+    await this.movieShowService.editRemainingSeats(this.dataService.reservation.movieShow.id, remainingSeats);
+
+    // Elimino atributo innecesarios
+    delete this.dataService.reservation.movieShow.remainingSeats;
     console.log({reservation: this.dataService.reservation});
     
     try {
+      // Guardo reserva
       await this.transactionService.create(this.dataService.reservation);
       this.fx.showAlert("Excelente!", "La compra ha resultado satisfactoria, en tu perfil encontrarás la entrada para acceder a la función", EIcon.success);
       this.router.navigate(['profile']);
@@ -80,8 +90,6 @@ export class CardDataComponent implements OnInit {
     const date = control.value as string;
     const arrDate = date.replaceAll(' ', '').split('/');
     const [month, year] = arrDate;
-
-    console.log(isExpirationDateValid(month, year));
 
     if(isExpirationDateValid(month, year)) {
       return null;

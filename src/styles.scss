@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 $color-primary: #ffc107;
+$color-red: #ea5959a6;
 
 body {
     background: linear-gradient(to bottom,#191919 0,#000 100%) no-repeat #000;
@@ -87,6 +88,10 @@ select.form-select {
 
 .color-primary {
     color: $color-primary;
+}
+
+.color-red {
+    color: $color-red;
 }
 
 .capitalize {

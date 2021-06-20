@@ -37,6 +37,11 @@ export class FxGlobalsService {
     return key.toString();
   }
 
+  public dateInverter(date: string): string {
+    const arr = date.split('/');
+    return `${arr[2]}/${arr[1]}/${arr[0]}`;
+  }
+
 }
 
 export enum EIcon {
