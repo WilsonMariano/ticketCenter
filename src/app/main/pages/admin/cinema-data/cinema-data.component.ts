@@ -1,16 +1,16 @@
-import { EIcon, FxGlobalsService } from './../../../services/fx-globals.service';
-import { Cinema } from './../../../classes/cinema.class';
-import { CinemasService } from './../../../services/cinemas.service';
+import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
+import { Cinema } from '../../../classes/cinema.class';
+import { CinemasService } from '../../../services/cinemas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-datos-cinema',
-  templateUrl: './datos-cinema.component.html',
-  styleUrls: ['./datos-cinema.component.scss']
+  selector: 'app-cinema-data',
+  templateUrl: './cinema-data.component.html',
+  styleUrls: ['./cinema-data.component.scss']
 })
-export class DatosCinemaComponent implements OnInit {
+export class CinemaDataComponent implements OnInit {
 
   public typeOperation: string;
   public formGroup: FormGroup;

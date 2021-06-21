@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12 mb-5">
+        <h3 class="color-primary">Usuarios</h3>
+        <hr class="color-primary">
+      </div>
+      <div class="col-md-12 mb-5">
+        <button class="btn btn-primary float-end" (click)="navigateTo('admin/user-data/nuevo')"><i class="fas fa-plus"></i> Añadir</button>
+      </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let u of users">
+                    <td>{{u.name}}</td>
+                    <td>{{u.surname}}</td>
+                    <td>{{u.document}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.role || 'client'}}</td>
+                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/user-data/' + u.email)"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

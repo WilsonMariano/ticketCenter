@@ -28,8 +28,8 @@ export class CinemasService {
     return this.cinemasRef.add({...cinema});
   }
   
-  public edit(cinema: Cinema): any {
-    this.db.collection(this.dbpath, ref => ref.where('id', '==', cinema.id).limit(1))
+  public edit(cinema: Cinema): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', cinema.id).limit(1))
     .get()  
     .toPromise()
     .then(snapshot => {

@@ -1,6 +1,6 @@
+import { Observable } from 'rxjs';
 import { User } from './../classes/user.class';
 import { Injectable } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -13,18 +13,18 @@ import firebase from 'firebase/app';
 })
 export class UsersService {
   private dbpath: string = 'users';
-  public usersRef: AngularFirestoreCollection;
+  private usersRef: AngularFirestoreCollection;
 
   constructor(private db: AngularFirestore) {
     this.usersRef = db.collection(this.dbpath);
   }
 
-  public create(user: User): any {
+  public create(user: User): Promise<any> {
     return this.usersRef.add({ ...user });
   }
 
-  public edit(user: User): any {
-    this.db.collection(this.dbpath, ref => ref.where('email', '==', user.email).limit(1))
+  public edit(user: User): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('email', '==', user.email).limit(1))
     .get()  
     .toPromise()
     .then(snapshot => {
@@ -38,10 +38,8 @@ export class UsersService {
       .valueChanges();
   }
 
-  // public getOneByUid(uid: string): any {
-  //   return this.db.collection(
-  //     this.dbpath, 
-  //     ref => ref.where(firebase.firestore.FieldPath.documentId(), '==', uid).limit(1))
-  //     .valueChanges();
-  // }
+  public getAll(): Observable<any> {
+    return this.usersRef.valueChanges();
+  }
+
 }

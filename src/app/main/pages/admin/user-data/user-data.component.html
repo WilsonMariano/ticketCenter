@@ -1,0 +1,63 @@
+<div class="container">
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <div class="row mt-5">
+      <div class="col-md-12 mb-5">
+        <h3 class="color-primary" *ngIf="typeOperation === 'nuevo'">Nuevo usuario</h3>
+        <h3 class="color-primary" *ngIf="typeOperation !== 'nuevo'">Editar usuario</h3>
+        <hr class="color-primary">
+      </div>
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label ">Nombre</label>
+          <input type="text" class="form-control" id="nombre" formControlName="name" autocomplete="off">
+          <small class="color-primary" *ngIf="formGroup.get('name').errors?.required && formGroup.get('name').touched">
+            El nombre es requerido
+          </small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="surname" class="form-label ">Apellido</label>
+          <input type="text" class="form-control" id="surname" formControlName="surname" autocomplete="off">
+          <small class="color-primary" *ngIf="formGroup.get('surname').errors?.required && formGroup.get('surname').touched">
+            El apellido es requerido
+          </small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="document" class="form-label ">Documento</label>
+          <input type="text" class="form-control" id="document" formControlName="document" autocomplete="off">
+          <small class="color-primary" *ngIf="formGroup.get('document').errors?.required && formGroup.get('document').touched">
+            El documento es requerido
+          </small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="email" class="form-label ">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" autocomplete="off">
+            <small class="color-primary" *ngIf="formGroup.get('email').errors?.required && formGroup.get('email').touched">
+              El email es requerido
+            </small>
+          </div>
+        <div class="col-md-6 mb-3">
+          <label for="role" class="form-label ">Tipo</label>
+          <select class="form-control" id="role" formControlName="role">
+              <option value="">Seleccione una opción</option>
+                <option *ngFor="let r of roles" [value]="r">
+                    {{r}}
+                </option>
+          </select>
+          <small class="color-primary" *ngIf="formGroup.get('role').errors?.required && formGroup.get('role').touched">
+            El tipo es requerido
+          </small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="password" class="form-label ">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" autocomplete="off">
+          <small class="color-primary" *ngIf="formGroup.get('password').errors?.required && formGroup.get('password').touched">
+            El horario es requerido
+          </small>
+        </div>
+        <div class="col-md-12 text-center mt-4">
+          <button class="btn btn-outline-primary" routerLink='../../abm-usuarios'>VOLVER</button>
+          <button type="submit" class="btn btn-primary ms-3" [disabled]="formGroup.invalid">ACEPTAR</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <app-spinner></app-spinner>

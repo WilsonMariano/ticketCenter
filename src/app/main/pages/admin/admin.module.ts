@@ -1,3 +1,5 @@
+import { UserDataComponent } from './user-data/user-data.component';
+import { CinemaDataComponent } from './cinema-data/cinema-data.component';
 import { SpinnerModule } from './../../components/spinner/spinner.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminGuard } from './admin.guard';
@@ -9,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { ADMIN_ROUTES } from './admin-routes.module';
-import { DatosCinemaComponent } from './datos-cinema/datos-cinema.component';
+import { UsersComponent } from './users/users.component';
 
 
 
@@ -17,7 +19,9 @@ import { DatosCinemaComponent } from './datos-cinema/datos-cinema.component';
   declarations: [
     AdminComponent, 
     CinemasComponent, 
-    DatosCinemaComponent
+    CinemaDataComponent, 
+    UsersComponent,
+    UserDataComponent
   ],
   imports: [
     CommonModule,

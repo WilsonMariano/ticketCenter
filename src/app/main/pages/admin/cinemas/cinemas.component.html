@@ -5,7 +5,7 @@
         <hr class="color-primary">
       </div>
       <div class="col-md-12 mb-5">
-        <button class="btn btn-primary float-end" (click)="navigateTo('admin/datos-cinema/nuevo')"><i class="fas fa-plus"></i> Añadir</button>
+        <button class="btn btn-primary float-end" (click)="navigateTo('admin/cinema-data/nuevo')"><i class="fas fa-plus"></i> Añadir</button>
       </div>
         <div class="col-md-12">
             <table class="table">
@@ -24,7 +24,7 @@
                     <td>{{c.address}}</td>
                     <td>{{c.location}}</td>
                     <td>{{c.phone}}</td>
-                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/datos-cinema/' + c.id)"></i></td>
+                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/cinema-data/' + c.id)"></i></td>
                   </tr>
                 </tbody>
               </table>
