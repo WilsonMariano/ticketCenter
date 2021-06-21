@@ -114,7 +114,6 @@ export class MovieDetailComponent implements OnInit {
       });
     }
   } 
-  // public selectedDate: any;
 
   public selectMovieShow(movieShow: MovieShow) {
 

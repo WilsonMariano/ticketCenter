@@ -1,4 +1,3 @@
-import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cinema } from 'src/app/main/classes/cinema.class';
