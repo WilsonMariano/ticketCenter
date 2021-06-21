@@ -57,9 +57,7 @@ export class TrxCountDownComponent implements OnInit {
    * Despliega un alert para advertir el tiempo restante de operación
    */
   private showTimeWarning(){
-    var x = document.getElementById("snackbar");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    this.fxGlobalsService.showToast("timeToast");
   }
 
   /**
