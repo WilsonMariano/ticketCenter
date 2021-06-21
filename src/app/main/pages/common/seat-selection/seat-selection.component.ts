@@ -159,7 +159,7 @@ export class SeatSelectionComponent implements OnInit {
   }
 
   public selectSeat(seatObject: any) {
-    if (seatObject.status == "available") {
+    if (seatObject.status == "available" && this.cart.selectedSeats.length < this.dataService.reservation.ticketQuantity ) {
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
       this.cart.seatstoStore.push(seatObject.key);
