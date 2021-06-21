@@ -1,0 +1,20 @@
+import { SaloonDataComponent } from './saloon-data/saloon-data.component';
+import { AbmSaloonsComponent } from './abm-saloons/abm-saloons.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ManagerComponent } from './manager.component';
+
+
+const managerRoutes: Routes = [
+    {
+        path: 'manager',
+        component: ManagerComponent,
+        children: [
+            { path: '',                             redirectTo: 'abm-saloons',          pathMatch: 'full'         },
+            { path: 'abm-saloons',                  component: AbmSaloonsComponent                                },
+            { path: 'saloon-data/:id',                  component: SaloonDataComponent                                }
+        ]
+    }
+];
+
+
+export const MANAGER_ROUTES = RouterModule.forChild( managerRoutes );

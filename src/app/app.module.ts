@@ -1,3 +1,4 @@
+import { ManagerModule } from './main/pages/manager/manager.module';
 import { AdminModule } from './main/pages/admin/admin.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AdminModule,
     AuthModule,
+    ManagerModule,
     AppRoutingModule,
     CommonsModule,
     DatabaseModule

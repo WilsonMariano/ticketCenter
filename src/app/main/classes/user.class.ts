@@ -7,6 +7,7 @@ export class User {
     public document: number;
     public preferenceCinema: number;
     public role: ERole;
+    public idCinema?: string;
 }
 
 export enum ERole {
