@@ -1,11 +1,13 @@
 import { Movie } from './movie.class';
 import { Cinema } from './cinema.class';
+import { Movie } from './movie.class';
 import { MovieShow } from './movieShow.class';
 import { Seat } from './seat.class';
 export class Reservation {
    
     public id: string;
     public user: string;
+    public movie: Movie;
     public movieShow: MovieShow;
     public cinema: Cinema;
     public movie: Movie;

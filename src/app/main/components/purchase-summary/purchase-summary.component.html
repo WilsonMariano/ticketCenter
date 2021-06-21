@@ -1,41 +1,34 @@
-<div class="row">
-    <div class="ticket">
-        <div class="holes-top"></div>
-        <div class="title">
-            <!-- <p >ONLY GOD FORGIVES</p> -->
-            <h5 class="movie-title mt-5">ONLY GOD FORGIVES</h5>
+<div class="d-none d-lg-block">
+    <div class="row jumbotron mt-4 mx-auto">
+        <div class="ticket mt-4 mx-auto">
+            <div class="holes-top"></div>
+            <div class="title mt-5">
+                <h4>{{reservation.movie.title}}</h4>
+            </div>
+            <div class="poster">
+                <img src="{{reservation.movie.poster}}" alt="..." />
+            </div>
+            <div class="info">
+                <h6>{{reservation.cinema.name}}</h6>
+                <table>
+                    <tr>
+                        <th>SALA</th>
+                        <th>FECHA</th>
+                        <th>HORA</th>
+                    </tr>
+                    <tr>
+                        <td>{{reservation.saloonNumber}}</td>
+                        <td>{{reservation.movieShow.date.substring(0,5)}}</td>
+                        <td>{{reservation.movieShow.time}}</td>
+                    </tr>
+                </table>
+                <hr>
+                <h6><b>BUTACAS:&nbsp;&nbsp;</b>{{reservation.seats.join('-')}}</h6>
+                <h5><b>TOTAL:&nbsp;&nbsp;</b>{{reservation.totalAmount | currency}}</h5>
+            </div>
+            <div class="holes-lower"></div>
+            <img src="../../../../assets/img/QR.png" class="img-fluid Qr">
+            <p>TRX: {{reservation.id}}</p>
         </div>
-        <div class="poster">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/25240/only-god-forgives.jpg" alt="Movie: Only God Forgives" />
-        </div>
-        <div class="info">
-            <table>
-                <tr>
-                    <th>SALA</th>
-                    <th>FILA</th>
-                    <th>ASIENTO</th>
-                </tr>
-                <tr>
-                    <td class="bigger">18</td>
-                    <td class="bigger">H</td>
-                    <td class="bigger">24</td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th>PRECIO</th>
-                    <th>FECHA</th>
-                    <th>HORA</th>
-                </tr>
-                <tr>
-                    <td>$560.00</td>
-                    <td>23/06</td>
-                    <td>19:30</td>
-                </tr>
-            </table>
-        </div>
-        <div class="holes-lower"></div>
-        <img src="../../../../assets/img/QR.png" class="img-fluid QR">
-        <p>TRX: 09864596540</p>
     </div>
 </div>

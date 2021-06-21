@@ -120,16 +120,9 @@ export class MovieDetailComponent implements OnInit {
 
     if(this.authService.getUserData()) {
       const reservation = new Reservation();
-      reservation.movieShow.id = movieShow.id;
-      reservation.movieShow.idSaloon = movieShow.idSaloon;
-      reservation.movieShow.time = movieShow.time;
-      reservation.movieShow.type = movieShow.type;
-      reservation.movieShow.remainingSeats = movieShow.remainingSeats;
+      reservation.movieShow = movieShow;
       reservation.movieShow.date = this.selectedDate +'/'+ moment().year();
-      reservation.movie.id = this.movie.id;
-      reservation.movie.title = this.movie.title;
-      reservation.movie.poster = this.movie.poster;
-      reservation.movie.runtime = this.movie.runtime;
+      reservation.movie = this.movie;
       
       this.dataService.reservation = reservation;
       this.showTicketSelection = true;
