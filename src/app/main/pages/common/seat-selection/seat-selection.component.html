@@ -1,54 +1,54 @@
-<div class="container text-center">
+<div class="text-center">
     <div class="row">
-  <h2 class="mt-3">Selección de butacas</h2>
+        <h2 class="m-3">Selección de butacas</h2>
     </div>
-    
-    <div class="row mx-auto">
-        <div class="col-md-6 seat-container pl-5">
-            <app-trx-count-down></app-trx-count-down>
-            <br>
-            <div *ngFor="let seatrow of seatmap ">
-                <div class="col-12 pricing-label"
-                    *ngIf="seatChartConfig?.showRowWisePricing && seatrow.seatPricingInformation != ''">
-                    {{seatrow.seatPricingInformation}}</div>
-                <div class="seatrow">
-                    <div *ngIf="seatChartConfig?.showRowsLabel">
-                        <div class="row-label">{{seatrow.seatRowLabel}}</div>
+
+    <div class="row jumbotron mx-auto">
+        <div class="col-md-8">
+            <div class="seat-container mt-4">
+                <app-trx-count-down></app-trx-count-down>
+                <br>
+                <div *ngFor="let seatrow of seatmap">
+                    <div class="col-12 pricing-label" *ngIf="seatChartConfig?.showRowWisePricing && seatrow.seatPricingInformation != ''">
+                        {{seatrow.seatPricingInformation}}
                     </div>
-                    <div *ngFor="let seatobj of seatrow.seats">
-                        <div class="seat-item seat-space" style="color:white ; background-color:white"
-                            *ngIf="seatobj.seatLabel == ''"> &nbsp; </div>
-                        <div tooltip="Seat : {{seatobj.seatLabel}} | Price : {{seatobj.price}}Rs" placement="top"
-                            [ngClass]="{ 'seat-item' : true , 'seat-available' : seatobj.status == 'available' ,'seat-booked' : seatobj.status == 'booked' ,'seat-unavailable' : seatobj.status == 'unavailable' }"
-                            (click)="selectSeat(seatobj)"
-                            *ngIf="(seatobj.status == 'available' || seatobj.status == 'booked' )&& seatobj.seatLabel != ''">
-                            {{seatobj.seatNo}}</div>
-                        <div tooltip="Seat not available" placement="top"
-                            [ngClass]="{ 'seat-item' : true , 'seat-unavailable' : true }"
-                            *ngIf="seatobj.status == 'unavailable' && seatobj.seatLabel != ''">{{seatobj.seatNo}}</div>
+                    <div class="seatrow">
+                        <div *ngIf="seatChartConfig?.showRowsLabel">
+                            <div class="row-label">{{seatrow.seatRowLabel}}</div>
+                        </div>
+                        <div *ngFor="let seatobj of seatrow.seats">
+                            <div class="seat-item seat-space" style="color:white ; background-color:white" *ngIf="seatobj.seatLabel == ''"> &nbsp;</div>
+                            <div tooltip="Seat : {{seatobj.seatLabel}} | Price : {{seatobj.price}}Rs" placement="top"
+                                [ngClass]="{ 'seat-item' : true , 'seat-available' : seatobj.status == 'available' ,'seat-booked' : seatobj.status == 'booked' ,'seat-unavailable' : seatobj.status == 'unavailable' }"
+                                (click)="selectSeat(seatobj)"
+                                *ngIf="(seatobj.status == 'available' || seatobj.status == 'booked' )&& seatobj.seatLabel != ''">
+                                {{seatobj.seatNo}}</div>
+                            <div tooltip="Seat not available" placement="top"
+                                [ngClass]="{ 'seat-item' : true , 'seat-unavailable' : true }"
+                                *ngIf="seatobj.status == 'unavailable' && seatobj.seatLabel != ''">{{seatobj.seatNo}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="summary-bar">
                 <div class="selected-seats mt-5">
-                    <h5>Seleccionadas : {{ cart?.selectedSeats?.length }}</h5>
-                    <!-- <h5>Monto total :&nbsp;&nbsp; $ {{cart.totalamount}}</h5> -->
+                    <h5>Seleccionadas : {{ cart?.selectedSeats?.length }} de {{dataService.reservation.ticketQuantity}}</h5>
                     <h5>Butacas seleccionadas :</h5>
                     <span *ngFor="let seatLabel of cart.selectedSeats" class="badge badge-primary">{{seatLabel}}</span>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <app-purchase-summary></app-purchase-summary>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-12 book-area mt-4">
-            <button [disabled]="cart?.selectedSeats?.length == 0" type="button" class="btn btn-primary" [routerLink]="'/pay-method'"
-                mdbWavesEffect>Continuar</button>
+        <div class="col-12 book-area mt-5">
+            <button class="btn btn-primary btn-lg" [disabled]="cart?.selectedSeats?.length != dataService.reservation.ticketQuantity" [routerLink]="'/pay-method'" mdbWavesEffect>Continuar</button>
         </div>
     </div>
     <app-spinner></app-spinner>

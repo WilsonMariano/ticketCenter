@@ -1,9 +1,17 @@
 $seat-available-bg: white;
 $seat-available-color: #a0a0a0;
-$seat-booked-bg: #a0a0a0;
+$seat-booked-bg: #72DE4A;
 $seat-booked-color: white;
 $seat-unavailable-bg: #F55F3F;
 $seat-unavailable-color: white;
+$seat-space-bg: #191919;
+
+.jumbotron{
+    background-color: $seat-space-bg !important ;
+    padding: 15px 30px 40px 30px !important;
+    border-radius: 15px;
+	width: 90%;
+}
 
 .badge-primary
 {
@@ -27,7 +35,7 @@ $seat-unavailable-color: white;
 }
 .seat-item
 {
-    height: 40px;
+    height: auto;
     width: 40px;
     line-height: 25px;
     margin: 3px;
@@ -37,9 +45,9 @@ $seat-unavailable-color: white;
 }
 .seat-space
 {
-    background-color: white;
+    background-color: $seat-space-bg !important;
     border: 0;
-    // cursor: none;
+    cursor: none;
 }
 .seat-available
 {
@@ -79,6 +87,9 @@ $seat-unavailable-color: white;
     overflow-x: auto;
     padding: 5% 5%;
     overflow-y: hidden;
+    border-style: solid;
+    border-color: #94824B;
+    border-radius: 15px;
 }
 
 .seat-screen

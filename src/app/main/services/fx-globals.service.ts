@@ -33,7 +33,7 @@ export class FxGlobalsService {
     let toastContainer = document.getElementById("toastContainer");
     let toastDOM =  document.getElementById(toastId);
     toastContainer.appendChild(toastDOM);
-    let toast = new bootstrap.Toast(toastDOM);//inizialize it
+    let toast = new bootstrap.Toast(toastDOM, {delay:3000});//inizialize it
     toast.show();//show it
   }
 

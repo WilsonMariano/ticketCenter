@@ -37,7 +37,7 @@ export class SeatSelectionComponent implements OnInit {
     private router: Router,
     private cinemasService: CinemasService,
     private fxGlobalService: FxGlobalsService,
-    private dataService: DataService
+    public dataService: DataService
   ){
   }
 
@@ -67,11 +67,10 @@ export class SeatSelectionComponent implements OnInit {
       seatsArray.push(
         { 
           seat_label: abc[i],
-          layout: saloon.layout[abc[i]].join()
+          layout: saloon.layout[abc[i]].join('')
         }
       );
     }
-
     this.seatConfig = [
       {
         seat_price: 250,  //TODO: ver si podemos sacar esto
@@ -159,7 +158,7 @@ export class SeatSelectionComponent implements OnInit {
   }
 
   public selectSeat(seatObject: any) {
-    if(this.cart.selectedSeats.length == this.dataService.reservation.ticketQuantity){
+    if(this.cart.selectedSeats.length == this.dataService.reservation.ticketQuantity && seatObject.status == "available"){
       this.fxGlobalService.showToast("seatsToast");
     } else if (seatObject.status == "available") {
       seatObject.status = "booked";
