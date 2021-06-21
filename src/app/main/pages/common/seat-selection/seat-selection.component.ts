@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Cinema } from 'src/app/main/classes/cinema.class';
 import { MovieShow } from 'src/app/main/classes/movieShow.class';
 import { Saloon } from 'src/app/main/classes/saloon.class';
 import { CinemasService } from 'src/app/main/services/cinemas.service';
+import { DataService } from 'src/app/main/services/data.service';
 import { FxGlobalsService } from 'src/app/main/services/fx-globals.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class SeatSelectionComponent implements OnInit {
 
   public countDown: string;
   public cinema: Cinema;
-  private movieShow : MovieShow;
+  private movieShow: MovieShow;
   public seatConfig: any = null;
   public seatmap = [];
   public seatChartConfig = {
@@ -35,24 +36,14 @@ export class SeatSelectionComponent implements OnInit {
   constructor(
     private router: Router,
     private cinemasService: CinemasService,
-    private fxGlobalService: FxGlobalsService
+    private fxGlobalService: FxGlobalsService,
+    private dataService: DataService
   ){
   }
 
   ngOnInit(): void {
-    //TODO: Remover funcion de cine hardcode
-    this.movieShow = {
-      id : "1623013541383",
-      day : 4,
-      idCinema : "1623011804458",
-      idSaloon : "1623006476625",
-      time : "22:00",
-      type : "2D Subtitulada",
-      bookedSeats : ["A_1", "B_2"]
-    };
-    // TODO: Tomar el objeto movie desde localStorage
-    // this.movieShow = JSON.parse(localStorage.getItem('movieShow'));
-
+    this.dataService.reservation.seats = [];
+    this.movieShow = this.dataService.reservation.movieShow;
     this.getSaloonLayout(this.movieShow);
   }
 
@@ -64,7 +55,7 @@ export class SeatSelectionComponent implements OnInit {
         const saloon : Saloon = this.cinema[0].saloons.find(s => s.id == movieShow.idSaloon);
         this.setLayout(saloon);
         this.processSeatChart(this.seatConfig);
-        this.blockSeats(this.movieShow.bookedSeats);
+        this.blockSeats(movieShow.bookedSeats);
         this.fxGlobalService.hideSpinner();
       });
   }
@@ -126,7 +117,7 @@ export class SeatSelectionComponent implements OnInit {
 
             if (item != "_") {
               seatObj["seatLabel"] =
-                map_element.seat_label + " " + seatNoCounter;
+                map_element.seat_label + seatNoCounter;
               if (seatNoCounter < 10) {
                 seatObj["seatNo"] = "0" + seatNoCounter;
               } else {
@@ -182,10 +173,7 @@ export class SeatSelectionComponent implements OnInit {
         this.cart.totalamount -= seatObject.price;
       }
     }
+    this.dataService.reservation.seats = this.cart.selectedSeats;
   }
 
-  public submit(){
-    // TODO: Navegar hacia página de checkout
-    // this.router.navigate(['checkout']);
-  }
 }

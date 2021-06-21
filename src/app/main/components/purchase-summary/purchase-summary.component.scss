@@ -1,7 +1,14 @@
 // Variables
-$background-color: #191919 ;
+$background-color: #94824B; // #191919 ;
 $width: 280;
 $circle-size: 50;
+
+.jumbotron{
+    background-color: $background-color !important ;
+    padding: 15px 30px 40px 30px !important;
+    border-radius: 15px;
+	width: $width + 100px;
+}
 
 body {
 	background-color: $background-color;
@@ -16,30 +23,27 @@ img {
 
 .ticket {
 	width: $width + px;
-	height: 680px;
+	height: auto;
 	background-color: white;
-	margin: 25px auto;
 	position: relative;
-    // padding: 50px 25px 10px;
 	color: black;
 }
 
 .holes-top {
 	height: $circle-size + px;
 	width: $circle-size + px;
-	background-color: $background-color;
+	background: $background-color;
 	border-radius: 50%;
 	position: absolute;
 	left:50%;
 	margin-left: ($circle-size / -2) + px;
 	top: ($circle-size / -2) + px;
-	
 	&:before,
 	&:after {
 		content: '';
 		height: $circle-size + px;
 		width: $circle-size + px;
-		background-color: $background-color;
+		background: $background-color;
 		position: absolute;
 		border-radius: 50%;
 	}
@@ -60,7 +64,7 @@ img {
 		content: '';
 		height: $circle-size + px;
 		width: $circle-size + px;
-		background-color: $background-color;
+		background: $background-color;
 		position: absolute;
 		border-radius: 50%;
 	}
@@ -75,68 +79,24 @@ img {
 	}
 }
 
-.QR{
-	width: 100px;
-	height: auto;
-}
-
-.movie-title {
-	font-size: 35px;
-}
-
 .info {
-	padding: 15px 25px;
-    // color: black;
+	padding: 10px;
 }
 
 table {
 	width: 100%;
-	font-size: 18px;
-	margin-bottom: 15px;
+	font-size: 16px;
+	table-layout: fixed !important;
 	tr {
 		margin-bottom: 10px;
 	}
-	
-	th {
-		// text-align: left;
-		&:nth-of-type(1) {
-			width: 38%;
-		}
-		&:nth-of-type(2) {
-			width: 40%;
-		}
-		&:nth-of-type(3) {
-			width: 15%;
-		}
-	}
-	
+		
 	td {
-		// width: 33%;
-		font-size: 20px;
+		width: calc(100%/3) !important;
 	}
 }
 
-.bigger {
-	font-size: 48px;
-}
-
-.serial {
-    // color: black;
-    background-color: white;
-	// padding: 25px;
-	table {
-		border-collapse: collapse;
-		margin: 0 auto;
-	}
-	td {
-		width: 3px;
-		height: 50px;
-	}
-}
-
-.numbers {
-	td {
-		font-size: 16px;
-		text-align: center;
-	}
+.Qr{
+	width: 100px;
+	height: auto;
 }

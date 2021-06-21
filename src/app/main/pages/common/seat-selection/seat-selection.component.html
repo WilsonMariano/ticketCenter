@@ -3,7 +3,7 @@
   <h2 class="mt-3">Selección de butacas</h2>
     </div>
     
-    <div class="row jumbotron mx-auto p-3">
+    <div class="row mx-auto">
         <div class="col-md-6 seat-container pl-5">
             <app-trx-count-down></app-trx-count-down>
             <br>
@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-12 book-area mt-4">
             <button [disabled]="cart?.selectedSeats?.length == 0" type="button" class="btn btn-primary" [routerLink]="'/pay-method'"
-                mdbWavesEffect (click)="submit()">Continuar</button>
+                mdbWavesEffect>Continuar</button>
         </div>
     </div>
     <app-spinner></app-spinner>
