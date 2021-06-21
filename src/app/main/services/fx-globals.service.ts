@@ -30,8 +30,10 @@ export class FxGlobalsService {
     });
   }
 
-  public showSpinner(): void {
+  public showSpinner(timeout?: number): void {
     this.spinnerService.show();
+
+    timeout && setTimeout(() => this.hideSpinner(), timeout);
   }
 
   public hideSpinner(): void {

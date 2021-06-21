@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { UsersService } from '../../../services/users.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -11,9 +12,10 @@ import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public formGroup: FormGroup;
+  private subscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -31,16 +33,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   public async login(): Promise<void> {
     const user = this.formGroup.getRawValue();
     try {
       await this.authService.login(user.email, user.password);
 
-      this.userService.getOneByEmail(user.email).subscribe(
+      this.subscription = this.userService.getOneByEmail(user.email).subscribe(
         data => {
           this.authService.setUserData(data[0]);
           this.dataService.currentUser.next(data[0]);
-          
+   
           switch(data[0].role) {
             case 'admin': 
             this.router.navigate(['admin']);

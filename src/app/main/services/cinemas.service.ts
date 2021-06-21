@@ -27,4 +27,14 @@ export class CinemasService {
   public create(cinema: Cinema): Promise<any> {
     return this.cinemasRef.add({...cinema});
   }
+  
+  public edit(cinema: Cinema): any {
+    this.db.collection(this.dbpath, ref => ref.where('id', '==', cinema.id).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.update({ ...cinema }));
+  });
+  }
 }

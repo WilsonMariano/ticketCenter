@@ -1,3 +1,5 @@
+import { SpinnerModule } from './../../components/spinner/spinner.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AdminGuard } from './admin.guard';
 import { RouterModule } from '@angular/router';
 import { FooterModule } from './../../components/footer/footer.module';
@@ -19,7 +21,9 @@ import { DatosCinemaComponent } from './datos-cinema/datos-cinema.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
+    SpinnerModule,
     NavbarModule,
     FooterModule,
     ADMIN_ROUTES

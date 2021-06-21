@@ -1,8 +1,79 @@
 <div class="container">
-    <div class="row mt-5">
-      <div class="col-md-12 mb-5">
-        <h3 class="color-primary">{{title}}</h3>
-        <hr class="color-primary">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <div class="row mt-5">
+    <div class="col-md-12 mb-5">
+      <h3 class="color-primary" *ngIf="typeOperation === 'nuevo'">Alta de cine</h3>
+      <h3 class="color-primary" *ngIf="typeOperation !== 'nuevo'">Editar cine</h3>
+      <hr class="color-primary">
+    </div>
+      <div class="col-md-6 mb-3">
+        <label for="nombre" class="form-label ">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="name" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('name').errors?.required && formGroup.get('name').touched">
+          El nombre es requerido
+        </small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="phone" class="form-label ">Teléfono</label>
+        <input type="number" class="form-control" id="phone" formControlName="phone" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('phone').errors?.required && formGroup.get('phone').touched">
+          El teléfono es requerido
+        </small>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="address" class="form-label ">Dirección</label>
+        <input type="text" class="form-control" id="address" formControlName="address" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('address').errors?.required && formGroup.get('address').touched">
+          La dirección es requerida
+        </small>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="location" class="form-label ">Localidad</label>
+        <input type="text" class="form-control" id="location" formControlName="location" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('location').errors?.required && formGroup.get('location').touched">
+          La localidad es requerida
+        </small>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="schedule" class="form-label ">Horario</label>
+        <input type="text" class="form-control" id="schedule" formControlName="schedule" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('schedule').errors?.required && formGroup.get('schedule').touched">
+          El horario es requerido
+        </small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="lat" class="form-label ">Latitud</label>
+        <input type="number" class="form-control" id="lat" formControlName="lat" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('lat').errors?.required && formGroup.get('lat').touched">
+          La latitud es requerida
+        </small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="lng" class="form-label ">Longitud</label>
+        <input type="number" class="form-control" id="lng" formControlName="lng" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('lng').errors?.required && formGroup.get('lng').touched">
+          La longitud es requerida
+        </small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="2D" class="form-label ">Precio 2D</label>
+        <input type="number" class="form-control" id="2D" formControlName="2D" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('2D').errors?.required && formGroup.get('2D').touched">
+          El precio es requerido
+        </small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="3D" class="form-label ">Precio 3D</label>
+        <input type="number" class="form-control" id="3D" formControlName="3D" autocomplete="off">
+        <small class="color-primary" *ngIf="formGroup.get('3D').errors?.required && formGroup.get('3D').touched">
+          El precio es requerido
+        </small>
+      </div>
+      <div class="col-md-12 text-center mt-4">
+        <button class="btn btn-outline-primary" routerLink='../../abm-cinemas'>VOLVER</button>
+        <button class="btn btn-primary ms-3" [disabled]="formGroup.invalid">ACEPTAR</button>
       </div>
     </div>
+  </form>
 </div>
+<app-spinner></app-spinner>
