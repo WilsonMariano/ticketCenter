@@ -40,13 +40,22 @@ export class LoginComponent implements OnInit {
         data => {
           this.authService.setUserData(data[0]);
           this.dataService.currentUser.next(data[0]);
+          
+          switch(data[0].role) {
+            case 'admin': 
+            this.router.navigate(['admin']);
+            break;
+            default: 
+              this.router.navigate(['home']);
+            break;
+          }
         }
       );
   
       this.dataService.isLogged.next(true);
       localStorage.setItem('accessToken', this.authService.getUserToken());
       this.formGroup.reset();
-      this.router.navigate(['home']);
+
 
     } catch(e) {
       console.log("error: ", e);

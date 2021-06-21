@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', [Validators.required, Validators.minLength(6), Validators.pattern('^.{6,14}$')]],
       'passwordRepeat': ['', [Validators.required, Validators.minLength(6)]],
+      'role': ['client', [Validators.required]],
       'document': ['', [Validators.required, Validators.min(1111111), Validators.max(9999999999)]]
     });
   }

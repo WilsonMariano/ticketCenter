@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Cinema } from './../classes/cinema.class';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
@@ -14,16 +15,16 @@ export class CinemasService {
     this.cinemasRef = db.collection(this.dbpath);
    }
 
-  public getAll(): any {
+  public getAll(): Observable<any> {
     return this.cinemasRef.valueChanges();
   }
 
-  public getOne(id: string): any {
+  public getOne(id: string): Observable<any> {
     return this.db.collection(this.dbpath, ref => ref.where('id', '==', id).limit(1))
       .valueChanges();
   }
 
-  public create(cinema: Cinema): any {
+  public create(cinema: Cinema): Promise<any> {
     return this.cinemasRef.add({...cinema});
   }
 }

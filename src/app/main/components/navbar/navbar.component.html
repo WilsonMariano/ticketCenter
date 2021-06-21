@@ -9,15 +9,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item" roleMenu="anonymus|client">
           <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active">Inicio</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" roleMenu="anonymus|client">
           <a class="nav-link" routerLink="/movies" routerLinkActive="active">Películas</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" roleMenu="anonymus|client">
           <a class="nav-link" routerLink="/cinemas" routerLinkActive="active">Complejos</a>
         </li>
+        <li class="nav-item"  roleMenu="admin">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">ABM Cinemas</a>
+        </li>
+        <!-- <li class="nav-item"  roleMenu="admin">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">ABM Usuarios</a>
+        </li> -->
       </ul>
       <ul class="navbar-nav mr-sm-2">
         <li class="nav-item" *ngIf="!isLogged">

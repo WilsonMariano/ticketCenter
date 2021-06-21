@@ -1,4 +1,7 @@
+import { Cinema } from 'src/app/main/classes/cinema.class';
+import { CinemasService } from 'src/app/main/services/cinemas.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cinemas',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CinemasComponent implements OnInit {
 
-  constructor() { }
+  public cinemas: Cinema[];
+
+  constructor(
+    public cinemasService: CinemasService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.cinemasService.getAll().subscribe(
+      res => this.cinemas = res
+    );
+  }
+
+  public navigateTo(url: string): void {
+    this.router.navigate([url]);
   }
 
 }

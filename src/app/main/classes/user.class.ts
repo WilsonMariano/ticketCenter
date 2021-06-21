@@ -6,4 +6,12 @@ export class User {
     public password: string;
     public document: number;
     public preferenceCinema: number;
+    public role: ERole;
+}
+
+export enum ERole {
+    client = 'client',
+    admin = 'admin',
+    manager = 'manager',
+    anonymus = 'anonymus'
 }
