@@ -6,9 +6,9 @@ export class Reservation {
    
     public id: string;
     public user: string;
+    public movie: Movie;
     public movieShow: MovieShow;
     public cinema: Cinema;
-    public movie: Movie;
     public saloonNumber: number;
     public price: number;
     public ticketQuantity: number;
