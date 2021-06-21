@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal;
+declare var bootstrap;
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,14 @@ export class FxGlobalsService {
 
   public hideSpinner(): void {
     setTimeout(() => this.spinnerService.hide(), 100);
+  }
+
+  public showToast(toastId: string){
+    let toastContainer = document.getElementById("toastContainer");
+    let toastDOM =  document.getElementById(toastId);
+    toastContainer.appendChild(toastDOM);
+    let toast = new bootstrap.Toast(toastDOM);//inizialize it
+    toast.show();//show it
   }
 
   public firstToCapital(w: string): string{

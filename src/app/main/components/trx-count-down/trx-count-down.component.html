@@ -2,4 +2,4 @@
     <i class="fas fa-hourglass-start"></i>&nbsp; {{countDown}}
 </h5>
 
-<div id="snackbar">Te quedan {{timerWarning | slice:0:1}} minutos para finalizar la compra!</div>
+<app-toast toastId="timeToast" message="Te quedan {{timerWarning | slice:0:1}} minutos para finalizar la compra!"></app-toast>

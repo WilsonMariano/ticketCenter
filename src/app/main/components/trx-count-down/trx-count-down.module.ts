@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrxCountDownComponent } from './trx-count-down.component';
+import { ToastModule } from '../toast/toast.module';
 
 
 
 @NgModule({
   declarations: [TrxCountDownComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ToastModule
   ],
   exports: [
     TrxCountDownComponent

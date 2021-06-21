@@ -23,6 +23,7 @@ import { NavbarModule } from './../../components/navbar/navbar.module';
 import { COMMON_ROUTES } from './common-routes.module';
 import { TrxCountDownModule } from '../../components/trx-count-down/trx-count-down.module';
 import { PurchaseSummaryModule } from '../../components/purchase-summary/purchase-summary.module';
+import { ToastModule } from '../../components/toast/toast.module';
 
 
 
@@ -52,6 +53,7 @@ import { PurchaseSummaryModule } from '../../components/purchase-summary/purchas
     CinemaSelectModule,
     TrxCountDownModule,
     PurchaseSummaryModule,
+    ToastModule,
     COMMON_ROUTES
   ]
 })

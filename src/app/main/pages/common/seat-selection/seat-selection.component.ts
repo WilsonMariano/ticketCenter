@@ -17,7 +17,6 @@ export class SeatSelectionComponent implements OnInit {
   public countDown: string;
   public cinema: Cinema;
   private movieShow: MovieShow;
-
   public seatConfig: any = null;
   public seatmap = [];
   public seatChartConfig = {
@@ -160,7 +159,9 @@ export class SeatSelectionComponent implements OnInit {
   }
 
   public selectSeat(seatObject: any) {
-    if (seatObject.status == "available" && this.cart.selectedSeats.length < this.dataService.reservation.ticketQuantity ) {
+    if(this.cart.selectedSeats.length == this.dataService.reservation.ticketQuantity){
+      this.fxGlobalService.showToast("seatsToast");
+    } else if (seatObject.status == "available") {
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
       this.cart.seatstoStore.push(seatObject.key);
