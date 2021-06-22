@@ -35,5 +35,4 @@ export class CinemasComponent implements OnInit {
   public pageChanged(data: any){
     this.pagedCinemaItems = data;
   }
-
 }
