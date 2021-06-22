@@ -7,6 +7,7 @@ import { CinemasService } from './cinemas.service';
 import { MoviesService } from './movies.service';
 import { NgModule } from '@angular/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PagerService } from './pager.service';
 
 
 
@@ -21,7 +22,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     UsersService,
     TransactionService,
     AuthService,
-    FxGlobalsService
+    FxGlobalsService,
+    PagerService
   ],
 })
 export class ServicesModule { }

@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 export class CinemasComponent implements OnInit {
 
   public cinemas: Cinema[];
+  public pagedCinemaItems: Cinema[];
 
   constructor(
     public cinemasService: CinemasService,
-    private router: Router) { }
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.cinemasService.getAll().subscribe(
@@ -26,4 +28,11 @@ export class CinemasComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  /**
+   * Handler para el output del paginado. Actualiza los items de mi array
+   * @param data 
+   */
+  public pageChanged(data: any){
+    this.pagedCinemaItems = data;
+  }
 }

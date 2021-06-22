@@ -1,33 +1,36 @@
 <div class="container">
-    <div class="row mt-5">
-      <div class="col-md-12 mb-5">
-        <h3 class="color-primary">Cinemas</h3>
-        <hr class="color-primary">
-      </div>
-      <div class="col-md-12 mb-5">
-        <button class="btn btn-primary float-end" (click)="navigateTo('admin/cinema-data/nuevo')"><i class="fas fa-plus"></i> Añadir</button>
-      </div>
-        <div class="col-md-12">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Localidad</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let c of cinemas">
-                    <td>{{c.name}}</td>
-                    <td>{{c.address}}</td>
-                    <td>{{c.location}}</td>
-                    <td>{{c.phone}}</td>
-                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/cinema-data/' + c.id)"></i></td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
+  <div class="row mt-5">
+    <div class="col-md-12 mb-5">
+      <h3 class="color-primary">Cinemas</h3>
+      <hr class="color-primary">
     </div>
+    <div class="col-md-12 mb-5">
+      <button class="btn btn-primary float-end" (click)="navigateTo('admin/cinema-data/nuevo')"><i
+          class="fas fa-plus"></i> Añadir</button>
+    </div>
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Localidad</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of pagedCinemaItems">
+            <td>{{c.name}}</td>
+            <td>{{c.address}}</td>
+            <td>{{c.location}}</td>
+            <td>{{c.phone}}</td>
+            <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/cinema-data/' + c.id)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-pager [items]="cinemas"  (pageChanged)="pageChanged($event)"></app-pager>
 </div>

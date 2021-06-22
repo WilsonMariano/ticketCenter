@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit {
 
   public users: User[];
+  public pagedUsersItems: User[];
 
   constructor(
     private router: Router,
@@ -23,4 +24,12 @@ export class UsersComponent implements OnInit {
   public navigateTo(url: string): void {
     this.router.navigate([url]);
   }
+
+    /**
+   * Handler para el output del paginado. Actualiza los items de mi array
+   * @param data 
+   */
+     public pageChanged(data: any){
+      this.pagedUsersItems = data;
+    }
 }

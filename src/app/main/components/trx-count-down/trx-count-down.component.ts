@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { EIcon, FxGlobalsService } from '../../services/fx-globals.service';
 import { environment } from '../../../../environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-trx-count-down',
@@ -15,7 +16,8 @@ export class TrxCountDownComponent implements OnInit {
   public countDown: string;
   public timerWarning: string = "3:00";
   private timerStrFormat: string = "m:ss"
-  public timerDuration = environment.timerDuration ?? "5:00";
+  private timerDuration = environment.timerDuration ?? "5:00";
+  private subscription: Subscription;
 
   constructor(
     private dataService: DataService,
@@ -23,8 +25,12 @@ export class TrxCountDownComponent implements OnInit {
     private fxGlobalsService: FxGlobalsService) { }
 
   ngOnInit(): void {
-    this.dataService.trxCountDown$.subscribe(res => this.countDown = res);
+    this.subscription = this.dataService.trxCountDown$.subscribe(res => this.countDown = res);
     this.setTrxTimer();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   private setTrxTimer(){

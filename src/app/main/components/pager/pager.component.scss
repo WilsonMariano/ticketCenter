@@ -1,0 +1,14 @@
+.page-item.active .page-link {
+    background-color: #9c7500 !important;
+    border-color: #343a40;
+    color : #000
+}
+
+li.page-item.disabled{
+    background-color: inherit !important ;
+}
+
+.page-item .page-link{
+    background-color: inherit !important;
+    color : #fff
+}
