@@ -33,10 +33,10 @@ export class CardDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      number: ['377790039424552', [Validators.required, this.cardNumberValidator]],
-      name: ['Mariano Wilson', [Validators.required]],
-      expiry: ['12/2021', [Validators.required, this.expirationDateValidator]],
-      cvc: ['123', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]]
+      number: ['', [Validators.required, this.cardNumberValidator]],
+      name: ['', [Validators.required]],
+      expiry: ['', [Validators.required, this.expirationDateValidator]],
+      cvc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]]
     });
 
     this.initCreditCard();

@@ -15,7 +15,7 @@ export class TrxCountDownComponent implements OnInit {
   public countDown: string;
   public timerWarning: string = "3:00";
   private timerStrFormat: string = "m:ss"
-  private timerDuration = environment.timerDuration ?? "5:00";
+  public timerDuration = environment.timerDuration ?? "5:00";
 
   constructor(
     private dataService: DataService,
