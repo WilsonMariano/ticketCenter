@@ -27,12 +27,12 @@ $seat-unavailable-color: white;
 }
 .seat-item
 {
-    height: 27px;
-    width: 27px;
+    height: 30px;
+    width: 30px;
     line-height: 25px;
     margin: 3px;
     border-radius: 7px;
-    font-size: 14px;
+    font-size: 12px;
     padding-left: 5px;
 }
 .seat-space
@@ -77,8 +77,8 @@ $seat-unavailable-color: white;
 .seat-container
 {
     overflow-x: auto;
-    padding: 5% 25%;
     overflow-y: hidden;
+    border: 1px solid #fff;
 }
 
 .seat-screen
@@ -146,4 +146,14 @@ $seat-unavailable-color: white;
 .no-padding
 {
     padding: 0;
+}
+
+// Stepers
+.active .bs-stepper-circle {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.line {
+    background: #4c51575e;
 }

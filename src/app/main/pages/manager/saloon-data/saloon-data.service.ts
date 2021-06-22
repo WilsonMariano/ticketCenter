@@ -82,11 +82,11 @@ export class SaloonDataService {
 
   public selectSeat(seatObject: any) {
     if (seatObject.status == "available") {
-      seatObject.status = "booked";
+      seatObject.status = "unavailable";
       this.cart.selectedSeats.push(seatObject.seatLabel);
       this.cart.seatstoStore.push(seatObject.key);
       this.cart.totalamount += seatObject.price;
-    } else if ((seatObject.status = "booked")) {
+    } else if ((seatObject.status = "unavailable")) {
       seatObject.status = "available";
       var seatIndex = this.cart.selectedSeats.indexOf(seatObject.seatLabel);
       if (seatIndex > -1) {
