@@ -1,0 +1,30 @@
+<div class="row mt-5">
+    <div class="col-md-12">
+        <ul *ngIf="pager.pages && pager.pages.length > 1" class="pagination justify-content-center pagination-sm">
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(1)">
+                    <i class="fas fa-fast-backward"></i>
+                </a>
+            </li>
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage - 1)">
+                    <i class="fas fa-step-backward"></i>
+                </a>
+            </li>
+            <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.currentPage + 1)">
+                    <i class="fas fa-step-forward"></i>
+                </a>
+            </li>
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.totalPages)">
+                    <i class="fas fa-fast-forward"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<app-spinner></app-spinner>

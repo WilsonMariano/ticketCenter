@@ -12,6 +12,7 @@ import { AdminComponent } from './admin.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { ADMIN_ROUTES } from './admin-routes.module';
 import { UsersComponent } from './users/users.component';
+import { PagerModule } from '../../components/pager/pager.module';
 
 
 
@@ -30,6 +31,7 @@ import { UsersComponent } from './users/users.component';
     SpinnerModule,
     NavbarModule,
     FooterModule,
+    PagerModule,
     ADMIN_ROUTES
   ],
   providers: [
