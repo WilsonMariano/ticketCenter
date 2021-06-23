@@ -52,7 +52,7 @@
             </div> -->
         </div>
     </form>
-    <div class="row mt-5">
+    <div class="row mt-5" *ngIf="user.role === 'client'">
         <div class="col-md-12">
             <h3 class="color-primary">Tickets</h3>
             <hr class="color-primary">

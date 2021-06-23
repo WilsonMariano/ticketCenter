@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Reservation } from './../classes/reservation';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -21,17 +22,17 @@ export class DataService {
 
     public reservation: Reservation;
 
-    constructor() {
+    constructor(private authService: AuthService) {
         this.cinemaSelected = new BehaviorSubject<string>('0');
         this.cinemaSelected$ = this.cinemaSelected.asObservable();
 
         this.trxCountDown = new BehaviorSubject<string>(this.timerDuration);
         this.trxCountDown$ = this.trxCountDown.asObservable();
 
-        this.currentUser = new BehaviorSubject<User>(null);
+        this.currentUser = new BehaviorSubject<User>(this.authService.getUserData());
         this.currentUser$ = this.currentUser.asObservable();
 
-        this.isLogged = new BehaviorSubject<Boolean>(false);
+        this.isLogged = new BehaviorSubject<Boolean>(this.authService.getUserData() ? true : false);
         this.isLogged$ = this.isLogged.asObservable();
     }
 }

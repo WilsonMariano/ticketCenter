@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { DataService } from '../../../services/data.service';
 import { EIcon, FxGlobalsService } from '../../../services/fx-globals.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private location: Location,
     private fxGlobalsService: FxGlobalsService,
     private dataService: DataService,
     private userService: UsersService
@@ -34,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription && this.subscription.unsubscribe();
   }
 
   public async login(): Promise<void> {
@@ -55,7 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigate(['manager']);
             break;
             default: 
-              this.router.navigate(['home']);
+              this.location.back();
+              // this.router.navigate(['home']);
             break;
           }
         }

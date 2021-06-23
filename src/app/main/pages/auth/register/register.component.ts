@@ -44,8 +44,9 @@ export class RegisterComponent implements OnInit {
       delete user.passwordRepeat;
       this.usersService.create(user);
       this.formGroup.reset();
+      
       this.fxGlobalsService.showAlert('Registro exitoso', 'El usuario se ha creado con éxito!', EIcon.success);
-      this.router.navigate['login'];
+      this.router.navigate(['auth/login']);
 
     } catch(e) {
       console.log("error: ", e);

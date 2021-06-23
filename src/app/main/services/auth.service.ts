@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(
     private auth: AngularFireAuth,
-    private dataService: DataService,
+    // private dataService: DataService,
     private router: Router) { }
 
   public createUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
@@ -25,8 +25,6 @@ export class AuthService {
 
   public logout(): void {
     this.auth.signOut().then(() => {
-      this.dataService.currentUser.next(null);
-      this.dataService.isLogged.next(false);
       localStorage.clear();
       this.router.navigate(['auth/login']);
     }).catch((error) => {

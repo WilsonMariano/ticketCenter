@@ -43,6 +43,7 @@ export class MovieDetailComponent implements OnInit {
     this.setNextMovieShowsDays();
 
     const idCinema: string = this.dataService.cinemaSelected.value;
+    
     if (idCinema !== '0') {
       this.getMovieShows(idCinema, idMovie);
     }
@@ -52,10 +53,8 @@ export class MovieDetailComponent implements OnInit {
     this.spinner.show();
     this.moviesService.getOne(idMovie).subscribe(
       res => {
-        console.log(res);
         if(res.length === 1) {
           this.movie = res[0];
-          this.getMovieShows('', this.movie.id);
         } 
         setTimeout(() => this.spinner.hide(), 1000);
       }
@@ -64,7 +63,7 @@ export class MovieDetailComponent implements OnInit {
 
   private getMovieShows(idCinema, idMovie): void {
     this.movieShowService.getByMovieAndCinema(idCinema, idMovie).subscribe(
-      res => this.movieShows = res
+      res => {this.movieShows = res; console.log({res} )}
     );
   }
 

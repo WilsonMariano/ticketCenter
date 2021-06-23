@@ -19,7 +19,7 @@ declare const $;
 })
 export class ProfileComponent implements OnInit {
 
-  private user: User;
+  public user: User;
   public cinemas: Cinema[];
   public transactions: Reservation[];
   public formGroup: FormGroup;
@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getUserData();
+    console.log({user: this.user});
     this.formGroup = this.fb.group({
       'name': [{value: this.user.name, disabled: true}],
       'surname': [{value: this.user.surname, disabled: true}],
