@@ -1,6 +1,5 @@
 import { Saloon } from './../../../classes/saloon.class';
 import { AuthService } from './../../../services/auth.service';
-import { Cinema } from 'src/app/main/classes/cinema.class';
 import { CinemasService } from 'src/app/main/services/cinemas.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,7 +20,9 @@ export class AbmSaloonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cinemaService.getOne(this.authService.getUserData().idCinema).subscribe(
-      res => {this.saloons = res[0].saloons; console.log(res[0].saloons)});
+      res => {
+        this.saloons = res[0].saloons;
+      });
   }
 
   public navigateTo(url: string): void {

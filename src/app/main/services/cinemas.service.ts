@@ -1,3 +1,4 @@
+import { Saloon } from 'src/app/main/classes/saloon.class';
 import { Observable } from 'rxjs';
 import { Cinema } from './../classes/cinema.class';
 import { Injectable } from '@angular/core';
@@ -35,6 +36,6 @@ export class CinemasService {
     .then(snapshot => {
       snapshot.forEach(document => 
         document.ref.update({ ...cinema }));
-  });
+    });
   }
 }

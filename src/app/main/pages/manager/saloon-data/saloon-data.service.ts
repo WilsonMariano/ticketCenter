@@ -1,10 +1,10 @@
+import { Cinema } from 'src/app/main/classes/cinema.class';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaloonDataService {
-
 
   public seatmap = [];
   public seatChartConfig = {
@@ -21,6 +21,16 @@ export class SaloonDataService {
   };
 
   constructor() {
+   }
+
+   public initCard(): void {
+     this.cart = {
+      selectedSeats: [],
+      seatstoStore: [],
+      totalamount: 0,
+      cartId: "",
+      eventId: 0
+    };
    }
 
    public processSeatChart(map_data: any[]) {
@@ -51,11 +61,12 @@ export class SaloonDataService {
             seatNoCounter = 1; //Reset the seat label counter for new row
           }
           var totalItemCounter = 1;
+          // console.log({seatValArr});
           seatValArr.forEach(item => {
             var seatObj = {
               key: map_element.seat_label + "_" + totalItemCounter,
               price: map_data[__counter]["seat_price"],
-              status: "available"
+              status: item === 'g' ? "available" : "unavailable"
             };
 
             if (item != "_") {
@@ -71,6 +82,11 @@ export class SaloonDataService {
             } else {
               seatObj["seatLabel"] = "";
             }
+            if(item === "e") {
+              seatObj.status = "unavailable";
+              this.cart.selectedSeats.push(seatObj["seatLabel"]);
+              this.cart.seatstoStore.push(seatObj.key);
+            }
             totalItemCounter++;
             mapObj["seats"].push(seatObj);
           });
@@ -81,6 +97,7 @@ export class SaloonDataService {
   }
 
   public selectSeat(seatObject: any) {
+    console.log({seatObject});
     if (seatObject.status == "available") {
       seatObject.status = "unavailable";
       this.cart.selectedSeats.push(seatObject.seatLabel);

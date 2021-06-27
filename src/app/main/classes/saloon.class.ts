@@ -4,4 +4,6 @@ export class Saloon{
     public floor: number;
     public type: string;
     public layout: string[];
+    public height?: number;
+    public width?: number;
 }
