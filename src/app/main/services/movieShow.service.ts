@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
@@ -13,10 +14,16 @@ export class MoviesShowService {
     this.moviesRef = db.collection(this.dbpath);
    }
 
-  public getByMovieAndCinema(idCinema: string, idMovie): any {
+  public getByMovieAndCinema(idCinema: string, idMovie: string): any {
     return this.db.collection(this.dbpath, ref => ref
         .where('idCinema', '==', idCinema)
         .where('idMovie', '==', idMovie))
+    .valueChanges();
+  }
+
+  public getByCinema(idCinema: string): Observable<any> {
+    return this.db.collection(this.dbpath, ref => ref
+        .where('idCinema', '==', idCinema))
     .valueChanges();
   }
 

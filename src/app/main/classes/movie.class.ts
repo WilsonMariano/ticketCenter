@@ -1,7 +1,7 @@
 import { MovieShow } from './movieShow.class';
 
 export class Movie {
-    public id: number;
+    public id: string;
     public title: string;
     public director: string;
     public poster: string;

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Movie } from './../classes/movie.class';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
@@ -23,7 +24,7 @@ export class MoviesService {
       .valueChanges();
   }
 
-  public getAllByCinema(idCinema: string): any {
+  public getAllByCinema(idCinema: string): Observable<any> {
     return this.db.collection(this.dbpath, ref => ref.where('cinemas', 'array-contains', idCinema))
       .valueChanges();
   }

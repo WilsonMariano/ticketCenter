@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12 mb-5">
+        <h3 class="color-primary">Funciones</h3>
+        <hr class="color-primary">
+      </div>
+      <div class="col-md-12 mb-5">
+        <button class="btn btn-primary float-end" (click)="navigateTo('manager/movie-show/nuevo')"><i class="fas fa-plus"></i> Añadir</button>
+      </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Película</th>
+                    <th scope="col">Sala</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Día</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let m of pagedMovieShowsItems">
+                    <td>{{getMovieName(m.idMovie)}}</td>
+                    <td>{{getSaloonNumber(m.idSaloon)}}</td>
+                    <td>{{m.type}}</td>
+                    <td>{{m.day | dayOfWeek}}</td>
+                    <td>{{m.time}}</td>
+                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('manager/movie-show-data/' + m.id)"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <app-pager [items]="movieShows" (pageChanged)="pageChanged($event)"></app-pager>
+</div>

@@ -18,6 +18,7 @@ export class TrxCountDownComponent implements OnInit {
   private timerStrFormat: string = "m:ss"
   private timerDuration = environment.timerDuration ?? "5:00";
   private subscription: Subscription;
+  private intervalRef: any;
 
   constructor(
     private dataService: DataService,
@@ -25,12 +26,14 @@ export class TrxCountDownComponent implements OnInit {
     private fxGlobalsService: FxGlobalsService) { }
 
   ngOnInit(): void {
+    this.dataService.trxCountDown.next(environment.timerDuration);
     this.subscription = this.dataService.trxCountDown$.subscribe(res => this.countDown = res);
     this.setTrxTimer();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    clearInterval(this.intervalRef);
   }
 
   private setTrxTimer(){
@@ -43,7 +46,7 @@ export class TrxCountDownComponent implements OnInit {
     const formatedWarningTime = this.getTimerString(this.timerWarning);
     const formatedEndTime = this.getTimerString("0");
 
-    let timer = setInterval(function() {
+    this.intervalRef = setInterval(function() {
       duration = moment.duration(duration.asSeconds() - interval, 'seconds');
       let min = duration.minutes();
       let sec = duration.seconds();
@@ -54,7 +57,7 @@ export class TrxCountDownComponent implements OnInit {
         this.showTimeWarning();
 
       if (strTimer === formatedEndTime) 
-        this.endTrxCountDown(timer);
+        this.endTrxCountDown(this.intervalRef);
 
     }.bind(this), 1000);
   }

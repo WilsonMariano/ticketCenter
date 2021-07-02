@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  timerDuration: "3:10",
+  timerDuration: "1:00",
   firebaseConfig: {
     apiKey: "AIzaSyB4de3iiPXLpd9EkWRkSKnf1ZIvIfV_510",
     authDomain: "ticketcenter-b326f.firebaseapp.com",
