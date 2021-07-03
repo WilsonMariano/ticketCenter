@@ -109,3 +109,9 @@ select.form-select {
 .form-control:disabled {
     background: #9e9e9e5e !important;
 }
+
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+    background: $color-primary !important;
+    color: #000;
+    font-weight: bold;
+}

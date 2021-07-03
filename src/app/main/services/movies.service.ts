@@ -19,7 +19,7 @@ export class MoviesService {
     return this.moviesRef.valueChanges();
   }
 
-  public getOne(id: string): any {
+  public getOne(id: string): Observable<any> {
     return this.db.collection(this.dbpath, ref => ref.where('id', '==', id).limit(1))
       .valueChanges();
   }

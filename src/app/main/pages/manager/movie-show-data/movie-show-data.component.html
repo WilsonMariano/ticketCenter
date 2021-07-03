@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3 class="color-primary">Funciones</h3>
+            <hr class="color-primary">
+          </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-4">
+            <img *ngIf="movie" [src]="movie.poster" class="img-fluid">
+        </div>
+        <div class="px-5 col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <ng-container *ngFor="let d of daysOfWeek; let i = index">
+                            <input type="radio" class="btn-check" name="btnradio" [id]="d" autocomplete="off" [checked]="selectedDay === i" (change)="changeDay(i)">
+                            <label class="btn btn-outline-primary" [for]="d">{{d}}</label>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-md-12 pt-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Tipo</th>
+                                <th>Sala</th>
+                                <th></th>
+                                <!-- <th></th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="time" class="form-control form-control-sm" [formControl]="formGroup.controls.time"></td>
+                                <td>
+                                    <select class="form-control form-control-sm" [formControl]="formGroup.controls.type" (change)="changeType()">
+                                        <option value="2D - Subtitulada">2D - Subtitulada</option>
+                                        <option value="2D - Doblada">2D - Doblada</option>
+                                        <option value="3D - Subtitulada">3D - Subtitulada</option>
+                                        <option value="3D - Doblada">3D - Doblada</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm" [formControl]="formGroup.controls.saloon">
+                                        <option *ngFor="let s of getSaloonsByType()" [value]="s.id">{{s.number}}</option>
+                                    </select>
+                                </td>
+                                <ng-container *ngIf="!movieShowEdit">
+                                        <td class="text-center"><button class="btn btn-primary" [disabled]="formGroup.invalid" (click)="addMovieShow()">Agregar</button></td>
+                                </ng-container>
+                                <ng-container *ngIf="movieShowEdit">
+                                    <td class="text-center"><button class="btn btn-primary" [disabled]="formGroup.invalid" (click)="confirmEdit()">Editar</button>
+                                    <button class="btn btn-outline-danger" (click)="cancelEdit()">Cancelar</button></td>
+                                </ng-container>
+                            </tr>
+                            <ng-container *ngIf="saloons.length != 0">
+                                <tr *ngFor="let ms of filteredMovieShows">
+                                    <td>{{ms.time}}</td>
+                                    <td>{{ms.type}}</td>
+                                    <td>{{getSaloonNumberById(ms.idSaloon)}}</td>
+                                    <td class="text-center">
+                                        <i class="fas fa-pen cursor-pointer me-5" (click)="editMovieShow(ms)"></i>
+                                        <i class="fas fa-trash cursor-pointer" (click)="deleteMovieShow(ms.id)"></i>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-spinner></app-spinner>
