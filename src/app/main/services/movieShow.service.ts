@@ -29,4 +29,14 @@ export class MoviesShowService {
         document.ref.set({ remainingSeats }, {merge: true}));
     });
   }
+
+  public editField(idMovieShow: string, fieldName: string,  fieldValue: any): void {
+    this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.set({ [fieldName] : fieldValue }, {merge: true}));
+    });
+  }
 }
