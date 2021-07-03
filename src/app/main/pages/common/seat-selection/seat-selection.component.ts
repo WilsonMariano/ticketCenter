@@ -20,16 +20,13 @@ export class SeatSelectionComponent implements OnInit {
   public seatConfig: any = null;
   public seatmap = [];
   public seatChartConfig = {
-    showRowsLabel: false,
+    showRowsLabel: true,
     showRowWisePricing: false,
-    newSeatNoForRow: false
+    newSeatNoForRow: true
   };
   public cart = {
     selectedSeats: [],
     seatstoStore: [],
-    totalamount: 0,
-    cartId: "",
-    eventId: 0
   };
   title = "seat-chart-generator";
 
@@ -82,52 +79,34 @@ export class SeatSelectionComponent implements OnInit {
   private processSeatChart(map_data: any[]) {
     if (map_data.length > 0) {
       var seatNoCounter = 1;
-      for (let i = 0; i < map_data.length; i++) {
-        var row_label = "";
-        var item_map = map_data[i].seat_map;
 
-        //Get the label name and price
-        row_label = "Row " + item_map[0].seat_label + " - ";
-        if (item_map[item_map.length - 1].seat_label != " ") {
-          row_label += item_map[item_map.length - 1].seat_label;
-        } else {
-          row_label += item_map[item_map.length - 2].seat_label;
-        }
-        row_label += " : $ " + map_data[i].seat_price;
+      for (let i = 0; i < map_data.length; i++) {
+        var item_map = map_data[i].seat_map;
 
         item_map.forEach(map_element => {
           var mapObj = {
             seatRowLabel: map_element.seat_label,
-            seats: [],
-            seatPricingInformation: row_label
+            seats: []
           };
-          row_label = "";
+
           var seatValArr = map_element.layout.split("");
-          if (this.seatChartConfig.newSeatNoForRow) {
-            seatNoCounter = 1; //Reset the seat label counter for new row
-          }
+          if (this.seatChartConfig.newSeatNoForRow) seatNoCounter = 1;  
           var totalItemCounter = 1;
+
           seatValArr.forEach(item => {
             var seatObj = {
               key: map_element.seat_label + "_" + totalItemCounter,
-              price: map_data[i]["seat_price"],
               status: "available"
             };
 
             if (item != "_") {
-              seatObj["seatLabel"] =
-                map_element.seat_label + seatNoCounter;
-              if (seatNoCounter < 10) {
-                seatObj["seatNo"] = "0" + seatNoCounter;
-              } else {
-                seatObj["seatNo"] = "" + seatNoCounter;
-              }
-
+              seatObj["seatLabel"] =  map_element.seat_label + seatNoCounter;
+              seatObj["seatNo"] = seatNoCounter < 10 ? "0" + seatNoCounter : seatNoCounter;
               seatNoCounter++;
             } else {
               seatObj["seatLabel"] = "";
             }
-            totalItemCounter++;
+            totalItemCounter ++;
             mapObj["seats"].push(seatObj);
           });
           this.seatmap.push(mapObj);
@@ -136,7 +115,8 @@ export class SeatSelectionComponent implements OnInit {
     }
   }
 
-  private blockSeats(seatsToBlockArr: string[]) {
+  public blockSeats(seatsToBlockArr: string[]) {
+    if (seatsToBlockArr.length > 0) {
       for (let index = 0; index < seatsToBlockArr.length; index++) {
         var seat = seatsToBlockArr[index] + "";
         var seatSplitArr = seat.split("_");
@@ -147,14 +127,13 @@ export class SeatSelectionComponent implements OnInit {
             var seatObj = element.seats[parseInt(seatSplitArr[1]) - 1];
             if (seatObj) {
               seatObj["status"] = "unavailable";
-              this.seatmap[index2]["seats"][
-                parseInt(seatSplitArr[1]) - 1
-              ] = seatObj;
+              this.seatmap[index2]["seats"][parseInt(seatSplitArr[1]) - 1] = seatObj;
               break;
             }
           }
         }
       }
+    }
   }
 
   public selectSeat(seatObject: any) {
@@ -164,17 +143,15 @@ export class SeatSelectionComponent implements OnInit {
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
       this.cart.seatstoStore.push(seatObject.key);
-      this.cart.totalamount += seatObject.price;
     } else if ((seatObject.status = "booked")) {
       seatObject.status = "available";
       var seatIndex = this.cart.selectedSeats.indexOf(seatObject.seatLabel);
       if (seatIndex > -1) {
         this.cart.selectedSeats.splice(seatIndex, 1);
         this.cart.seatstoStore.splice(seatIndex, 1);
-        this.cart.totalamount -= seatObject.price;
       }
     }
-    this.dataService.reservation.seats = this.cart.selectedSeats;
+    this.dataService.reservation.seats = this.cart.seatstoStore;
   }
 
 }
