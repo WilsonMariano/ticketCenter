@@ -59,9 +59,6 @@ export class MovieDataComponent implements OnInit {
         }
       }
     );
-
-  
-
   }
 
   private getMovieToEdit(idMovie: string){
