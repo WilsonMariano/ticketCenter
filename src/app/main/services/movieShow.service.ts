@@ -29,6 +29,11 @@ export class MoviesShowService {
     .valueChanges();
   }
 
+  public getOne(id: string): Observable<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', id).limit(1))
+      .valueChanges();
+  }
+
   public editRemainingSeats(idMovieShow: string, remainingSeats: number): void {
     this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
     .get()  
@@ -59,11 +64,21 @@ export class MoviesShowService {
     });
   }
 
+  public cancelBookedSeats(idMovieShow: string, bookedSeats: string[], remainingSeats: number): void {
+    this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.set({ bookedSeats, remainingSeats }, {merge: true}));
+    });
+  }
+
   public create(movieShow: MovieShow): Promise<any> {
     return this.moviesRef.add({...movieShow});
   }
 
-  public editField(idMovieShow: string, fieldName: string,  fieldValue: any): void {
+  public editField(idMovieShow: string, fieldName: string, fieldValue: any): void {
     this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
     .get()  
     .toPromise()

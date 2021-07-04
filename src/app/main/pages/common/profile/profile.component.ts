@@ -10,6 +10,8 @@ import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../classes/user.class';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { MoviesShowService } from 'src/app/main/services/movieShow.service';
+import { MovieShow } from 'src/app/main/classes/movieShow.class';
 declare const QRCode;
 declare const $;
 @Component({
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit {
     private userService: UsersService,
     private cinemasService: CinemasService,
     private transactionsService: TransactionService,
+    private movieShowService: MoviesShowService,
     private fxGlobalService: FxGlobalsService,
     private pdfService: PdfService
   ) { }
@@ -66,7 +69,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public getTransactions(): void {
-    this.transactionsService.getAllByUser('mgw009@gmail.com').subscribe(
+    this.transactionsService.getAllByUser(this.user.email).subscribe(
       res => {this.transactions = res}
     );
   }
@@ -108,6 +111,35 @@ export class ProfileComponent implements OnInit {
     const resp = await this.fxGlobalService.showAlertConfirm('Confirmar cancelación', '¿Está seguro de anular la operación?', EIcon.warning);
     
     if(resp) {
+
+      const subscription = this.movieShowService.getOne(transaction.movieShow.id).subscribe(
+        (res: MovieShow[]) => {
+          const show = res[0];
+
+          // Convierto seats del movie show de firebase a array
+          const bookedSeats = [];
+          for(let i = 0; i < Object.keys(show.bookedSeats).length; i++) {
+            bookedSeats.push(show.bookedSeats[i]);
+          }
+
+          // Convierto seats de la transacción de firebase a array
+          const transactionSeats = [];
+          for(let i = 0; i < Object.keys(transaction.seats).length; i++) {
+            transactionSeats.push(transaction.seats[i]);
+          }
+
+          console.log({bookedSeats, transactionSeats});
+          
+          transactionSeats.map(seat => {
+            const index = bookedSeats.findIndex(s => s === seat);
+            bookedSeats.splice(index, 1);
+          });
+
+          this.movieShowService.cancelBookedSeats(transaction.movieShow.id, bookedSeats, show.remainingSeats + transactionSeats.length);
+      });
+
+       subscription.unsubscribe(); 
+
       this.transactionsService.changeState(transaction.id, EState.Canceled);
       this.fxGlobalService.showAlert('Perfecto!', 'La transacción ha sido cancelada. El dinero será reintegrado por el mismo medio que se realizó la compra.', EIcon.success);
     }
