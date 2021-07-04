@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'dayOfWeek'
 })
-export class DayOfWeek implements PipeTransform {
+export class DayOfWeekPipe implements PipeTransform {
 
   private dayOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];    
 

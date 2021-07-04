@@ -25,7 +25,7 @@
                     <td>{{u.surname}}</td>
                     <td>{{u.document}}</td>
                     <td>{{u.email}}</td>
-                    <td>{{u.role || 'client'}}</td>
+                    <td>{{u.role | profile}}</td>
                     <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/user-data/' + u.email)"></i></td>
                   </tr>
                 </tbody>

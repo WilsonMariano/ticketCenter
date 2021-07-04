@@ -1,4 +1,5 @@
-import { DayOfWeek } from './dayOfWeek';
+import { ProfilePipe } from './profile.pipe';
+import { DayOfWeekPipe } from './dayOfWeek.pipe';
 import { MinutePipe } from './minute.pipe';
 import { JoinPipe } from './join.pipe';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     JoinPipe,
     MinutePipe,
-    DayOfWeek
+    DayOfWeekPipe,
+    ProfilePipe
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { CommonModule } from '@angular/common';
   exports: [
     JoinPipe,
     MinutePipe,
-    DayOfWeek
+    DayOfWeekPipe,
+    ProfilePipe
   ]
 })
 export class PipesModule { }

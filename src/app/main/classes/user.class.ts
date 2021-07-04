@@ -11,9 +11,9 @@ export class User {
 }
 
 export enum ERole {
-    client = 'client',
-    admin = 'admin',
-    manager = 'manager',
-    anonymus = 'anonymus',
-    attendant = 'attendant'
+    Cliente = 'client',
+    Administrador = 'admin',
+    Encargado = 'manager',
+    Anónimo = 'anonymus',
+    Acomodador = 'attendant'
 }
