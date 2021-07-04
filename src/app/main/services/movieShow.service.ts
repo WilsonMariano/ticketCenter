@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { MovieShow } from '../classes/movieShow.class';
-import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +61,15 @@ export class MoviesShowService {
 
   public create(movieShow: MovieShow): Promise<any> {
     return this.moviesRef.add({...movieShow});
+  }
+
+  public editField(idMovieShow: string, fieldName: string,  fieldValue: any): void {
+    this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.set({ [fieldName] : fieldValue }, {merge: true}));
+    });
   }
 }

@@ -1,5 +1,6 @@
+
 <h5 class="mt-1" data-toggle="tooltip" data-placement="top" title="Tiempo restante para finalizar la compra">
     <i class="fas fa-hourglass-start"></i>&nbsp; {{countDown}}
 </h5>
-<!-- Tengo que usar un div de 1px para evitar que el toast modifique el layout de mi página cuando ejecuta su dispose -->
-<div style="height:1px"><app-toast toastId="timeToast" message="Te quedan {{timerWarning | slice:0:1}} minutos para finalizar la compra!"></app-toast></div>
+ 
+<app-toast toastId="timeToast" message="Te quedan {{timerWarning | slice:0:1}} minutos para finalizar la compra!"></app-toast>

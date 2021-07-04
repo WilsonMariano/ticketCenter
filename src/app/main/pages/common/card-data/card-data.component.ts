@@ -58,10 +58,15 @@ export class CardDataComponent implements OnInit {
     
     // Actualizo la cantidad de butacas restantes de la función
     await this.movieShowService.editRemainingSeats(this.dataService.reservation.movieShow.id, remainingSeats);
+    let seats = this.dataService.reservation.movieShow.bookedSeats ?? [];
+    this.dataService.reservation.seats.forEach(s => {
+      seats.push(s.toString());
+    });
+    await this.movieShowService.editField(this.dataService.reservation.movieShow.id, "bookedSeats" , seats);
 
     // Elimino atributo innecesarios
     delete this.dataService.reservation.movieShow.remainingSeats;
-    console.log({reservation: this.dataService.reservation});
+
     
     try {
       // Guardo reserva

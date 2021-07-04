@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12 mb-5">
+            <h3 class="color-primary">Películas</h3>
+            <hr class="color-primary">
+        </div>
+        <div class="col-md-12 mb-5">
+            <button class="btn btn-primary float-end" (click)="navigateTo('admin/movie-data/nuevo')"><i
+                    class="fas fa-plus"></i> Añadir</button>
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Poster</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Director</th>
+                        <th scope="col">Duración</th>
+                        <th scope="col">Complejos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let m of pagedMoviesItems">
+                        <td>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)=setDetailPoster(m.poster)>
+                                <img src="{{m.poster}}" class="img-thumbnail">
+                            </a>
+                        </td>
+                        <td>{{m.title}}</td>
+                        <td>{{m.director}}</td>
+                        <td>{{m.runtime}}</td>
+                        <td>{{getCinemasNames(m.cinemas)}}</td>
+                        <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/movie-data/' + m.id)"></i></td>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <app-pager [items]="movies" (pageChanged)="pageChanged($event)"></app-pager>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <img src="{{detailPoster}}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+</div>

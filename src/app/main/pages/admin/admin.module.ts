@@ -13,6 +13,8 @@ import { CinemasComponent } from './cinemas/cinemas.component';
 import { ADMIN_ROUTES } from './admin-routes.module';
 import { UsersComponent } from './users/users.component';
 import { PagerModule } from '../../components/pager/pager.module';
+import { MoviesComponent } from './movies/movies.component';
+import { MovieDataComponent } from './movie-data/movie-data.component';
 
 
 
@@ -22,7 +24,9 @@ import { PagerModule } from '../../components/pager/pager.module';
     CinemasComponent, 
     CinemaDataComponent, 
     UsersComponent,
-    UserDataComponent
+    UserDataComponent,
+    MoviesComponent,
+    MovieDataComponent
   ],
   imports: [
     CommonModule,
