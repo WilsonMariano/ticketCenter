@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12 mb-5">
+        <h3 class="color-primary">Verificar tickets</h3>
+        <hr class="color-primary">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form class="row" [formGroup]="formGroup" (ngSubmit)="verifyTicket()">
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="code" placeholder="Código" formControlName="code">
+                  <small class="color-primary" *ngIf="formGroup.get('code').errors?.required && formGroup.get('code').touched">
+                    El código es requerido
+                </small>
+                </div>
+                <div class="col-md-4">
+                  <button type="submit" class="btn btn-primary mb-3" [disabled]="formGroup.invalid">Verificar</button>
+                </div>
+              </form>  
+        </div>
+    </div>
+</div>
+<app-toast toastId="verifyTicketToast" [message]="toastMessage"></app-toast>
+
+<div class="modal" tabindex="-1" id="modalVerifyTicket">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Entrada leida</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-0" *ngIf="reservation">
+              <div class="cardWrap" *ngFor="let seat of reservation['seats']">
+                <div class="cardT cardLeft">
+                  <h1>Ticket Center</h1>
+                  <div class="title">
+                    <h2>{{reservation.movie.title}}</h2>
+                    <span class="color-primary">PELÍCULA</span>
+                  </div>
+                  <div class="name">
+                    <h2>{{reservation.cinema.name}}</h2>
+                    <span class="color-primary">COMPLEJO</span>
+                  </div>
+                  <div class="seat">
+                    <h2>{{seat}}</h2>
+                    <span class="color-primary">ASIENTO</span>
+                  </div>
+                  <div class="time">
+                    <h2>{{reservation.movieShow.date}}</h2>
+                    <span class="color-primary">fecha</span>
+                  </div>
+                  <div class="time">
+                    <h2>{{reservation.movieShow.time}}</h2>
+                    <span class="color-primary">HORA</span>
+                  </div>
+                  
+                </div>
+                <div class="cardT cardRight">
+                  <div class="eye"></div>
+                  <div class="number">
+                    <h3>{{seat}}</h3>
+                    <span class="color-primary">ASIENTO</span>
+                  </div>
+                </div>
+              
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="changeState()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-spinner></app-spinner>

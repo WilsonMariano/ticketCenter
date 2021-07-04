@@ -56,6 +56,9 @@ export class LoginComponent implements OnInit, OnDestroy {
             case 'manager': 
             this.router.navigate(['manager']);
             break;
+            case 'attendant': 
+            this.router.navigate(['attendant']);
+            break;
             default: 
               this.location.back();
               // this.router.navigate(['home']);

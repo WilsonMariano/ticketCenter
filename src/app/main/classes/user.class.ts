@@ -14,5 +14,6 @@ export enum ERole {
     client = 'client',
     admin = 'admin',
     manager = 'manager',
-    anonymus = 'anonymus'
+    anonymus = 'anonymus',
+    attendant = 'attendant'
 }

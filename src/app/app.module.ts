@@ -1,3 +1,4 @@
+import { AttendantModule } from './main/pages/attendant/attendant.module';
 import { ManagerModule } from './main/pages/manager/manager.module';
 import { AdminModule } from './main/pages/admin/admin.module';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,7 @@ import { AppComponent } from './app.component';
     AdminModule,
     AuthModule,
     ManagerModule,
+    AttendantModule,
     AppRoutingModule,
     CommonsModule,
     DatabaseModule

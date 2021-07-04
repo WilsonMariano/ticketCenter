@@ -10,7 +10,7 @@ import {
 } from 'creditcard.js';
 import { Router } from '@angular/router';
 import { MoviesShowService } from 'src/app/main/services/movieShow.service';
-import { IState } from 'src/app/main/classes/reservation';
+import { EState } from 'src/app/main/classes/reservation';
 declare const Card;
 @Component({
   selector: 'app-card-data',
@@ -52,7 +52,7 @@ export class CardDataComponent implements OnInit {
   public async finalizePurchase(): Promise<void> {
     this.dataService.reservation.user = this.authService.getUserData().email;
     this.dataService.reservation.id = this.fx.getRandomId();
-    this.dataService.reservation.state = IState.Paid;
+    this.dataService.reservation.state = EState.Paid;
     // Calculo cantidad de butacas restantes
     const remainingSeats = this.dataService.reservation.movieShow.remainingSeats - this.dataService.reservation.seats.length;
     
