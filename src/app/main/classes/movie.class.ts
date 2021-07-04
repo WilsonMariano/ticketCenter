@@ -1,3 +1,4 @@
+import { Cinema } from './cinema.class';
 import { MovieShow } from './movieShow.class';
 
 export class Movie {
@@ -12,4 +13,5 @@ export class Movie {
     public trailer: string;
     public endDate: string;
     public movieShows: MovieShow[];
+    public cinemas: string[];
 }
