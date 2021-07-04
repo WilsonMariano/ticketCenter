@@ -8,7 +8,8 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Película</th>
+                    <th scope="col">Poster</th>
+                    <th scope="col">Título</th>
                     <th scope="col">Fecha inicio</th>
                     <th scope="col">Fecha fin</th>
                     <th scope="col" class="text-center">Funciones</th>
@@ -16,6 +17,9 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let m of pagedMoviesItems">
+                    <td>
+                      <img [src]="m.poster" class="img-fluid border border-white border-3" width="40">
+                    </td>
                     <td>{{m.title}}</td>
                     <td>{{m.start_date}}</td>
                     <td>{{m.endDate}}</td>
