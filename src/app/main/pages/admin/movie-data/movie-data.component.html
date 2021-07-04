@@ -1,1 +1,132 @@
-<p>movie-data works!</p>
+<div class="container">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <div class="row mt-5">
+
+      <div class="col-md-12 mb-5">
+        <h3 class="color-primary" *ngIf="typeOperation === 'nuevo'">Alta de película</h3>
+        <h3 class="color-primary" *ngIf="typeOperation !== 'nuevo'">Editar película</h3>
+        <hr class="color-primary">
+      </div>
+
+      <div class="col-md-4">
+        <div class="movie-poster mt-5">
+          <img [src]="poster" class="img-fluid">
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="title" class="form-label ">Título</label>
+            <input type="text" class="form-control" id="title" formControlName="title" autocomplete="off">
+            <small class="color-primary"
+              *ngIf="formGroup.get('title').errors?.required && formGroup.get('title').touched">
+              El título es requerido
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="overview" class="form-label ">Sinopsis</label>
+            <textarea type="text" class="form-control" id="overview" formControlName="overview"
+              autocomplete="off"></textarea>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="cast" class="form-label ">Protagonistas</label>
+            <textarea type="text" class="form-control" id="cast" formControlName="cast" autocomplete="off"></textarea>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="poster" class="form-label ">Poster URL</label>
+            <input type="text" class="form-control" id="poster" formControlName="poster" autocomplete="off"
+              (change)="updatePosterURL($event)">
+            <small class="color-primary"
+              *ngIf="formGroup.get('poster').errors?.required && formGroup.get('poster').touched">
+              El poster es requerido
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="director" class="form-label ">Director</label>
+            <input type="text" class="form-control" id="director" formControlName="director" autocomplete="off">
+            <small class="color-primary"
+              *ngIf="formGroup.get('director').errors?.required && formGroup.get('director').touched">
+              El director es requerido
+            </small>
+          </div>
+          <div class="col">
+            <label for="runtime" class="form-label ">Duración</label>
+            <input type="number" class="form-control" id="runtime" formControlName="runtime" autocomplete="off">
+            <small class="color-primary"
+              *ngIf="formGroup.get('runtime').errors?.required && formGroup.get('runtime').touched">
+              La duración es requerida
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <label for="startDate" class="form-label ">Fecha inicio</label>
+            <input type="date" class="form-control" id="startDate" formControlName="startDate" autocomplete="off">
+            <small class="color-primary"
+              *ngIf="formGroup.get('startDate').errors?.required && formGroup.get('startDate').touched">
+              La fecha es requerida
+            </small>
+          </div>
+          <div class="col">
+            <label for="runtime" class="form-label ">Fecha fin</label>
+            <input type="date" class="form-control" id="endDate" formControlName="endDate" autocomplete="off">
+            <small class="color-primary"
+              *ngIf="formGroup.get('endDate').errors?.required && formGroup.get('endDate').touched">
+              La fecha es requerida
+            </small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="card card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rbCinemas" id="rbAllCinemas" value="all" checked>
+                <label class="form-check-label" for="rbAllCinemas">
+                  Todos los complejos
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rbCinemas" id="rbCustomCinemas" value="custom">
+                <div class="btn-group">
+                  <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Seleccionar complejos
+                  </span>
+                  <ul class="dropdown-menu">
+                    <li *ngFor="let c of cinemas"><a class="dropdown-item" (click)="addCinema(c)">{{c.name}}</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row" >
+                <!-- TODO:  mostrar badges con los complejos elegidos. Cambiar dropdown por select con attr multiple seleccion -->
+                <div  *ngFor="let sc of selectedCinemas">{{getCinemaName(sc)}}</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12 text-center mt-5">
+      <button class="btn btn-outline-primary" routerLink='../../abm-movies'>VOLVER</button>
+      <button class="btn btn-primary ms-3" [disabled]="formGroup.invalid">ACEPTAR</button>
+    </div>
+
+  </form>
+  
+</div>
+<app-spinner></app-spinner>

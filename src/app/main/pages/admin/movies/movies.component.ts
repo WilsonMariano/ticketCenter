@@ -50,9 +50,11 @@ export class MoviesComponent implements OnInit {
 
   public getCinemasNames(cinemasIds: string[]){
     let result = [];
-    cinemasIds.forEach(id => {
-      result.push(this.cinemas.find(c => c.id == id).name);
-    });
+    if(cinemasIds){
+      cinemasIds.forEach(id => {
+        result.push(this.cinemas.find(c => c.id == id).name);
+      });
+    }
     return result;
   }
 }
