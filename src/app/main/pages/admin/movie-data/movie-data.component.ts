@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/main/services/movies.service';
 import { Movie } from 'src/app/main/classes/movie.class';
+import * as moment from 'moment';
+declare var $;
 
 @Component({
   selector: 'app-movie-data',
@@ -20,6 +22,7 @@ export class MovieDataComponent implements OnInit {
   public poster: string;
   public cinemas: Cinema[];
   public selectedCinemas: string[] = [];
+  public customCinemaSelection: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,8 +41,8 @@ export class MovieDataComponent implements OnInit {
       'poster': ['https://', [Validators.required]],
       'director': ['Juan José Campanella', [Validators.required]],
       'runtime': ['120', [Validators.required]],
-      'startDate' : ['01/01/21', [Validators.required]],
-      'endDate' : ['31/12/21', [Validators.required]],
+      'startDate' : ['', [Validators.required]],
+      'endDate' : ['', [Validators.required]],
     });
 
     const idMovie = this.route.snapshot.paramMap.get('id');
@@ -47,13 +50,11 @@ export class MovieDataComponent implements OnInit {
     this.cinemaService.getAll().subscribe(
       res => {
         this.cinemas = res;
-        this.cinemas.forEach(c => {
-          this.selectedCinemas.push(c.id);
-        });
         
         if(idMovie === 'nuevo') {
           this.typeOperation = 'nuevo';
           this.poster = '/assets/img/posterPlaceHolder.png';
+          this.selectAllCinemas();
         } else {
           this.getMovieToEdit(idMovie);
         }
@@ -69,40 +70,69 @@ export class MovieDataComponent implements OnInit {
         this.selectedCinemas = this.movie.cinemas;
         this.formGroup.patchValue({
           ...this.movie,
-          'director' : this.movie.director ?? ""
+          'director' : this.movie.director ?? "",
+          'startDate' : moment(this.movie.startDate).format("YYYY-MM-DD"),
+          'endDate' : moment(this.movie.endDate).format("YYYY-MM-DD")
         });
       }
     );
   }
 
   public addCinema(cinema: Cinema){
-    this.selectedCinemas.push(cinema.id);
+    if(this.selectedCinemas.indexOf(cinema.id) < 0)
+    {
+      this.selectedCinemas.push(cinema.id);
+    }
   }
 
-  public getCinemaName(cinemasId: string){
-    return this.cinemas.find(c => c.id == cinemasId).name;
+  public enableCinemasSelection(){
+    this.customCinemaSelection = true;
+    $("#dropdownCinemas").prop('disabled', false);
+  }
+
+  public selectAllCinemas(){
+    this.removeAllCinemas();
+    this.customCinemaSelection = false;
+    this.cinemas.forEach(c => {
+      this.selectedCinemas.push(c.id);
+    });
+  }
+
+  public getCinemaName(cinemaId: string){
+    return this.cinemas.find(c => c.id == cinemaId).name;
   }
 
   public updatePosterURL(event: any){
     this.poster = event.target.value;
   }
 
+  public removeCinema(cinemaId){
+    const index = this.selectedCinemas.indexOf(cinemaId);
+    if (index > -1 && this.customCinemaSelection) {
+      this.selectedCinemas.splice(index, 1);
+    }
+  }
+
+  public removeAllCinemas(){
+    this.selectedCinemas = [];
+  }
+
   public async submit(): Promise<void> {
-    const movie = this.formGroup.getRawValue() as Movie;
+    let movie = this.formGroup.getRawValue() as Movie;
+    movie.cinemas = this.selectedCinemas;
 
     if(this.typeOperation === 'nuevo') {
       try {    
         movie.id = this.fxService.getRandomId();
-
         await this.movieService.create(movie);
         this.router.navigate(['admin/abm-movies']);
         this.fxService.showAlert('Perfecto!', 'La película fue creada con éxito', EIcon.success);
+
       } catch(e) {
         this.fxService.showAlert('Error!', 'No se pudo dar de alta la película', EIcon.error);
         console.log("Error: ", e);
       }
     } else {
-        
         try{
           await this.movieService.edit(movie);
           this.router.navigate(['admin/abm-movies']);

@@ -75,7 +75,7 @@
         <div class="row mb-5">
           <div class="col">
             <label for="startDate" class="form-label ">Fecha inicio</label>
-            <input type="date" class="form-control" id="startDate" formControlName="startDate" autocomplete="off">
+            <input type="date" class="form-control" id="startDate"  formControlName="startDate" autocomplete="off">
             <small class="color-primary"
               *ngIf="formGroup.get('startDate').errors?.required && formGroup.get('startDate').touched">
               La fecha es requerida
@@ -95,32 +95,40 @@
           <div class="col">
             <div class="jumbotron p-0">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="rbCinemas" id="rbAllCinemas" value="all" checked>
+                <input class="form-check-input" type="radio" name="rbCinemas" id="rbAllCinemas" value="all" checked (click)="selectAllCinemas()">
                 <label class="form-check-label" for="rbAllCinemas">
                   Todos los complejos
                 </label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="rbCinemas" id="rbCustomCinemas" value="custom">
+                <input class="form-check-input" type="radio" name="rbCinemas" id="rbCustomCinemas" value="custom" (click)="enableCinemasSelection()">
                 <div class="btn-group">
-                  <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span type="button" id="dropdownCinemas" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                     Seleccionar complejos
                   </span>
-                  <ul class="dropdown-menu">
-                    <li *ngFor="let c of cinemas"><a class="dropdown-item" (click)="addCinema(c)">{{c.name}}</a></li>
+                  <ul class="dropdown-menu" >
+                    <li *ngFor="let c of cinemas" disabled>
+                      <a class="dropdown-item" (click)="addCinema(c)">+ &nbsp;{{c.name}}</a>
+                    </li>
                   </ul>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col">
-                  <span class="badge rounded-pill bg-warning text-dark mx-1" *ngFor="let sc of selectedCinemas">{{getCinemaName(sc)}}</span>
+                  <span class="badge rounded-pill bg-warning text-dark mx-2 mb-3 position-relative" *ngFor="let sc of selectedCinemas">
+                    {{getCinemaName(sc)}}
+                    <a class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark" (click)="removeCinema(sc)" *ngIf="customCinemaSelection">
+                      x
+                    </a>
+                  </span>
                 </div>
+                <button type="button" class="btn btn-link btn-sm" (click)="removeAllCinemas(sc)" *ngIf="customCinemaSelection">Borrar todos</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
 
     <div class="col-md-12 text-center mt-5">
@@ -129,6 +137,6 @@
     </div>
 
   </form>
-  
+
 </div>
 <app-spinner></app-spinner>

@@ -5,8 +5,8 @@
             <hr class="color-primary">
         </div>
         <div class="col-md-12 mb-5">
-            <button class="btn btn-primary float-end" (click)="navigateTo('admin/movie-data/nuevo')"><i
-                    class="fas fa-plus"></i> Añadir</button>
+            <button class="btn btn-primary float-end" (click)="navigateTo('admin/movie-data/nuevo')">
+                <i class="fas fa-plus"></i> Añadir</button>
         </div>
         <div class="col-md-12">
             <table class="table">
@@ -17,6 +17,7 @@
                         <th scope="col">Director</th>
                         <th scope="col">Duración</th>
                         <th scope="col">Complejos</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +32,6 @@
                         <td>{{m.runtime}}</td>
                         <td>{{getCinemasNames(m.cinemas)}}</td>
                         <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/movie-data/' + m.id)"></i></td>
-
                 </tbody>
             </table>
         </div>

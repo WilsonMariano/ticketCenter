@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { EIcon, FxGlobalsService } from '../../services/fx-globals.service';
 import { environment } from '../../../../environments/environment';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-trx-count-down',
