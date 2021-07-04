@@ -149,6 +149,11 @@ export class SaloonDataComponent implements OnInit {
   public async finalize(): Promise<void> {
     const selectedSeats = this.saloonService.cart.seatstoStore;
 
+    const height = parseInt(this.formGroupSize.get('height').value)
+    const width = parseInt(this.formGroupSize.get('width').value)
+
+    const seats = (height * width) - selectedSeats.length;
+
     this.seatConfig = this.genNewSeatMap();
 
     selectedSeats.map(e => {
@@ -174,7 +179,8 @@ export class SaloonDataComponent implements OnInit {
       const saloon: Saloon = {
         layout: newLayout,
         ...this.formGroupData.getRawValue(), 
-        ...this.formGroupSize.getRawValue()
+        ...this.formGroupSize.getRawValue(),
+        seats
       }
 
       saloon.id = id;
@@ -185,12 +191,10 @@ export class SaloonDataComponent implements OnInit {
       const saloonEdit = {
         layout: newLayout,
         ... this.formGroupData.getRawValue(),
-        ...this.formGroupSize.getRawValue()
+        ...this.formGroupSize.getRawValue(),
+        seats
       }
       saloonEdit.id = this.saloonEdit.id;
-
-
-
 
       const index = this.cinemaEdit.saloons.findIndex(e =>e.id === this.typeOperation);
       this.cinemaEdit.saloons[index] = saloonEdit;

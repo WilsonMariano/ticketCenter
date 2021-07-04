@@ -6,4 +6,5 @@ export class Saloon{
     public layout: string[];
     public height?: number;
     public width?: number;
+    public seats: number;
 }

@@ -1,3 +1,4 @@
+import { ToastModule } from './../../components/toast/toast.module';
 import { SpinnerModule } from './../../components/spinner/spinner.module';
 import { PipesModule } from './../../pipes/pipes.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +33,7 @@ import { MovieShowDataComponent } from './movie-show-data/movie-show-data.compon
     PagerModule,
     PipesModule,
     SpinnerModule,
+    ToastModule,
     MANAGER_ROUTES
   ]
 })

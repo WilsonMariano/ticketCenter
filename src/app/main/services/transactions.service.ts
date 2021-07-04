@@ -1,3 +1,4 @@
+import { MovieShow } from 'src/app/main/classes/movieShow.class';
 import { Observable } from 'rxjs';
 import { IState, Reservation } from './../classes/reservation';
 import { Injectable } from '@angular/core';
@@ -40,6 +41,10 @@ export class TransactionService {
   public getAllByUser(email: string): Observable<any> {
     return this.db.collection(this.dbpath, ref => ref.where('user', '==', email))
       .valueChanges();
+  }
+
+  public getAll(): Observable<any> {
+    return this.transactionRef.valueChanges();
   }
 
   public changeState(idTransaction: string, state: IState): void {

@@ -1,7 +1,8 @@
+import { MovieShowDataService } from './movie-show-data.service';
+import { Saloon } from 'src/app/main/classes/saloon.class';
 import { EIcon, FxGlobalsService } from './../../../services/fx-globals.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CinemasService } from './../../../services/cinemas.service';
-import { Saloon } from './../../../classes/saloon.class';
 import { AuthService } from './../../../services/auth.service';
 import { MoviesShowService } from './../../../services/movieShow.service';
 import { MoviesService } from './../../../services/movies.service';
@@ -33,6 +34,7 @@ export class MovieShowDataComponent implements OnInit {
     private cinemaService: CinemasService,
     private authService: AuthService,
     private fxService: FxGlobalsService,
+    private movieShowDataService: MovieShowDataService,
     private fb: FormBuilder
   ) { }
 
@@ -79,8 +81,8 @@ export class MovieShowDataComponent implements OnInit {
     this.filteredMovieShows = this.movieShows.filter(m => m.day === this.selectedDay);
   }
 
-  public getSaloonNumberById(id: string): number {
-    return this.saloons.find(s => s.id === id).number;
+  public getSaloonById(id: string): Saloon {
+    return this.saloons.find(s => s.id === id);
   }
 
   public changeType(): void {
@@ -88,13 +90,11 @@ export class MovieShowDataComponent implements OnInit {
   }
 
   public getSaloonsByType(): Saloon[] {
-    const type = this.formGroup.get('type').value.split(' - ')[0];
+    const type = this.formGroup.get('type').value.split(' ')[0];
     return this.saloons.filter(s => s.type === type);
   }
 
   public async addMovieShow(): Promise<void> {
-    this.fxService.showSpinner();
-
     const movieShow = new MovieShow();
     movieShow.time = this.formGroup.get('time').value;
     movieShow.type = this.formGroup.get('type').value;
@@ -103,34 +103,52 @@ export class MovieShowDataComponent implements OnInit {
     movieShow.day = this.selectedDay;
     movieShow.idCinema = this.authService.getUserData().idCinema;
     movieShow.id = this.fxService.getRandomId();
+    movieShow.remainingSeats = this.getSaloonById(movieShow.idSaloon).seats;
 
-    try {
-      this.fxService.hideSpinner();
-      await this.movieShowService.create(movieShow);
-      // this.fxService.showAlert('Perfecto', 'La función fue insertada con éxito', EIcon.success);
-    } catch(e) {
-      this.fxService.hideSpinner();
-      this.fxService.showAlert('Error', 'Se produjo un error, intente más tarde', EIcon.error);
+    const isVerify = await this.movieShowDataService.verifyShowTime(movieShow, this.movie);
+  
+    if(isVerify) {
+      this.fxService.showSpinner();
+      try {
+        this.fxService.hideSpinner();
+        await this.movieShowService.create(movieShow);
+      } catch(e) {
+        this.fxService.hideSpinner();
+        this.fxService.showAlert('Error', 'Se produjo un error, intente más tarde', EIcon.error);
+      }
+    } else {
+      this.fxService.showToast('movieShowDataToast');
     }
   }
 
   public async deleteMovieShow(id: string): Promise<void> {
-    const resp = await this.fxService.showAlertConfirm('Confirmación', '¿Está seguro de desea dar de baja esta función?', EIcon.warning)
 
-    if(resp) {
-      this.fxService.showSpinner();
-      this.movieShowService.deleteMovieShow(id);
-      this.fxService.showAlert('Perfecto', 'La función fue dada de baja con éxito', EIcon.success);
-      this.fxService.hideSpinner();
+    if(!await this.movieShowDataService.verifyLaterShow(id)) {
+      const resp = await this.fxService.showAlertConfirm('Confirmación', '¿Está seguro de desea dar de baja esta función?', EIcon.warning)
+
+      if(resp) {
+        this.fxService.showSpinner();
+        this.movieShowService.deleteMovieShow(id);
+        this.fxService.showAlert('Perfecto', 'La función fue dada de baja con éxito', EIcon.success);
+        this.fxService.hideSpinner();
+      }
+    } else {
+      this.fxService.showAlert('Atención', 'Hay funciones pendientes para esta sala', EIcon.warning);
     }
   }
 
-  public editMovieShow(movieShow: MovieShow): void {
-    this.movieShowEdit = movieShow;
-    this.formGroup.get('time').setValue(movieShow.time);
-    this.formGroup.get('type').setValue(movieShow.type);
-    this.formGroup.get('saloon').setValue(movieShow.idSaloon);
-    this.formGroup.get('saloon').enable();
+  public async editMovieShow(movieShow: MovieShow): Promise<void> {
+    
+    if(!await this.movieShowDataService.verifyLaterShow(movieShow.id)) {
+      this.movieShowEdit = movieShow;
+      this.formGroup.get('time').setValue(movieShow.time);
+      this.formGroup.get('type').setValue(movieShow.type);
+      this.formGroup.get('saloon').setValue(movieShow.idSaloon);
+      this.formGroup.get('saloon').enable();
+    } else {
+      this.fxService.showAlert('Atención', 'Hay funciones pendientes para esta sala', EIcon.warning);
+    }
+  
   }
 
   public cancelEdit(): void {
@@ -141,17 +159,24 @@ export class MovieShowDataComponent implements OnInit {
     this.formGroup.get('saloon').setValue('');
   }
 
-  public confirmEdit(): void {
-    this.fxService.showSpinner();
-
+  public async confirmEdit(): Promise<void> {
     this.movieShowEdit.time = this.formGroup.get('time').value;
     this.movieShowEdit.type = this.formGroup.get('type').value;
     this.movieShowEdit.idSaloon = this.formGroup.get('saloon').value;
 
-    this.movieShowService.editMovieShow(this.movieShowEdit);
-    this.cancelEdit();
-    
-    this.fxService.hideSpinner();
-    this.fxService.showAlert('Perfecto', 'Función editada con éxito', EIcon.success);
+    const isVerify = await this.movieShowDataService.verifyShowTime(this.movieShowEdit, this.movie);
+
+    if(isVerify) {
+      this.fxService.showSpinner();
+      this.movieShowService.editMovieShow(this.movieShowEdit);
+      this.cancelEdit();
+      
+      this.fxService.hideSpinner();
+      this.fxService.showAlert('Perfecto', 'Función editada con éxito', EIcon.success);
+    } else {
+      this.fxService.showToast('movieShowDataToast');
+    }
+
   }
+
 }
