@@ -27,13 +27,6 @@
             </div>
             <div class="col-md-6">
                 <div class="row">
-                    <!-- <div class="col-md-3 mb-4">¿CUÁL ESTU CINE DE PREFERENCIA?</div>
-                    <div class="col-md-9 mb-4">
-                        <select class="form-select" formControlName="cinemaPreference">
-                            <option value="">Seleccione un cine</option>
-                            <option *ngFor="let c of cinemas" [value]="c.id">{{c.location}}</option>
-                        </select>
-                    </div> -->
                     <div class="col-md-3 mb-4">
                         <span>DOCUMENTO</span>
                     </div>
@@ -46,19 +39,16 @@
                     </div>
                 </div>
             </div>
-            <!-- <hr class="color-primary mt-5">
-            <div class="col-md-12 d-flex justify-content-end">
-                <button class="btn btn-primary">Guardar</button>
-            </div> -->
         </div>
     </form>
-    <div class="row mt-5" *ngIf="user.role === 'client'">
+    <!-- <div class="row mt-5" *ngIf="user.role === 'client'"> -->
+    <div class="row mt-5">
         <div class="col-md-12">
             <h3 class="color-primary">Tickets</h3>
             <hr class="color-primary">
         </div>
         <ng-container *ngFor="let t of transactions; let i = index">
-            <div class="card card-ticket col-md-2 ms-2" *ngIf="t.state !== 'Canceled'">
+            <div class="card card-ticket col-md-2 ms-2" *ngIf="t.state === 'Paid'">
                 <div class="card-body">
                     <h5 class="card-title">{{t.movie.title}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{t.movieShow.type}}</h6>

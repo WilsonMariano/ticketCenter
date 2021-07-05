@@ -30,6 +30,12 @@
         <li class="nav-item"  roleMenu="manager">
           <a class="nav-link" routerLink="/manager/abm-saloons" routerLinkActive="active">ABM Salas</a>
         </li>
+        <li class="nav-item"  roleMenu="manager">
+          <a class="nav-link" routerLink="/manager/abm-movie-shows" routerLinkActive="active">ABM Funciones</a>
+        </li>
+        <li class="nav-item"  roleMenu="attendant">
+          <a class="nav-link" routerLink="/attendant/verify-ticket" routerLinkActive="active">Verificar tickets</a>
+        </li>
       </ul>
       <ul class="navbar-nav mr-sm-2">
         <li class="nav-item" *ngIf="!isLogged">
@@ -39,6 +45,7 @@
           <div class="btn-group">
             <span type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               {{currentUser?.email}}
+              <small class="color-primary" *ngIf="cinema">({{getCinemaName()}})</small>
             </span>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/profile">Perfil del usuario</a></li>

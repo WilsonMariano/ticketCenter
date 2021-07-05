@@ -1,3 +1,4 @@
+import { AttendantModule } from './main/pages/attendant/attendant.module';
 import { ManagerModule } from './main/pages/manager/manager.module';
 import { AdminModule } from './main/pages/admin/admin.module';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,6 +23,7 @@ import { AppComponent } from './app.component';
     AdminModule,
     AuthModule,
     ManagerModule,
+    AttendantModule,
     AppRoutingModule,
     CommonsModule,
     DatabaseModule

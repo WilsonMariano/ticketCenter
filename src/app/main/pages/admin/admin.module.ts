@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { UserDataComponent } from './user-data/user-data.component';
 import { CinemaDataComponent } from './cinema-data/cinema-data.component';
 import { SpinnerModule } from './../../components/spinner/spinner.module';
@@ -36,6 +37,7 @@ import { MovieDataComponent } from './movie-data/movie-data.component';
     NavbarModule,
     FooterModule,
     PagerModule,
+    PipesModule,
     ADMIN_ROUTES
   ],
   providers: [

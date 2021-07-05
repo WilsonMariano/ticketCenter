@@ -1,5 +1,6 @@
+import { MovieShow } from 'src/app/main/classes/movieShow.class';
 import { Observable } from 'rxjs';
-import { IState, Reservation } from './../classes/reservation';
+import { EState, Reservation } from './../classes/reservation';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -42,7 +43,16 @@ export class TransactionService {
       .valueChanges();
   }
 
-  public changeState(idTransaction: string, state: IState): void {
+  public getAll(): Observable<any> {
+    return this.transactionRef.valueChanges();
+  }
+
+  public getOne(id: string): Observable<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', id))
+      .valueChanges();
+  }
+
+  public changeState(idTransaction: string, state: EState): void {
     this.db.collection(this.dbpath, ref => ref.where('id', '==', idTransaction).limit(1))
     .get()  
     .toPromise()

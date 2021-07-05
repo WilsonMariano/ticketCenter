@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): boolean {
        
-        if(!this.authService.getUserData() ||  (this.authService.getUserData().role !== ERole.admin)) {
+        if(!this.authService.getUserData() ||  (this.authService.getUserData().role !== ERole.Administrador)) {
             this.router.navigate(['auth/login']);
             return false;
         }

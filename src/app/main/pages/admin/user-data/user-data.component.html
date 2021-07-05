@@ -36,10 +36,10 @@
           </div>
         <div class="col-md-6 mb-3">
           <label for="role" class="form-label ">Tipo</label>
-          <select class="form-control" id="role" formControlName="role">
+          <select class="form-control" id="role" formControlName="role" (change)="changeRole()">
               <option value="">Seleccione una opción</option>
-                <option *ngFor="let r of roles" [value]="r">
-                    {{r}}
+                <option *ngFor="let r of roles" [value]="r.key">
+                    {{r.value}}
                 </option>
           </select>
           <small class="color-primary" *ngIf="formGroup.get('role').errors?.required && formGroup.get('role').touched">
@@ -53,8 +53,20 @@
             El horario es requerido
           </small>
         </div>
+        <div class="col-md-6 mb-3" *ngIf="formGroup.get('idCinema').enabled">
+          <label for="cinema" class="form-label ">Complejo</label>
+          <select class="form-control" id="cinema" formControlName="idCinema">
+              <option value="">Seleccione una opción</option>
+                <option *ngFor="let c of cinemas" [value]="c.id">
+                    {{c.name}}
+                </option>
+          </select>
+          <small class="color-primary" *ngIf="formGroup.get('idCinema').errors?.required && formGroup.get('idCinema').touched">
+            El complejo es requerido
+          </small>
+        </div>
         <div class="col-md-12 text-center mt-4">
-          <button class="btn btn-outline-primary" routerLink='../../abm-usuarios'>VOLVER</button>
+          <button class="btn btn-outline-primary" routerLink='../../abm-users'>VOLVER</button>
           <button type="submit" class="btn btn-primary ms-3" [disabled]="formGroup.invalid">ACEPTAR</button>
         </div>
       </div>

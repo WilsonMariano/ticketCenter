@@ -14,14 +14,14 @@ export class Reservation {
     public ticketQuantity: number;
     public totalAmount: number;
     public payMethod: string;
-    public seats: Seat[];
-    public state: IState;
+    public seats: any[];
+    public state: EState;
 
     constructor() {
         this.movieShow = new MovieShow();
         this.cinema = new Cinema();
         this.movie = new Movie();
-        this.state = IState.InProgress;
+        this.state = EState.InProgress;
 
         //Mock
         this.seats = [
@@ -37,8 +37,9 @@ export class Reservation {
     }
 }
 
-export enum IState {
+export enum EState {
     InProgress = 'InProgress',
     Paid = 'Paid',
-    Canceled = 'Canceled'
+    Canceled = 'Canceled',
+    Used = 'Used'
 }
