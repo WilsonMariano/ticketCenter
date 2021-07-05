@@ -16,6 +16,8 @@ import { UsersComponent } from './users/users.component';
 import { PagerModule } from '../../components/pager/pager.module';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDataComponent } from './movie-data/movie-data.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { ToastModule } from '../../components/toast/toast.module';
 
 
 
@@ -27,7 +29,8 @@ import { MovieDataComponent } from './movie-data/movie-data.component';
     UsersComponent,
     UserDataComponent,
     MoviesComponent,
-    MovieDataComponent
+    MovieDataComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +41,7 @@ import { MovieDataComponent } from './movie-data/movie-data.component';
     FooterModule,
     PagerModule,
     PipesModule,
+    ToastModule,
     ADMIN_ROUTES
   ],
   providers: [

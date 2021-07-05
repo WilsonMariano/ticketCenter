@@ -107,7 +107,7 @@
                     Seleccionar complejos
                   </span>
                   <ul class="dropdown-menu" >
-                    <li *ngFor="let c of cinemas" disabled>
+                    <li *ngFor="let c of cinemas">
                       <a class="dropdown-item" (click)="addCinema(c)">+ &nbsp;{{c.name}}</a>
                     </li>
                   </ul>

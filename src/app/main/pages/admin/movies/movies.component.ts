@@ -29,7 +29,8 @@ export class MoviesComponent implements OnInit {
       res => {
         this.movies = res;
         this.cinemasService.getAll().subscribe(r => this.cinemas = r);
-      });
+      }
+    );
   }
 
   public navigateTo(url: string): void {

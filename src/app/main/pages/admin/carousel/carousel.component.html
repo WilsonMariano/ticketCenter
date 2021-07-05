@@ -1,0 +1,100 @@
+<div class="container">
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <div class="row mt-5">
+
+            <div class="col-md-12 mb-4">
+                <h3 class="color-primary">Configuración del carousel</h3>
+                <hr class="color-primary">
+            </div>
+
+            <div class="col-md-12">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="bulletsQty" class="form-label ">Cantidad de imágenes</label>
+                        <input type="number" class="form-control" id="bulletsQty" formControlName="bulletsQty" autocomplete="off">
+                        <small class="color-primary" *ngIf="formGroup.get('bulletsQty').errors?.required && formGroup.get('bulletsQty').touched">
+                            La cantidad de imágenes es requerida
+                        </small>
+                        <small class="color-primary" *ngIf="(formGroup.get('bulletsQty').errors?.min || formGroup.get('bulletsQty').errors?.max) && formGroup.get('bulletsQty').touched">
+                            La cantidad de imágenes debe ser un valor entre 1 y 8
+                        </small>
+                    </div>
+
+                    <div class="col">
+                        <label for="interval" class="form-label ">Frecuencia (en segundos)</label>
+                        <input type="number" class="form-control" id="interval" formControlName="interval" autocomplete="off">
+                        <small class="color-primary" *ngIf="formGroup.get('interval').errors?.required && formGroup.get('interval').touched">
+                            La frecuencia de imágenes es requerida
+                        </small>
+                        <small class="color-primary" *ngIf="(formGroup.get('bulletsQty').errors?.min || formGroup.get('bulletsQty').errors?.max) && formGroup.get('bulletsQty').touched">
+                            La frecuencia de imágenes debe ser un valor entre 1 y 10
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="jumbotron p-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rbMovies" id="rbNewMovies" value="all" (click)="enableMovieSelection(false)" checked>
+                    <label class="form-check-label" for="rbNewMovies">
+                      Últimos estrenos
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rbMovies" id="rbCustomMovies" value="all" (click)="enableMovieSelection(true)">
+                    <label class="form-check-label" for="rbCustomMovies">
+                      Seleccionar películas
+                    </label>
+                  </div>
+                  <div class="col-md-12 mt-5" *ngIf="customMovieSelection">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Poster</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Director</th>
+                                <th scope="col">Duración</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let m of pagedMoviesItems">
+                                <td>
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)=setDetailPoster(m.poster)>
+                                        <img src="{{m.poster}}" class="img-thumbnail">
+                                    </a>
+                                </td>
+                                <td>{{m.title}}</td>
+                                <td>{{m.director}}</td>
+                                <td>{{m.runtime}}</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="chk{{m.id}}" (click)="addOrRemoveMovie($event,m)">      
+                                    </div>
+                                </td>
+                        </tbody>
+                    </table>
+                    <app-pager [items]="movies" [pageSize]="4" (pageChanged)="pageChanged($event)"></app-pager>
+                  </div>
+                </div>
+              </div>
+
+            <div class="col-md-12 text-center mt-5">
+                <button class="btn btn-primary ms-3">APLICAR</button>
+            </div>
+
+        </div>
+    </form>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <img src="{{detailPoster}}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <app-toast toastId="carouselConfigToast" message="Ya seleccionó la cantidad de imágenes definidas en 'Cantidad de imágenes'"></app-toast>
+</div>
