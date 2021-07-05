@@ -1,23 +1,20 @@
 .poster{
-    width: 400px;
-    height: auto;
+  width: 400px;
+  height: auto;
 }
 
 .card-body {
-    background: #000 !important;
-    border-color: rgba(255,255,255,.55);
-  }
+  background: #000 !important;
+  border-color: rgba(255,255,255,.55);
+}
 
-
-  .form-check-input:checked {
-    background-color: #94824B;
-    border-color: #94824B;
+.form-check-input:checked {
+  background-color: #94824B;
+  border-color: #94824B;
 }
 
 .jumbotron{
   background-color: inherit ;
-  padding: 15px 30px 40px 30px !important;
-  // border-radius: 15px;
   border-style: solid;
   border-width: 2px;
   border-color: #ffc107 ;

@@ -68,6 +68,8 @@ export class MovieDataComponent implements OnInit {
         this.movie = data[0];
         this.poster = this.movie.poster;
         this.selectedCinemas = this.movie.cinemas;
+        $("#rbCustomCinemas").prop("checked", true);
+        this.enableCinemasSelection();
         this.formGroup.patchValue({
           ...this.movie,
           'director' : this.movie.director ?? "",
