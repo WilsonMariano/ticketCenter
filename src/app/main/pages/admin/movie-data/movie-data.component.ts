@@ -39,6 +39,7 @@ export class MovieDataComponent implements OnInit {
       'overview': [''],
       'cast': [''],
       'poster': ['https://', [Validators.required]],
+      'backdrop': ['https://', [Validators.required]],
       'director': ['Juan José Campanella', [Validators.required]],
       'runtime': ['120', [Validators.required]],
       'startDate' : ['', [Validators.required]],
@@ -136,7 +137,7 @@ export class MovieDataComponent implements OnInit {
   public async submit(): Promise<void> {
     let movie = this.formGroup.getRawValue() as Movie;
     movie.cinemas = this.selectedCinemas;
-
+    
     movie.cast = (this.formGroup.get('cast').value as String).split(',');
 
     if(this.typeOperation === 'nuevo') {

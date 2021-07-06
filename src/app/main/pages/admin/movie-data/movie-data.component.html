@@ -55,6 +55,17 @@
 
         <div class="row mb-3">
           <div class="col">
+            <label for="backdrop" class="form-label ">Imagen para carousel</label>
+            <input type="text" class="form-control" id="backdrop" formControlName="backdrop" autocomplete="off">
+            <small class="color-primary"
+              *ngIf="formGroup.get('backdrop').errors?.required && formGroup.get('backdrop').touched">
+              La imagen del carousel es requerida
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
             <label for="director" class="form-label ">Director</label>
             <input type="text" class="form-control" id="director" formControlName="director" autocomplete="off">
             <small class="color-primary"
