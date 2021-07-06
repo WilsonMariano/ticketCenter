@@ -75,6 +75,7 @@ export class CinemaDataComponent implements OnInit {
     if(this.typeOperation === 'nuevo') {
       try {
         cinema.id = this.fxService.getRandomId();
+        cinema.saloons = [];
 
         await this.cinemaService.create(cinema);
         this.fxService.showSpinner(500);
