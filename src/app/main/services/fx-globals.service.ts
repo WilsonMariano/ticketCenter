@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
+// const Moment = require('moment');
 import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal;
 declare var bootstrap;
@@ -63,6 +65,9 @@ export class FxGlobalsService {
     return `${arr[2]}/${arr[1]}/${arr[0]}`;
   }
 
+  public sortArrayByTime(array: any[]): any[] {
+    return array.sort((a, b) =>  moment(a.time, 'HH:mm').unix() - moment(b.time, 'HH:mm').unix());
+  }
 }
 
 export enum EIcon {

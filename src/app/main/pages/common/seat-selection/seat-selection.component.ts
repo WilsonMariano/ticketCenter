@@ -39,9 +39,14 @@ export class SeatSelectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.reservation.seats = [];
-    this.movieShow = this.dataService.reservation.movieShow;
-    this.getSaloonLayout(this.movieShow);
+
+    if(!this.dataService.reservation) {
+      this.router.navigate(['home']);
+    } else {
+      this.dataService.reservation.seats = [];
+      this.movieShow = this.dataService.reservation.movieShow;
+      this.getSaloonLayout(this.movieShow);
+    }
   }
 
   private getSaloonLayout(movieShow : MovieShow): void {

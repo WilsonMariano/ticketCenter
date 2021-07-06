@@ -16,7 +16,8 @@
                     <th scope="col">DNI</th>
                     <th scope="col">Email</th>
                     <th scope="col">Tipo</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,8 @@
                     <td>{{u.document}}</td>
                     <td>{{u.email}}</td>
                     <td>{{u.role | profile}}</td>
-                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/user-data/' + u.email)"></i></td>
+                    <td><i class="fas fa-pen cursor-pointer" (click)="navigateTo('admin/user-data/' + u.email)"></i></td>
+                    <td><i class="fas fa-trash cursor-pointer" (click)="delete(u.email)"></i></td>
                   </tr>
                 </tbody>
               </table>
@@ -34,3 +36,4 @@
     </div>
     <app-pager [items]="users" (pageChanged)="pageChanged($event)"></app-pager>
 </div>
+<app-spinner></app-spinner>

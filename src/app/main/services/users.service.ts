@@ -42,4 +42,14 @@ export class UsersService {
     return this.usersRef.valueChanges();
   }
 
+  public delete(email: string): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('email', '==', email).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.delete());
+    });
+  }
+
 }

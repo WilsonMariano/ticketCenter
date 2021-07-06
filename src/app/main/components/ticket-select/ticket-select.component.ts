@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Reservation } from './../../classes/reservation';
 import { Cinema } from './../../classes/cinema.class';
 import { CinemasService } from './../../services/cinemas.service';
@@ -55,6 +56,7 @@ export class TicketSelectComponent implements OnInit {
   }
 
   public navigateToSeatSelection(): void {
+    this.dataService.trxCountDown.next(environment.timerDuration);
     this.dataService.reservation.price = this.ticketValue;
     this.dataService.reservation.ticketQuantity = this.ticketQuantity;
     this.dataService.reservation.totalAmount = this.ticketValue * this.ticketQuantity;

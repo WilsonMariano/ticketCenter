@@ -1,3 +1,4 @@
+import { FxGlobalsService } from 'src/app/main/services/fx-globals.service';
 import { AuthService } from './../../../services/auth.service';
 import { Reservation } from './../../../classes/reservation';
 import { DataService } from './../../../services/data.service';
@@ -34,6 +35,7 @@ export class MovieDetailComponent implements OnInit {
     private dataService: DataService,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
+    private fxService: FxGlobalsService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -101,8 +103,8 @@ export class MovieDetailComponent implements OnInit {
     const selectedDate = moment(`${now.year()}/${arrSelectedDate[1]}/${arrSelectedDate[0]}`);
     const movieEndDate = moment(this.movie.endDate);
 
-    if(movieEndDate >= selectedDate){
-      return this.movieShows.filter(show => {
+    if(movieEndDate >= selectedDate) {
+      const filteredMovieShows =  this.movieShows.filter(show => {
         const showTime = moment();
         const [hs, min] = show.time.split(':');
         showTime.set({ hours:parseInt(hs), minutes: parseInt(min) });
@@ -111,6 +113,7 @@ export class MovieDetailComponent implements OnInit {
           return show.day == now.day() ? now < showTime : true;
         }
       });
+      return this.fxService.sortArrayByTime(filteredMovieShows);
     }
   } 
 

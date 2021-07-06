@@ -17,6 +17,9 @@ export class PayMethodComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if(!this.dataService.reservation) {
+      this.router.navigate(['home']);
+    }
   }
 
   public acept(): void {

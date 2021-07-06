@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../components/spinner/spinner.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -26,6 +27,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NavbarModule,
     FooterModule,
+    SpinnerModule,
     AUTH_ROUTES
   ]
 })

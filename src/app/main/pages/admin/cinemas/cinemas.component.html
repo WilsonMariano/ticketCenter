@@ -16,7 +16,8 @@
             <th scope="col">Dirección</th>
             <th scope="col">Localidad</th>
             <th scope="col">Teléfono</th>
-            <th scope="col">Acciones</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +26,8 @@
             <td>{{c.address}}</td>
             <td>{{c.location}}</td>
             <td>{{c.phone}}</td>
-            <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/cinema-data/' + c.id)"></i>
-            </td>
+            <td><i class="fas fa-pen cursor-pointer" (click)="navigateTo('admin/cinema-data/' + c.id)"></i></td>
+            <td><i class="fas fa-trash cursor-pointer" (click)="delete(c.id)"></i></td>
           </tr>
         </tbody>
       </table>
@@ -34,3 +35,4 @@
   </div>
   <app-pager [items]="cinemas"  (pageChanged)="pageChanged($event)"></app-pager>
 </div>
+<app-spinner></app-spinner>

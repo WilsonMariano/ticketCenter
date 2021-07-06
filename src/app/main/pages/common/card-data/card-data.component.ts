@@ -32,14 +32,24 @@ export class CardDataComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.formGroup = this.fb.group({
-      number: ['', [Validators.required, this.cardNumberValidator]],
-      name: ['', [Validators.required]],
-      expiry: ['', [Validators.required, this.expirationDateValidator]],
-      cvc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]]
-    });
-
-    this.initCreditCard();
+    console.log({reservation: this.dataService.reservation})
+    if(!this.dataService.reservation) {
+      this.router.navigate(['home']);
+    } else {
+      this.formGroup = this.fb.group({
+        number: ['', [Validators.required, this.cardNumberValidator]],
+        name: ['', [Validators.required]],
+        expiry: ['', [Validators.required, this.expirationDateValidator]],
+        cvc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+        installments: ['', Validators.required]
+      });
+  
+      if(this.dataService.reservation?.payMethod === 'DC') {
+        this.formGroup.get('installments').disable();
+      }
+  
+      this.initCreditCard();
+    }
   }
 
   private initCreditCard(): void {
@@ -110,6 +120,10 @@ export class CardDataComponent implements OnInit {
     if(this.formGroup.get('cvc').value.length === 3) {
       event.preventDefault()
     }
+  }
+
+  public getFeeAmount(quantity: number): string {
+    return (this.dataService.reservation.totalAmount / quantity).toFixed(2);
   }
 
 }

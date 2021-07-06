@@ -17,7 +17,8 @@
                         <th scope="col">Director</th>
                         <th scope="col">Duración</th>
                         <th scope="col">Complejos</th>
-                        <th></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +32,8 @@
                         <td>{{m.director}}</td>
                         <td>{{m.runtime}}</td>
                         <td>{{getCinemasNames(m.cinemas)}}</td>
-                        <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('admin/movie-data/' + m.id)"></i></td>
+                        <td><i class="fas fa-pen cursor-pointer" (click)="navigateTo('admin/movie-data/' + m.id)"></i></td>
+                        <td><i class="fas fa-trash cursor-pointer" (click)="delete(m.id)"></i></td>
                 </tbody>
             </table>
         </div>
@@ -46,5 +48,6 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<app-spinner></app-spinner>

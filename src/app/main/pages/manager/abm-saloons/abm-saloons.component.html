@@ -8,26 +8,29 @@
         <button class="btn btn-primary float-end" (click)="navigateTo('manager/saloon-data/nuevo')"><i class="fas fa-plus"></i> Añadir</button>
       </div>
         <div class="col-md-12">
-            <table class="table">
+            <table class="table" *ngIf="cinema">
                 <thead>
                   <tr>
                     <th scope="col">Piso</th>
                     <th scope="col">Número</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Butacas</th>
-                    <th scope="col">Layout</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let s of saloons">
+                  <tr *ngFor="let s of cinema.saloons">
                     <td>{{s.floor}}</td>
                     <td>{{s.number}}</td>
                     <td>{{s.type}}</td>
                     <td>{{s.seats}}</td>
-                    <td><i class="fas fa-pen-square fa-2x cursor-pointer" (click)="navigateTo('manager/saloon-data/' + s.id)"></i></td>
+                    <td><i class="fas fa-pen cursor-pointer" (click)="navigateTo('manager/saloon-data/' + s.id)"></i></td>
+                    <td><i class="fas fa-trash cursor-pointer" (click)="delete(s.id)"></i></td>
                   </tr>
                 </tbody>
               </table>
         </div>
     </div>
 </div>
+<app-spinner></app-spinner>

@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public async login(): Promise<void> {
+    this.fxGlobalsService.showSpinner();
     const user = this.formGroup.getRawValue();
     try {
       await this.authService.login(user.email, user.password);
@@ -61,15 +62,15 @@ export class LoginComponent implements OnInit, OnDestroy {
             break;
             default: 
               this.location.back();
-              // this.router.navigate(['home']);
             break;
           }
         }
-      );
-  
-      this.dataService.isLogged.next(true);
-      localStorage.setItem('accessToken', this.authService.getUserToken());
-      this.formGroup.reset();
+        );
+        
+        this.dataService.isLogged.next(true);
+        localStorage.setItem('accessToken', this.authService.getUserToken());
+        this.formGroup.reset();
+        this.fxGlobalsService.hideSpinner();
 
 
     } catch(e) {
@@ -84,6 +85,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           break;
       }
       this.fxGlobalsService.showAlert('No se pudo iniciar sesión', errMsg, EIcon.warning);
+      this.fxGlobalsService.hideSpinner();
     }
   }
 }

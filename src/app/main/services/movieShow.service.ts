@@ -54,6 +54,16 @@ export class MoviesShowService {
     });
   }
 
+  public delete(idMovieShow: string): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.delete());
+    });
+  }
+
   public editMovieShow(movieShow: MovieShow): void {
     this.db.collection(this.dbpath, ref => ref.where('id', '==', movieShow.id).limit(1))
     .get()  

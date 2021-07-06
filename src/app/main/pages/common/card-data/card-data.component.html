@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center" *ngIf="dataService.reservation">
     <h2 class="m-4">Ingrese los datos de su tarjeta</h2>
     <app-trx-count-down></app-trx-count-down>
     <div class="row mt-4">
@@ -32,13 +32,13 @@
                         <small class="color-primary"
                         *ngIf="formGroup.get('cvc').errors?.minlength || formGroup.get('cvc').errors?.maxlength">
                             El cvc es inválido</small>
-                        <select class="form-control" *ngIf="dataService.reservation.payMethod === 'CC'">
+                        <select class="form-control" *ngIf="dataService.reservation.payMethod === 'CC'" formControlName="installments">
                             <option value="">Seleccione cuotas</option>
-                            <option>1 x ${{dataService.reservation.totalAmount}}</option>
-                            <option>3 x ${{dataService.reservation.totalAmount / 3}}</option>
-                            <option>6 x ${{dataService.reservation.totalAmount / 6}}</option>
-                            <option>9 x ${{dataService.reservation.totalAmount / 9}}</option>
-                            <option>12 x ${{dataService.reservation.totalAmount / 12}}</option>
+                            <option value="1">1 x ${{dataService.reservation.totalAmount}}</option>
+                            <option value="3">3 x ${{getFeeAmount(3)}}</option>
+                            <option value="6">6 x ${{getFeeAmount(6)}}</option>
+                            <option value="9">9 x ${{getFeeAmount(9)}}</option>
+                            <option value="12">12 x ${{getFeeAmount(12)}}</option>
                         </select>
                     </form>
                 </div>
@@ -46,8 +46,7 @@
         </div>
         <div class="col-md-12 text-center mt-4">
             <button class="btn btn-outline-primary" [routerLink]="'../pay-method'">VOLVER</button>
-            <!-- <button class="btn btn-primary ms-3" (click)="finalizePurchase()" [disabled]="formGroup.invalid">COMPRAR</button> -->
-            <button class="btn btn-primary ms-3" (click)="finalizePurchase()">COMPRAR</button>
+            <button class="btn btn-primary ms-3" (click)="finalizePurchase()" [disabled]="formGroup.invalid">COMPRAR</button>
         </div>
     </div>
 </div>

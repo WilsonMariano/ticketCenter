@@ -23,7 +23,7 @@
                     </tr>
                 </table>
                 <hr>
-                <h6><b>BUTACAS:&nbsp;&nbsp;</b>{{reservation.seats.join('-')}}</h6>
+                <h6><b>BUTACAS:&nbsp;&nbsp;</b>{{getParsedSeats()}}</h6>
                 <h5><b>TOTAL:&nbsp;&nbsp;</b>{{reservation.totalAmount | currency}}</h5>
             </div>
             <div class="holes-lower"></div>
