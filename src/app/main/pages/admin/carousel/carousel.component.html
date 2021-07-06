@@ -22,7 +22,7 @@
 
                     <div class="col">
                         <label for="interval" class="form-label ">Frecuencia (en segundos)</label>
-                        <input type="number" class="form-control" id="interval" formControlName="interval" autocomplete="off">
+                        <input type="number" class="form-control" id="interval" formControlName="interval" autocomplete="off" [value]="formGroup.get('interval').value / 1000">
                         <small class="color-primary" *ngIf="formGroup.get('interval').errors?.required && formGroup.get('interval').touched">
                             La frecuencia de imágenes es requerida
                         </small>

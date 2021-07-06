@@ -107,6 +107,7 @@ export class CarouselComponent implements OnInit {
     let carousel = this.formGroup.getRawValue();
     carousel.selectedMovies = this.selectedMovies;
     carousel.lastMovies = !this.customMovieSelection;
+    carousel.interval = carousel.interval * 1000;
 
     try {    
 
