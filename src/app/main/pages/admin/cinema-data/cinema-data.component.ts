@@ -57,7 +57,7 @@ export class CinemaDataComponent implements OnInit {
 
   public async submit(): Promise<void> {
     const form = this.formGroup.getRawValue();
-    const cinema: Cinema = {
+    let cinema: Cinema = {
       id: form.id,
       name: form.name,
       address: form.address,
@@ -75,6 +75,7 @@ export class CinemaDataComponent implements OnInit {
     if(this.typeOperation === 'nuevo') {
       try {
         cinema.id = this.fxService.getRandomId();
+
         await this.cinemaService.create(cinema);
         this.fxService.showSpinner(500);
         this.fxService.showAlert('Perfecto!', 'El cinema se ha dado de alta con éxito', EIcon.success);
