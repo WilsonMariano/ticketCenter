@@ -25,10 +25,12 @@ export class MoviesSliderComponent implements OnInit {
     this.carouselService.getAll().subscribe(
       res => { 
         this.carouselConfig = res[0];
-        this.setBulletsArray(this.carouselConfig.bulletsQty);
+        
         if(this.carouselConfig.lastMovies){
+          this.setBulletsArray(this.carouselConfig.bulletsQty);
           this.useLastMovies(this.carouselConfig.bulletsQty);
         }else{
+          this.setBulletsArray(this.carouselConfig.selectedMovies.length);
           this.useSelectedMovies(this.carouselConfig.selectedMovies);
         }
     });
@@ -58,7 +60,6 @@ export class MoviesSliderComponent implements OnInit {
           function(m) { 
             return !(this.indexOf(m.id) < 0); 
           }, moviesFilter );
-        console.log(this.selectedMovies);
       });
   }
 }

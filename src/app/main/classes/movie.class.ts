@@ -15,4 +15,5 @@ export class Movie {
     public endDate: string;
     public movieShows: MovieShow[];
     public cinemas: string[];
+    public inCarousel?: boolean;
 }

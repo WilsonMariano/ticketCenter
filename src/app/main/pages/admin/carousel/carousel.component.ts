@@ -35,7 +35,7 @@ export class CarouselComponent implements OnInit {
       'selectedMovies': [''],
       'lastMovies' : [''],
       'bulletsQty': ['', [Validators.required, Validators.min(1), Validators.max(8)]],
-      'interval': ['', [Validators.required, Validators.min(1), Validators.max(8)]]
+      'interval': ['', [Validators.required, Validators.min(1), Validators.max(8000)]]
     });
 
     this.carouselService.getAll().subscribe(
@@ -44,7 +44,10 @@ export class CarouselComponent implements OnInit {
           ...data[0]
         });
         this.customMovieSelection = !data[0].lastMovies;
-        this.moviesService.getAll().subscribe(res => this.movies = res);
+        this.moviesService.getAll().subscribe(
+          res => {
+            this.movies = res;
+        });
         if(this.customMovieSelection){
           setTimeout(() => this.setInitialMovies(data[0].selectedMovies), 1000);
         }
@@ -77,6 +80,7 @@ export class CarouselComponent implements OnInit {
     const bulletsQty =  parseInt($("#bulletsQty").val());
 
     if(!exists && checked && this.selectedMovies.length < bulletsQty ){
+      this.movies.find(m => m.id == movie.id).inCarousel = true;
       this.selectedMovies.push(movie.id);
     }else if(!exists && checked && this.selectedMovies.length == bulletsQty){
       this.fx.showToast("carouselConfigToast");
@@ -107,13 +111,18 @@ export class CarouselComponent implements OnInit {
     let carousel = this.formGroup.getRawValue();
     carousel.selectedMovies = this.selectedMovies;
     carousel.lastMovies = !this.customMovieSelection;
-    carousel.interval = carousel.interval * 1000;
+    carousel.interval = carousel.interval;
 
     try {    
 
-      if(!carousel.lastMovies && carousel.selectedMovies.length == 0){
+      if(!carousel.lastMovies && carousel.selectedMovies.length != carousel.bulletsQty){
         throw new MovieQuantityError;
       }
+
+      this.selectedMovies.forEach(mId => 
+         this.moviesService.edit(this.movies.find(m => m.id == mId))
+      );
+      
       await this.carouselService.edit(carousel);
       this.router.navigate(['/home']);
       this.fx.showAlert('Perfecto!', 'La configuración se guardó con éxito', EIcon.success);
@@ -130,5 +139,5 @@ export class CarouselComponent implements OnInit {
 }
 
 export class MovieQuantityError extends Error{
-   public  message: string = "Debe seleccionar al menos una película";
+   public  message: string = "La cantidad de películas seleccionadas debe coincidir con el valor ingresado en 'Cantidad' de imágenes";
 }
