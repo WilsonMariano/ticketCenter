@@ -1,11 +1,16 @@
 // Variables
-$background-color: #94824B; // #191919 ;
+$background-color: #191919; // #191919 ;
 $width: 280;
 $circle-size: 50;
 
+.img-fluid {
+	max-width: 70%;
+}
+
 .jumbotron{
+	margin-top: 0 !important;
     background-color: $background-color !important ;
-    padding: 15px 30px 40px 30px !important;
+    padding: 0px 30px 40px 30px !important;
     border-radius: 15px;
 	width: $width + 100px;
 }
@@ -24,6 +29,7 @@ img {
 .ticket {
 	width: $width + px;
 	height: auto;
+	padding-bottom: 30px !important;
 	background-color: white;
 	position: relative;
 	color: black;
@@ -56,9 +62,14 @@ img {
 }
 
 .holes-lower {
-	position: relative;
-	margin:15px;
-	border:1px dashed #aaa;
+	height: $circle-size + px;
+	width: $circle-size + px;
+	background: $background-color;
+	border-radius: 50%;
+	position: absolute;
+	left:50%;
+	margin-left: ($circle-size / -2) + px;
+	bottom: ($circle-size / -2) + px;
 	&:before,
 	&:after {
 		content: '';
@@ -68,15 +79,33 @@ img {
 		position: absolute;
 		border-radius: 50%;
 	}
-	
 	&:before {
-		top: -25px;
-		left: ($circle-size / -1) + px;
+		left: ($width / -2) + px;
 	}
 	&:after {
-		top: -25px;
-		left: ($width - $circle-size) + px;
+		left: ($width / 2) + px;
 	}
+	// position: relative;
+	// margin:15px;
+	// border:1px dashed #aaa;
+	// &:before,
+	// &:after {
+	// 	content: '';
+	// 	height: $circle-size + px;
+	// 	width: $circle-size + px;
+	// 	background: $background-color;
+	// 	position: absolute;
+	// 	border-radius: 50%;
+	// }
+	
+	// &:before {
+	// 	top: -25px;
+	// 	left: ($circle-size / -1) + px;
+	// }
+	// &:after {
+	// 	top: -25px;
+	// 	left: ($width - $circle-size) + px;
+	// }
 }
 
 .info {

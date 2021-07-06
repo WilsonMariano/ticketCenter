@@ -8,9 +8,9 @@ export class SaloonDataService {
 
   public seatmap = [];
   public seatChartConfig = {
-    showRowsLabel: false,
+    showRowsLabel: true,
     showRowWisePricing: false,
-    newSeatNoForRow: false
+    newSeatNoForRow: true
   };
   public cart = {
     selectedSeats: [],

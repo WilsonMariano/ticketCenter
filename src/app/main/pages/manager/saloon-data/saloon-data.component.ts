@@ -42,8 +42,8 @@ export class SaloonDataComponent implements OnInit {
 
     this.formGroupData = this.fb.group({
       id: [''],
-      floor: ['1', Validators.required],
-      number: ['1', Validators.required],
+      floor: ['1', [Validators.required, Validators.min(0), Validators.max(30)]],
+      number: ['1', [Validators.required, Validators.min(1), Validators.max(30)]],
       type: ['2D', Validators.required]
     });
 

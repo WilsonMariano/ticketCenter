@@ -29,7 +29,7 @@ export class VerifyTicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      'code': ['1625413778002', Validators.required]
+      'code': ['', Validators.required]
     });
   }
 
@@ -83,13 +83,20 @@ export class VerifyTicketComponent implements OnInit {
         this.fxService.hideSpinner();
         this.formGroup.reset();
         modal.show();
+
+        this.subscription.unsubscribe();
+        this.transactionService.changeState(this.reservation.id, EState.Used);
       }
     )
   }
 
-  public changeState(): void {
-    this.subscription.unsubscribe();
-    this.transactionService.changeState(this.reservation.id, EState.Used);
+  // public changeState(): void {
+  //   this.subscription.unsubscribe();
+  //   this.transactionService.changeState(this.reservation.id, EState.Used);
+  // }
+
+  public getSeat(seat: string): string {
+    return seat.replace('_', '');
   }
 
 }

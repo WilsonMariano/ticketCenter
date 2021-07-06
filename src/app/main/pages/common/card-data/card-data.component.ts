@@ -60,6 +60,8 @@ export class CardDataComponent implements OnInit {
   }
 
   public async finalizePurchase(): Promise<void> {
+    this.fx.showSpinner();
+
     this.dataService.reservation.user = this.authService.getUserData().email;
     this.dataService.reservation.id = this.fx.getRandomId();
     this.dataService.reservation.state = EState.Paid;
@@ -83,10 +85,12 @@ export class CardDataComponent implements OnInit {
       await this.transactionService.create(this.dataService.reservation);
       this.fx.showAlert("Excelente!", "La compra ha resultado satisfactoria, en tu perfil encontrarás la entrada para acceder a la función", EIcon.success);
       this.router.navigate(['profile']);
+      this.fx.hideSpinner();
  
     } catch(e) {
       console.log("Se produjo un error: ", e);
       this.fx.showAlert("Ups!", "Hubo un problema con la compra, intenta nuevamente en unos minutos", EIcon.error);
+      this.fx.hideSpinner();
     }
       
   }

@@ -43,7 +43,7 @@
                     <span class="color-primary">COMPLEJO</span>
                   </div>
                   <div class="seat">
-                    <h2>{{seat}}</h2>
+                    <h2>{{getSeat(seat)}}</h2>
                     <span class="color-primary">ASIENTO</span>
                   </div>
                   <div class="time">
@@ -59,7 +59,7 @@
                 <div class="cardT cardRight">
                   <div class="eye"></div>
                   <div class="number">
-                    <h3>{{seat}}</h3>
+                    <h3>{{getSeat(seat)}}</h3>
                     <span class="color-primary">ASIENTO</span>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="changeState()">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

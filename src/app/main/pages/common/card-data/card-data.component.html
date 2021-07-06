@@ -1,8 +1,8 @@
 <div class="container text-center">
     <h2 class="m-4">Ingrese los datos de su tarjeta</h2>
     <app-trx-count-down></app-trx-count-down>
-    <div class="row mt-4">
-        <div class="col-md-12">
+    <div class="row jumbotron mx-auto mt-4">
+        <div class="col-md-8">
             <div class="demo-container">
                 <div class="card-wrapper"></div>
                 <div class="form-container active">
@@ -44,9 +44,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <app-purchase-summary></app-purchase-summary>
+        </div>
         <div class="col-md-12 text-center mt-4">
             <button class="btn btn-outline-primary" [routerLink]="'../pay-method'">VOLVER</button>
             <button class="btn btn-primary ms-3" (click)="finalizePurchase()" [disabled]="formGroup.invalid">COMPRAR</button>
         </div>
     </div>
 </div>
+
+<app-spinner></app-spinner>

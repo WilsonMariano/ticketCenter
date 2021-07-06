@@ -137,7 +137,7 @@ export class MovieShowDataComponent implements OnInit {
             // }, 2000);
         });
       } else {
-        this.fxService.showAlert('Atención', 'Hay funciones pendientes para esta sala', EIcon.warning);
+        this.fxService.showAlert('Atención', 'Hay entradas vendidas para esta función', EIcon.warning);
         this.fxService.hideSpinner();
       }
     }
@@ -152,7 +152,7 @@ export class MovieShowDataComponent implements OnInit {
       this.formGroup.get('saloon').setValue(movieShow.idSaloon);
       this.formGroup.get('saloon').enable();
     } else {
-      this.fxService.showAlert('Atención', 'Hay funciones pendientes para esta sala', EIcon.warning);
+      this.fxService.showAlert('Atención', 'Hay entradas pendientes para esta función', EIcon.warning);
     }
   
   }

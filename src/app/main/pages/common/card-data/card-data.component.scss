@@ -1,3 +1,5 @@
+$seat-space-bg: #191919;
+
 .demo-container {
     width: 100%;
     max-width: 350px;
@@ -16,4 +18,12 @@ input, select {
     width: 300px;
     margin: 10px auto;
     display: block;
+}
+
+.jumbotron {
+    margin-top: 0 !important;
+    background-color: $seat-space-bg !important ;
+    padding: 15px 30px 40px 30px !important;
+    border-radius: 15px;
+	width: 90%;
 }

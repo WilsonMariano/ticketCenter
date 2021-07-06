@@ -6,7 +6,7 @@
                 <h4>{{reservation.movie.title}}</h4>
             </div>
             <div class="poster">
-                <img src="{{reservation.movie.poster}}" alt="..." />
+                <img src="{{reservation.movie.poster}}" class="img-fluid" />
             </div>
             <div class="info">
                 <h6>{{reservation.cinema.name}}</h6>
@@ -27,8 +27,8 @@
                 <h5><b>TOTAL:&nbsp;&nbsp;</b>{{reservation.totalAmount | currency}}</h5>
             </div>
             <div class="holes-lower"></div>
-            <img src="../../../../assets/img/QR.png" class="img-fluid Qr">
-            <p>TRX: {{reservation.id}}</p>
+            <!-- <img src="../../../../assets/img/QR.png" class="img-fluid Qr">
+            <p>TRX: {{reservation.id}}</p> -->
         </div>
     </div>
 </div>
