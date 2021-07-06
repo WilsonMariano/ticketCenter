@@ -101,7 +101,21 @@ export class MovieDataComponent implements OnInit {
   }
 
   public getCinemaName(cinemaId: string){
-    return this.cinemas.find(c => c.id == cinemaId).name;
+    const cinema = this.cinemas.find(c => c.id == cinemaId);
+
+    return cinema && cinema.name;
+  }
+
+  public getSelectedCinemas(){
+    const arr = [];
+
+    this.selectedCinemas.forEach(e => {
+      const cinema = this.cinemas.find(c => c.id === e);
+      if(cinema) {
+        arr.push(cinema.id);
+      }
+    });
+    return arr;
   }
 
   public updatePosterURL(event: any){

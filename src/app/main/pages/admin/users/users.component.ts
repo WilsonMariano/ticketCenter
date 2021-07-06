@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
             setTimeout(() => {
               this.fxService.hideSpinner();
               window.location.reload();
-            }, 2000);
+            }, 1500);
           }
         );
        

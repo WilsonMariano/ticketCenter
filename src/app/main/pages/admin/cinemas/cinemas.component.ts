@@ -54,7 +54,7 @@ export class CinemasComponent implements OnInit {
           setTimeout(() => {
             this.fxService.hideSpinner();
             window.location.reload();
-          }, 2000);
+          }, 1500);
         })
       } else {
         this.fxService.showAlert('Atención', 'No se puede eliminar el cine, hay funciones pendientes', EIcon.warning);

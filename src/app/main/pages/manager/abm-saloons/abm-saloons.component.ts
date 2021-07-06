@@ -1,3 +1,4 @@
+import { MoviesShowService } from 'src/app/main/services/movieShow.service';
 import { Cinema } from './../../../classes/cinema.class';
 import { FxGlobalsService, EIcon } from 'src/app/main/services/fx-globals.service';
 import { AbmSaloonsService } from './abm-saloons.service';
@@ -20,6 +21,7 @@ export class AbmSaloonsComponent implements OnInit {
     private router: Router,
     private cinemaService: CinemasService,
     private abmSaloonService: AbmSaloonsService,
+    private movieShowService: MoviesShowService,
     private fxService: FxGlobalsService,
     private authService: AuthService) { }
 
@@ -37,6 +39,10 @@ export class AbmSaloonsComponent implements OnInit {
       this.fxService.showSpinner();
 
       if(!await this.abmSaloonService.verifyPendingShows(idSaloon)) {
+
+        // Elimino todas las funciones que tengan esa sala
+        this.movieShowService.deleteByIdSaloon(idSaloon);
+
         const index = this.cinema.saloons.findIndex(e => e.id === idSaloon);
         this.cinema.saloons.splice(index, 1);
         this.cinemaService.edit(this.cinema);

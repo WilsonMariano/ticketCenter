@@ -55,7 +55,10 @@ export class MoviesComponent implements OnInit {
     let result = [];
     if(cinemasIds){
       cinemasIds.forEach(id => {
-        result.push(this.cinemas.find(c => c.id == id).name);
+        const cinema = this.cinemas.find(c => c.id == id);
+        if(cinema) {
+          result.push(cinema.name);
+        }
       });
     }
     return result;
@@ -69,7 +72,7 @@ export class MoviesComponent implements OnInit {
           setTimeout(() => {
             this.fxService.hideSpinner();
             window.location.reload();
-          }, 2000);
+          }, 1500);
         }
       );
       this.fxService.hideSpinner();

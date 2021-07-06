@@ -1,3 +1,4 @@
+import { CinemasService } from 'src/app/main/services/cinemas.service';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../../../services/users.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -25,10 +26,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     private location: Location,
     private fxGlobalsService: FxGlobalsService,
     private dataService: DataService,
-    private userService: UsersService
+    private userService: UsersService,
+    private cinemasService: CinemasService
   ) { }
 
   ngOnInit(): void {
+    if(this.authService.getUserData()) {
+      this.router.navigate(['profile']);
+    }
+
     this.formGroup = this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
@@ -47,6 +53,30 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       this.subscription = this.userService.getOneByEmail(user.email).subscribe(
         data => {
+          
+          // Si el usuario fue eliminado
+          if(data.length === 0) {
+            this.logout();
+            this.fxGlobalsService.showAlert('Error', 'Usuario o contraseña erróneas', EIcon.error);
+            this.subscription.unsubscribe();
+            return;
+          }
+
+          // Si es encargado o acomodador y el cinema fue eliminado
+          if(data[0].idCinema !== undefined) {
+            const cinemaSubscription = this.cinemasService.getOne(data[0].idCinema).subscribe(
+              res => {
+                if(res.length === 0) {
+                  this.logout();
+                  this.fxGlobalsService.showAlert('Error', 'El cine asociado fue dado de baja', EIcon.error);
+                  this.subscription.unsubscribe();
+                  cinemaSubscription.unsubscribe();
+                  return;
+                }
+              }
+            )
+          }
+
           this.authService.setUserData(data[0]);
           this.dataService.currentUser.next(data[0]);
    
@@ -66,7 +96,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
         }
         );
-        
+
         this.dataService.isLogged.next(true);
         localStorage.setItem('accessToken', this.authService.getUserToken());
         this.formGroup.reset();
@@ -87,6 +117,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.fxGlobalsService.showAlert('No se pudo iniciar sesión', errMsg, EIcon.warning);
       this.fxGlobalsService.hideSpinner();
     }
+  }
+
+  private logout(): void {
+    this.authService.logout();
+    this.dataService.currentUser.next(null);
+    this.dataService.isLogged.next(false);
   }
 }
 

@@ -44,13 +44,13 @@ export class MoviesShowService {
     });
   }
 
-  public deleteMovieShow(idMovieShow: string): void {
-    this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovieShow).limit(1))
+  public deleteByIdSaloon(idSaloon: string): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('idSaloon', '==', idSaloon))
     .get()  
     .toPromise()
     .then(snapshot => {
       snapshot.forEach(document => 
-        document.ref.set({ delete: true }, {merge: true}));
+        document.ref.delete());
     });
   }
 

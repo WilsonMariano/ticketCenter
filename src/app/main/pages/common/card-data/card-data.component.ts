@@ -32,7 +32,8 @@ export class CardDataComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log({reservation: this.dataService.reservation})
+    this.initCreditCard();
+    
     if(!this.dataService.reservation) {
       this.router.navigate(['home']);
     } else {
@@ -47,16 +48,15 @@ export class CardDataComponent implements OnInit {
       if(this.dataService.reservation?.payMethod === 'DC') {
         this.formGroup.get('installments').disable();
       }
-  
-      this.initCreditCard();
     }
   }
 
   private initCreditCard(): void {
-    new Card({
+    const card = new Card({
       form: document.querySelector('form'),
       container: '.card-wrapper'
   });
+  console.log({card});
   }
 
   public async finalizePurchase(): Promise<void> {

@@ -4,6 +4,7 @@ import { AuthService } from './../../../services/auth.service';
 import { MovieShow } from 'src/app/main/classes/movieShow.class';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-abm-movie-shows',
@@ -28,7 +29,10 @@ export class AbmMovieShowsComponent implements OnInit {
 
   private getAllMovies(): void {
     this.movieService.getAllByCinema(this.authService.getUserData().idCinema).subscribe(
-      (res: Movie[]) => this.movies = res
+      (movies: Movie[]) => {
+        this.movies = movies.filter((m: Movie) => 
+        (moment() >= moment(m.startDate) && moment() < moment(m.endDate)));
+      }
     );
   }
 
