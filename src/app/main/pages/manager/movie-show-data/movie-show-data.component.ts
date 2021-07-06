@@ -104,7 +104,8 @@ export class MovieShowDataComponent implements OnInit {
     movieShow.day = this.selectedDay;
     movieShow.idCinema = this.authService.getUserData().idCinema;
     movieShow.id = this.fxService.getRandomId();
-    movieShow.remainingSeats = this.getSaloonById(movieShow.idSaloon).seats;
+    movieShow.remainingSeats = this.getSaloonById(movieShow.idSaloon).seats; 
+    movieShow.bookedSeats = [];
 
     const isVerify = await this.movieShowDataService.verifyShowTime(movieShow, this.movie);
   

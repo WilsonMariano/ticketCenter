@@ -137,6 +137,8 @@ export class MovieDataComponent implements OnInit {
     let movie = this.formGroup.getRawValue() as Movie;
     movie.cinemas = this.selectedCinemas;
 
+    movie.cast = (this.formGroup.get('cast').value as String).split(',');
+
     if(this.typeOperation === 'nuevo') {
       try {    
         movie.id = this.fxService.getRandomId();
