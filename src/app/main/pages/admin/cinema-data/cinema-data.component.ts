@@ -73,10 +73,8 @@ export class CinemaDataComponent implements OnInit {
     }
 
     if(this.typeOperation === 'nuevo') {
-
-      cinema.id = this.fxService.getRandomId();
-
       try {
+        cinema.id = this.fxService.getRandomId();
         await this.cinemaService.create(cinema);
         this.fxService.showSpinner(500);
         this.fxService.showAlert('Perfecto!', 'El cinema se ha dado de alta con éxito', EIcon.success);
