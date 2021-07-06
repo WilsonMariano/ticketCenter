@@ -38,4 +38,14 @@ export class CinemasService {
         document.ref.update({ ...cinema }));
     });
   }
+
+  public delete(idCinema: string): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', idCinema).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+       snapshot.forEach(document => 
+        document.ref.delete());
+    });
+  }
 }

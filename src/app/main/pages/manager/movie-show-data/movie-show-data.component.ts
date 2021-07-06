@@ -78,7 +78,10 @@ export class MovieShowDataComponent implements OnInit {
   }
 
   private filterMovieShowsByDay(): void {
-    this.filteredMovieShows = this.movieShows.filter(m => m.day === this.selectedDay);
+    const filteredMovieShows = this.movieShows.filter(m => m.day === this.selectedDay);
+    console.log({filteredMovieShows});
+    this.filteredMovieShows = this.fxService.sortArrayByTime(filteredMovieShows);
+    console.log({ordenado: this.filteredMovieShows});
   }
 
   public getSaloonById(id: string): Saloon {

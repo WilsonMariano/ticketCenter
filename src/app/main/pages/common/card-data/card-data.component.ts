@@ -112,4 +112,8 @@ export class CardDataComponent implements OnInit {
     }
   }
 
+  public getFeeAmount(quantity: number): string {
+    return (this.dataService.reservation.totalAmount / quantity).toFixed(2);
+  }
+
 }

@@ -35,10 +35,10 @@
                         <select class="form-control" *ngIf="dataService.reservation.payMethod === 'CC'">
                             <option value="">Seleccione cuotas</option>
                             <option>1 x ${{dataService.reservation.totalAmount}}</option>
-                            <option>3 x ${{dataService.reservation.totalAmount / 3}}</option>
-                            <option>6 x ${{dataService.reservation.totalAmount / 6}}</option>
-                            <option>9 x ${{dataService.reservation.totalAmount / 9}}</option>
-                            <option>12 x ${{dataService.reservation.totalAmount / 12}}</option>
+                            <option>3 x ${{getFeeAmount(3)}}</option>
+                            <option>6 x ${{getFeeAmount(6)}}</option>
+                            <option>9 x ${{getFeeAmount(9)}}</option>
+                            <option>12 x ${{getFeeAmount(12)}}</option>
                         </select>
                     </form>
                 </div>

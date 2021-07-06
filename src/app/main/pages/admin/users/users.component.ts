@@ -1,3 +1,4 @@
+import { FxGlobalsService, EIcon } from 'src/app/main/services/fx-globals.service';
 import { UsersService } from './../../../services/users.service';
 import { User } from './../../../classes/user.class';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private fxService: FxGlobalsService,
     private userService: UsersService) { }
 
   ngOnInit(): void {
@@ -31,5 +33,22 @@ export class UsersComponent implements OnInit {
    */
      public pageChanged(data: any){
       this.pagedUsersItems = data;
+    }
+
+    public async delete(email: string): Promise<void> {
+      if(await this.fxService.showAlertConfirm('Confirmación', '¿Está seguro que desea eliminar el usuario seleccionado?', EIcon.info)) {
+        this.fxService.showSpinner();
+        this.userService.delete(email).then(
+          res => {
+            setTimeout(() => {
+              this.fxService.hideSpinner();
+              window.location.reload();
+            }, 2000);
+          }
+        );
+       
+        this.fxService.hideSpinner();
+
+      } 
     }
 }

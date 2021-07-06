@@ -1,3 +1,4 @@
+import { FxGlobalsService, EIcon } from 'src/app/main/services/fx-globals.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cinema } from 'src/app/main/classes/cinema.class';
@@ -21,7 +22,8 @@ export class MoviesComponent implements OnInit {
   constructor(
     private router: Router,
     private moviesService: MoviesService,
-    private cinemasService: CinemasService
+    private cinemasService: CinemasService,
+    private fxService: FxGlobalsService
   ) { }
 
   ngOnInit(): void {
@@ -56,5 +58,20 @@ export class MoviesComponent implements OnInit {
       });
     }
     return result;
+  }
+
+  public async delete(idMovie: string): Promise<void> {
+    if(await this.fxService.showAlertConfirm('Confirmación', '¿Está seguro que desea eliminar la película seleccionada?', EIcon.info)) {
+      this.fxService.showSpinner();
+      this.moviesService.delete(idMovie).then(
+        res => {
+          setTimeout(() => {
+            this.fxService.hideSpinner();
+            window.location.reload();
+          }, 2000);
+        }
+      );
+      this.fxService.hideSpinner();
+    } 
   }
 }

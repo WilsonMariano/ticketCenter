@@ -42,4 +42,14 @@ export class MoviesService {
         document.ref.update({ ...movie }));
   });
   }
+
+  public delete(idMovie: string): Promise<any> {
+    return this.db.collection(this.dbpath, ref => ref.where('id', '==', idMovie).limit(1))
+    .get()  
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(document => 
+        document.ref.delete());
+    });
+  }
 }

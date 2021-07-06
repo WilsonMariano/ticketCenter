@@ -18,8 +18,14 @@ export class PurchaseSummaryComponent implements OnInit {
   ngOnInit(): void {
     // console.log("tamaño de la ventana: " + window.innerWidth);
     this.reservation = this.dataService.reservation;
-
   }
+
+  public getParsedSeats(): string {
+    const seats = this.reservation.seats.map((e: string) => e.replace('_', ''));
+    return seats.join('-');
+  }
+
+
 
 
 
