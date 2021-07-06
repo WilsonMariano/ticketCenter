@@ -65,7 +65,7 @@ export class MovieDetailComponent implements OnInit {
 
   private getMovieShows(idCinema, idMovie): void {
     this.movieShowService.getByMovieAndCinema(idCinema, idMovie).subscribe(
-      res => {this.movieShows = res; console.log({res} )}
+      res => this.movieShows = res
     );
   }
 

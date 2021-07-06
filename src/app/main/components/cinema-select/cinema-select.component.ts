@@ -38,7 +38,6 @@ export class CinemaSelectComponent implements OnInit {
   }
 
   public selectCinema(): void {
-    console.log(this.cinemaSelected);
     this.dataService.cinemaSelected.next(this.cinemaSelected);
     this.cinemaChange.emit(this.cinemaSelected);
   }

@@ -61,7 +61,7 @@ export class SaloonDataService {
             seatNoCounter = 1; //Reset the seat label counter for new row
           }
           var totalItemCounter = 1;
-          // console.log({seatValArr});
+
           seatValArr.forEach(item => {
             var seatObj = {
               key: map_element.seat_label + "_" + totalItemCounter,
@@ -97,7 +97,6 @@ export class SaloonDataService {
   }
 
   public selectSeat(seatObject: any) {
-    console.log({seatObject});
     if (seatObject.status == "available") {
       seatObject.status = "unavailable";
       this.cart.selectedSeats.push(seatObject.seatLabel);

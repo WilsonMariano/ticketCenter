@@ -74,8 +74,6 @@ export class VerifyTicketComponent implements OnInit {
         }
         this.reservation.seats = arrSeats;
 
-        console.log({reservation: this.reservation});
-
         const modal = new bootstrap.Modal(document.getElementById('modalVerifyTicket'), {
           keyboard: false
         });

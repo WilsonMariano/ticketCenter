@@ -81,7 +81,6 @@ export class MovieShowDataService {
                   return movieShowDate.diff(moment()) > 0 && t;
               }
             });
-            console.log({transactions});
             if(transactions.length != 0) {
               resolve(true);
             } else {

@@ -20,8 +20,12 @@ export class UsersComponent implements OnInit {
     private userService: UsersService) { }
 
   ngOnInit(): void {
+    this.fxService.showSpinner();
     this.userService.getAll().subscribe(
-      res => this.users = res);
+      res => {
+        this.users = res;
+        this.fxService.hideSpinner();
+      });
   }
   public navigateTo(url: string): void {
     this.router.navigate([url]);

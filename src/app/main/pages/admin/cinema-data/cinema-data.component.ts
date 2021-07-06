@@ -45,7 +45,6 @@ export class CinemaDataComponent implements OnInit {
      this.cinemaService.getOne(idCinema).subscribe(
         data => {
           const cinema = data[0] as Cinema;
-          console.log({cinema});
 
           this.formGroup.patchValue({
             ...cinema,
@@ -83,7 +82,6 @@ export class CinemaDataComponent implements OnInit {
         this.fxService.showAlert('Perfecto!', 'El cinema se ha dado de alta con éxito', EIcon.success);
         this.router.navigate(['admin/abm-cinemas']);
       } catch(e) {
-        console.log(e);
         this.fxService.showAlert('Error!', 'Se ha producido un error, intente de nuevo en unos minutos', EIcon.error);
       }
     } else {
@@ -93,7 +91,6 @@ export class CinemaDataComponent implements OnInit {
         this.fxService.showAlert('Perfecto!', 'El cinema se ha editado con éxito', EIcon.success);
         this.router.navigate(['admin/abm-cinemas']);
       } catch(e) {
-        console.log(e);
         this.fxService.showAlert('Error!', 'Se ha producido un error, intente de nuevo en unos minutos', EIcon.error);
       }
     }

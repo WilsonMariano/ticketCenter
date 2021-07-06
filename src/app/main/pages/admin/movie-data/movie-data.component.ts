@@ -146,7 +146,6 @@ export class MovieDataComponent implements OnInit {
 
       } catch(e) {
         this.fxService.showAlert('Error!', 'No se pudo dar de alta la película', EIcon.error);
-        console.log("Error: ", e);
       }
     } else {
         try{
@@ -156,7 +155,6 @@ export class MovieDataComponent implements OnInit {
 
         } catch(e) {
           this.fxService.showAlert('Error!', 'La película no pudo ser editada, intente más tarde', EIcon.error);
-          console.log("Error: ", e);
         }
     }
   }

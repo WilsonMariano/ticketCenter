@@ -16,7 +16,6 @@ export class PurchaseSummaryComponent implements OnInit {
     private dataService: DataService) { }
 
   ngOnInit(): void {
-    // console.log("tamaño de la ventana: " + window.innerWidth);
     this.reservation = this.dataService.reservation;
   }
 

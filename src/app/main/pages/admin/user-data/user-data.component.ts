@@ -34,24 +34,24 @@ export class UserDataComponent implements OnInit {
     this.getAllCinemas();
 
     this.formGroup = this.fb.group({
-      'email': ['mgw009@gmail.com', [Validators.required]],
-      'name': ['Pablo', [Validators.required]],
-      'surname': ['Valenzuela', [Validators.required]],
-      'document': ['30555555', [Validators.required]],
-      'password': ['123456', [Validators.required]],
-      'role': ['manager', [Validators.required]],
+      'email': ['', [Validators.required]],
+      'name': ['', [Validators.required]],
+      'surname': ['', [Validators.required]],
+      'document': ['', [Validators.required]],
+      'password': ['', [Validators.required]],
+      'role': ['', [Validators.required]],
       'idCinema': [{value: '', disabled: true}, [Validators.required]]
     });
 
     const roleKeys = Object.keys(ERole);
     roleKeys.forEach(r => {
+      if(ERole[r] === 'anonymus') return;
+      
       this.roles.push({
         key: ERole[r],
         value: r
       })
     });
-
-    console.log({roles: this.roles});
 
     const emailUser = this.route.snapshot.paramMap.get('id');
     
@@ -63,7 +63,6 @@ export class UserDataComponent implements OnInit {
      this.userService.getOneByEmail(emailUser).subscribe(
         data => {
           const user = data[0] as User;
-          console.log({user});
           this.formGroup.patchValue(user);
           this.changeRole();
         });
@@ -80,6 +79,7 @@ export class UserDataComponent implements OnInit {
   }
 
   public async submit(): Promise<void> {
+    this.fxService.showSpinner();
     const user = this.formGroup.getRawValue() as User;
 
     if(this.typeOperation === 'nuevo') {
@@ -89,9 +89,10 @@ export class UserDataComponent implements OnInit {
         await this.userService.create(user);
         this.router.navigate(['admin/abm-users']);
         this.fxService.showAlert('Perfecto!', 'El usuario fue insertado con éxito', EIcon.success);
+        this.fxService.hideSpinner();
       } catch(e) {
         this.fxService.showAlert('Error!', 'El email ingresado es erróneo o ya está en uso', EIcon.error);
-        console.log("Error: ", e);
+        this.fxService.hideSpinner();
       }
     } else {
         delete user.password;
@@ -99,18 +100,17 @@ export class UserDataComponent implements OnInit {
           await this.userService.edit(user);
           this.router.navigate(['admin/abm-users']);
           this.fxService.showAlert('Perfecto!', 'El usuario fue editado con éxito', EIcon.success);
+          this.fxService.hideSpinner();
 
         } catch(e) {
           this.fxService.showAlert('Error!', 'El usuario no pudo ser editado, intente más tarde', EIcon.error);
-          console.log("Error: ", e);
+          this.fxService.hideSpinner();
         }
     }
   }
 
   public changeRole(): void {
     const role = this.formGroup.get('role').value;
-
-    console.log({role});
     
     if(role === ERole.Encargado || role === ERole.Acomodador) {
       this.formGroup.get('idCinema').enable();

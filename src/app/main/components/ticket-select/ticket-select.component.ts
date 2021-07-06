@@ -28,9 +28,6 @@ export class TicketSelectComponent implements OnInit {
     public dataService: DataService) { }
 
   ngOnInit(): void {
-    // this.reservation = this.dataService.reservation;
- 
-    // console.log({reservation: this.reservation});
     this.getDateDescription();
     this.getCinema(this.dataService.cinemaSelected.value);
   }
@@ -72,7 +69,6 @@ export class TicketSelectComponent implements OnInit {
   public getCinema(idCinema): void {
     this.cinemaService.getOne(idCinema).subscribe(
       data => {
-        console.log({cinema: data});
         this.cinema = data[0];
 
         // Obtengo el precio del tipo de entrada de la función elegida

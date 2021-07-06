@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getUserData();
-    console.log({user: this.user});
+
     this.formGroup = this.fb.group({
       'name': [{value: this.user.name, disabled: true}],
       'surname': [{value: this.user.surname, disabled: true}],
@@ -107,7 +107,6 @@ export class ProfileComponent implements OnInit {
   }
 
   public async orderRepayment(transaction: Reservation): Promise<void> {
-    console.log({transaction});
     const resp = await this.fxGlobalService.showAlertConfirm('Confirmar cancelación', '¿Está seguro de anular la operación?', EIcon.warning);
     
     if(resp) {
@@ -127,8 +126,6 @@ export class ProfileComponent implements OnInit {
           for(let i = 0; i < Object.keys(transaction.seats).length; i++) {
             transactionSeats.push(transaction.seats[i]);
           }
-
-          console.log({bookedSeats, transactionSeats});
           
           transactionSeats.map(seat => {
             const index = bookedSeats.findIndex(s => s === seat);

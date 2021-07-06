@@ -48,9 +48,7 @@ export class RegisterComponent implements OnInit {
       this.fxGlobalsService.showAlert('Registro exitoso', 'El usuario se ha creado con éxito!', EIcon.success);
       this.router.navigate(['auth/login']);
 
-    } catch(e) {
-      console.log("error: ", e);
-      
+    } catch(e) {    
       let errMsg: string;
 
       switch(e.code) {

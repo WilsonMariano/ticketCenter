@@ -56,7 +56,6 @@ export class CardDataComponent implements OnInit {
       form: document.querySelector('form'),
       container: '.card-wrapper'
   });
-  console.log({card});
   }
 
   public async finalizePurchase(): Promise<void> {
@@ -88,7 +87,6 @@ export class CardDataComponent implements OnInit {
       this.fx.hideSpinner();
  
     } catch(e) {
-      console.log("Se produjo un error: ", e);
       this.fx.showAlert("Ups!", "Hubo un problema con la compra, intenta nuevamente en unos minutos", EIcon.error);
       this.fx.hideSpinner();
     }

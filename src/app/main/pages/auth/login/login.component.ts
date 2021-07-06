@@ -104,7 +104,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
     } catch(e) {
-      console.log("error: ", e);
       let errMsg: string;
       switch(e.code) {
         case 'auth/wrong-password':

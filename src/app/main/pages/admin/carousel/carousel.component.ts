@@ -133,7 +133,6 @@ export class CarouselComponent implements OnInit {
       }else{
         this.fx.showAlert('Error!', 'No se pudo guardar la información', EIcon.error);
       }
-      console.log("Error: ", e);
     }
   }
 }
