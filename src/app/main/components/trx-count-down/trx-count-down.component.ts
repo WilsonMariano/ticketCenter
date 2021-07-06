@@ -23,10 +23,12 @@ export class TrxCountDownComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private router: Router,
-    private fxGlobalsService: FxGlobalsService) { }
+    private fxGlobalsService: FxGlobalsService) {
+
+  }
 
   ngOnInit(): void {
-    this.dataService.trxCountDown.next(environment.timerDuration);
+    // this.dataService.trxCountDown.next(environment.timerDuration);
     this.subscription = this.dataService.trxCountDown$.subscribe(res => this.countDown = res);
     this.setTrxTimer();
   }

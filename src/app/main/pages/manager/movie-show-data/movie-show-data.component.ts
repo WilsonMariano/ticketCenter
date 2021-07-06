@@ -126,17 +126,20 @@ export class MovieShowDataComponent implements OnInit {
 
   public async deleteMovieShow(id: string): Promise<void> {
 
-    if(!await this.movieShowDataService.verifyLaterShow(id)) {
-      const resp = await this.fxService.showAlertConfirm('Confirmación', '¿Está seguro de desea dar de baja esta función?', EIcon.warning)
-
-      if(resp) {
-        this.fxService.showSpinner();
-        this.movieShowService.deleteMovieShow(id);
-        this.fxService.showAlert('Perfecto', 'La función fue dada de baja con éxito', EIcon.success);
+    if(await this.fxService.showAlertConfirm('Confirmación', '¿Está seguro de desea dar de baja esta función?', EIcon.warning)) {
+      this.fxService.showSpinner();
+      if(!await this.movieShowDataService.verifyLaterShow(id)) {
+        this.movieShowService.delete(id).then(
+          res => {
+            // setTimeout(() => {
+              this.fxService.hideSpinner();
+              // window.location.reload();
+            // }, 2000);
+        });
+      } else {
+        this.fxService.showAlert('Atención', 'Hay funciones pendientes para esta sala', EIcon.warning);
         this.fxService.hideSpinner();
       }
-    } else {
-      this.fxService.showAlert('Atención', 'Hay funciones pendientes para esta sala', EIcon.warning);
     }
   }
 
