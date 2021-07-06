@@ -36,38 +36,35 @@
             <div class="col-md-12">
                 <div class="jumbotron p-3">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rbMovies" id="rbNewMovies" value="all" (click)="enableMovieSelection(false)" checked>
+                    <input class="form-check-input" type="radio" name="rbMovies" id="rbNewMovies" value="all" (click)="enableMovieSelection(false)" [checked]="!customMovieSelection">
                     <label class="form-check-label" for="rbNewMovies">
                       Últimos estrenos
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rbMovies" id="rbCustomMovies" value="all" (click)="enableMovieSelection(true)">
+                    <input class="form-check-input" type="radio" name="rbMovies" id="rbCustomMovies" value="all" (click)="enableMovieSelection(true)" [checked]="customMovieSelection">
                     <label class="form-check-label" for="rbCustomMovies">
                       Seleccionar películas
                     </label>
                   </div>
                   <div class="col-md-12 mt-5" *ngIf="customMovieSelection">
+                    <button type="button" class="btn btn-link btn-sm" (click)="cleanSelection()">Limpiar selección</button>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Poster</th>
                                 <th scope="col">Título</th>
-                                <th scope="col">Director</th>
-                                <th scope="col">Duración</th>
-                                <th></th>
+                                <th scope="col">Promocionar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let m of pagedMoviesItems">
+                            <tr *ngFor="let m of movies">
                                 <td>
                                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)=setDetailPoster(m.poster)>
                                         <img src="{{m.poster}}" class="img-thumbnail">
                                     </a>
                                 </td>
                                 <td>{{m.title}}</td>
-                                <td>{{m.director}}</td>
-                                <td>{{m.runtime}}</td>
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="chk{{m.id}}" (click)="addOrRemoveMovie($event,m)">      
@@ -75,13 +72,13 @@
                                 </td>
                         </tbody>
                     </table>
-                    <app-pager [items]="movies" [pageSize]="4" (pageChanged)="pageChanged($event)"></app-pager>
+                    <!-- <app-pager [items]="movies" [pageSize]="4" (pageChanged)="pageChanged($event)"></app-pager> -->
                   </div>
                 </div>
               </div>
 
             <div class="col-md-12 text-center mt-5">
-                <button class="btn btn-primary ms-3">APLICAR</button>
+                <button class="btn btn-primary ms-3" [disabled]="formGroup.invalid">APLICAR</button>
             </div>
 
         </div>
